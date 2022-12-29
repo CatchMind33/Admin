@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공지사항 수정</title>
+	<!--css 및 라이브러리 링크 시작-->
+	<div th:replace="fragment/link :: link"/>
+	<!--css 및 라이브러리 링크 끝-->
+
+</head>
+<style>
+     .value {
+        width: 400px;
+    }
+    .memo {
+        height: 200px;
+    }
+    .contents {
+		padding: 15px;
+	}
+</style>
+<body>
+<!--header 시작-->
+<div th:replace="fragment/header :: header"/>
+<!--프로필 시작-->
+<div th:replace="fragment/profile :: profile"/>
+<!--프로필 끝-->
+<!--header 끝-->
+
+<div class="wrapper">
+	<!--user_nav 시작-->
+	<div th:replace = "fragment/service_aside :: service_aside"/>
+	<!--user_nav 끝-->
+
+
+        <section class="content">
+			<header class="main-header clearfix">
+				<h1 class="main-header__title">
+					<i class="icon pe-7s-menu"></i>
+					캐치테이블 <small> 공지사항</small>
+				</h1>
+				<div class="main-header__date">
+					<i class="icon pe-7s-date"></i>
+					<span class="date"></span>
+				</div>
+			</header>
+
+
+
+		<div class="row">
+
+			<div class="col-md-12">
+				<article class="widget">
+					<header class="widget__header">
+						<h3 class="widget__title">공지사항 상세보기</h3>
+					</header>
+
+					<div class="widget__content">
+						공지사항 제목 : <input type="text" class="input-text value" placeholder="" value="이벤트 공지"/>
+                        </div>
+                        <div>
+                        작성자 : <input type="text" class="input-text value" value="이레몬">
+                        </div>
+
+						<input type="file" name="uploader" id="uploader">
+						<label for="uploader">Single file uploader</label>
+
+						<textarea class="textarea" rows="6" placeholder="">연말이벤트 공지입니다. 12월 24일부터 25일까지 ~~</textarea>
+
+						<button class="btn btn-light pull-right" type="submit">수정</button>
+						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
+						<div class="clearfix"></div>
+					</div>
+
+				</article>
+			</div>
+        </section>
+	<!--footer 시작-->
+	<div th:replace="fragment/footer :: footer"/>
+	<!--footer 끝-->
+
+</div> <!-- /wrapper -->
+
+<!--js 연결 시작-->
+<div th:replace="fragment/js :: js"/>
+<!--js 연결 끝-->
+</body>
+</html>

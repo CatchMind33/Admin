@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 공지사항</title>
+    <!--css 및 라이브러리 링크 시작-->
+    <div th:replace="fragment/link :: link"/>
+    <!--css 및 라이브러리 링크 끝-->
+    <style>
+        .main-content {
+            display:flex;
+            justify-content: end;
+        }
+
+        .search-box {
+            box-sizing: border-box;
+            height: 45px;
+        }
+
+        .search {
+            position: relative;
+            margin: 0;
+            border-radius: 2px;
+            vertical-align: middle;
+            height: 100%;
+            background: transparent;
+            padding: 10px;
+        }
+
+        .search-btn {
+            vertical-align: middle;
+            height: 100%;
+            position: relative;
+            bottom:28px;
+            left:150px;
+            font-size: 12px;
+            background: transparent;
+            border: none;
+            outline : none;
+        }
+
+        .sort-select{
+            height: 38px;
+            width: 100px;
+            border : 1px solid #e5e5e5;
+            border-radius: 2px;
+            background: transparent;
+            font-size: 12px;
+        }
+
+        .widget__header{
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+    </style>
+</head>
+<body>
+<!--header 시작-->
+<div th:replace="fragment/header :: header"/>
+<!--프로필 시작-->
+<div th:replace="fragment/profile :: profile"/>
+<!--프로필 끝-->
+<!--header 끝-->
+
+<div class="wrapper">
+    <!--user_nav 시작-->
+    <div th:replace = "fragment/service_aside :: service_aside"/>
+    <!--user_nav 끝-->
+
+        <section class="content">
+            <header class="main-header clearfix">
+                <h1 class="main-header__title">
+                <i class="icon pe-7s-menu"></i>
+                전체 공지사항 <small> 조회 및 관리</small>
+            </h1>
+                <div class="main-content">
+                    <div class="search-box">
+                        <form>
+                            <input class="input-text search" type="text" placeholder="공지 검색">
+                            <button class="search-btn">
+                                <i class="pe-7s-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </header> <!--헤더 끝-->
+
+            <div class="row">
+
+                <div class="col-md-12">
+                    <article class="widget shadow">
+                        <header class="widget__header">
+                            <h3 class="widget__title">총 게시글 : 10개</h3>
+                                <select class="sort-select">
+                                    <option>제목순</option>
+                                    <option>등록순</option>
+                                </select>
+                        </header>
+    
+                        <div class="widget__content">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>공지 제목</th>
+                                        <th>작성자</th>
+                                        <th>공지 내용</th>
+                                        <th>등록일</th>
+                                        <th>관리자 메모</th>
+                                        <th>관리</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="/service/notice/detail">이벤트 공지</a></td>     <!-- 들어가면 상세페이지로 -->
+                                        <td>이레몬</td>
+                                        <td>연말이벤트~</td>
+                                        <td>2022.12.15 14:00</td>
+                                        <td>수정사항 없음</td>
+                                        <td><button class="btn btn-light">수정</button><button class="btn btn-red">삭제</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="/service/notice/write"><button class="btn btn-light">작성하기</button></a>
+                        </article><!-- /widget -->
+                    </div>
+    
+                </div> <!-- /row -->
+            </section>
+    <!--footer 시작-->
+    <div th:replace="fragment/footer :: footer"/>
+    <!--footer 끝-->
+
+</div> <!-- /wrapper -->
+
+<!--js 연결 시작-->
+<div th:replace="fragment/js :: js"/>
+<!--js 연결 끝-->
+</body>
+</html>

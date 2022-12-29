@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<ㅠ lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 리뷰</title>
+	<!--css 및 라이브러리 링크 시작-->
+	<div th:replace="fragment/link :: link"/>
+	<!--css 및 라이브러리 링크 끝-->
+</head>
+<style>
+    .value{
+        width: 400px;
+    }
+    p{
+        padding: 6px;
+    }
+</style>
+<body>
+<!--header 시작-->
+<div th:replace="fragment/header :: header"/>
+<!--프로필 시작-->
+<div th:replace="fragment/profile :: profile"/>
+<!--프로필 끝-->
+<!--header 끝-->
+
+<div class="wrapper">
+	<!-- 왼쪽 메뉴 사이드바 -->
+	<div th:replace="fragment/review_aside :: review_aside" />
+
+	<section class="content">
+			<!-- 컨텐츠 헤더 -->
+			<header class="main-header clearfix">
+				<h1 class="main-header__title">
+					<i class="icon pe-7s-home"></i>
+					리뷰 상세 <small>조회 및 관리</small>
+				</h1>
+                <div class="main-header__date">
+                    <i class="icon pe-7s-date"></i>
+                    <span class="date"></span>
+                </div>
+			</header> <!--헤더 끝-->
+            <div class="row">
+
+                <div class="col-md-12">
+                    <article class="widget shadow">
+                        <div class="widget__content">
+                            <p> 작성자 : <input type="text" class="input-text value" placeholder="" value="apple(김사과)" /> </p>
+                            <p> 닉네임 : <input type="text" class="input-text value" placeholder="" value="건강한 마스터1234" /> </p>
+                            <p> 식당 : <input type="text" class="input-text value" placeholder="" value="스시소요" /></p>
+							<p> 내용<input type="text" class="input-text" value="생선찜 진짜 맛있고 잡내가 안나요! 또 방문할게요~"></p>
+                            <p> 댓글 수 : 0</p>
+                            <p>작성일 : 2022.12.15</p>
+							<hr>
+							<div>
+									<!-- 리뷰 별점 -->
+                                <div class="__review-meta __review-meta--with-rating" style="width: 100%;">
+                                    <div class="__d-flex __v-center" style="justify-content: space-between;">
+                                       <a href="#" class="__rating __active">4.8</a>
+                                    </div>
+                                    <div class="__rating-detail __d-flex">
+                                       <div class="__item">맛 
+                                          <span>5.0</span>
+                                       </div>
+                                       <div class="__item">분위기 
+                                          <span>5.0</span>
+                                       </div>
+                                       <div class="__item">서비스 
+                                          <span>4.5</span>
+                                       </div>
+                                    </div>
+                                 </div>
+                            </div>
+							<hr>
+							<p> 관리자메모</p>
+                            <p> <textarea class="textarea" row="6" cols="12" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
+                            <button class="btn btn-light pull-right" type="submit">메세지 보내기</button>
+                            <button class="btn btn-light pull-right" type="submit">관리자 메모 등록</button>
+                            <button class="btn btn-light pull-right" type="submit">뒤로가기</button>
+                            <div class="clearfix"></div>
+                        </div>
+    
+    
+                    </article>
+                </div>
+            </div> <!--row-->
+        </section>
+	<!--    footer 시작-->
+	<div th:replace="fragment/footer :: footer" />
+	<!--    footer 끝-->
+
+</div> <!-- /wrapper -->
+
+<!--js 연결 시작-->
+<div th:replace="fragment/js :: js"/>
+<!--js 연결 끝-->
+</body>
+</html>

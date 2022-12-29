@@ -1,0 +1,47 @@
+<aside th:fragment = "review_aside" class="sidebar">
+  <ul class="main-nav">
+    <li class="main-nav--link">
+      <a class="main-nav__link" href="/">
+        <span class="main-nav__icon"><i class="icon pe-7s-home"></i></span>
+        HOME
+      </a>
+    </li>
+    <!-- 사이드바 메뉴 -->
+    <li class="main-nav--link">
+      <a class="main-nav__link" href="/user">
+        <span class="main-nav__icon"><i class="icon pe-7s-menu"></i></span>
+        회원
+      </a>
+    </li>
+    <li class="main-nav--collapsible main-nav--active">
+      <a class="main-nav__link" href="/owner">
+        <span class="main-nav__icon"><i class="icon pe-7s-photo-gallery"></i></span>
+        식당 오너
+      </a>
+      <ul class="main-nav__submenu">
+        <li><a href="/owner"><i class="pe-7s-note"></i><span>조회 및 관리</span></a></li>
+        <li><a href="/owner/new"><i class="pe-7s-help1"></i><span>입점 문의</span></a></li>
+      </ul>
+    </li>
+    <li class="main-nav--collapsible main-nav--link">
+      <a class="main-nav__link" href="/review">
+        <span class="main-nav__icon"><i class="icon pe-7s-graph"></i></span>
+        리뷰
+      </a>
+      <ul class="main-nav__submenu">
+        <li><a href="/review"><i class="pe-7s-help1"></i><span>전체 리뷰</span></a></li>
+        <li><a href="/review/report"><i class="pe-7s-note"></i><span>신고 관리</span></a></li>
+      </ul>
+    </li>
+    <li class="main-nav--collapsible">
+      <a class="main-nav__link" href="/service/notice">
+        <span class="main-nav__icon"><i class="icon pe-7s-photo-gallery"></i></span>
+        고객센터
+      </a>
+      <ul class="main-nav__submenu">
+        <li><a href="/service/notice"><i class="pe-7s-help1"></i><span>공지사항</span></a></li>
+        <li><a href="/service/ask"><i class="pe-7s-note"></i><span>문의 및 개선 사항</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</aside><!-- /메뉴 사이드바 -->

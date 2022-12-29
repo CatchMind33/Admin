@@ -1,10 +1,297 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>캐치테이블 관리자</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>캐치테이블 관리자</title>
+
+	<!--css 및 라이브러리 링크 시작-->
+	<div th:replace="fragment/link :: link"/>
+	<!--css 및 라이브러리 링크 끝-->
+
 </head>
+<style>
+	.card {
+		margin-top : 25px;
+	}
+</style>
 <body>
+<!--header 시작-->
+<div th:replace="fragment/header :: header"/>
+<!--프로필 시작-->
+<div th:replace="fragment/profile :: profile"/>
+<!--프로필 끝-->
+<!--header 끝-->
+
+<div class="wrapper">
+	<!-- 사이드바 시작 -->
+<div th:replace="fragment/aside_nav :: aside_nav"/>
+	<!--사이드바 끝-->
+
+	<section class="content">
+
+		<!-- 1번째 컨텐츠 -->
+		<div class="row shadow">
+			<div class="main-stats__stat col-lg-3 col-md-12 col-sm-12">
+				<h3 class="stat__title">Total Users</h3>
+				<div class="stat__number"><span></span> 124,057</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar--skyblue" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+				</div> <!-- /progress -->
+				<p class="stat__details">
+					<i class="icon pe-7s-angle-up color--skyblue"></i>
+					<strong>27%</strong> more than last month
+				</p>
+			</div> <!-- /col -->
+
+			<div class="main-stats__stat col-lg-3 col-md-12 col-sm-12">
+				<h3 class="stat__title">New Users</h3>
+				<div class="stat__number"><span></span> 7,068</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar--anzac" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+				</div> <!-- /progress -->
+				<p class="stat__details">
+					<i class="icon pe-7s-angle-down color--anzac"></i>
+					<strong>15%</strong> less than last month
+				</p>
+			</div> <!-- /col -->
+
+			<div class="main-stats__stat col-lg-3 col-md-12 col-sm-12">
+				<h3 class="stat__title">Total Restaurant</h3>
+				<div class="stat__number"><span></span> 124,057</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar--green" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+				</div> <!-- /progress -->
+				<p class="stat__details">
+					<i class="icon pe-7s-angle-up color--green"></i>
+					<strong>38%</strong> more than last month
+				</p>
+			</div> <!-- /col -->
+
+			<div class="main-stats__stat col-lg-3 col-md-12 col-sm-12">
+				<h3 class="stat__title">New Restaurant</h3>
+				<div class="stat__number"><span></span> 2,407</div>
+				<div class="progress">
+					<div class="progress-bar progress-bar--red" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"></div>
+				</div> <!-- /progress -->
+				<p class="stat__details">
+					<i class="icon pe-7s-angle-down color--red"></i>
+					<strong>23%</strong> less than last month
+				</p>
+			</div> <!-- /col -->
+		</div> <!-- row -->
+		<!-- 메인 상단 회원,식당 수 끝-->
+
+		<!-- chart -->
+		<div class="row">
+			<div class="col-md-7">
+				<div class="card shadow mb-4">
+					<div class="card-header py-3">
+						<h6 class="m-0 font-weight-bold text-primary">월 별 예약 현황</h6>
+					</div>
+					<div class="card-body">
+						<div class="chart-area">
+							<canvas id="myAreaChart"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /예약 현황 끝 -->
+			<!--식당별 rank-->
+			<div class="col-md-5">
+				<div style="margin-top:25px; margin-left: 50px">
+					<div th:replace="fragment/rank :: rank"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">	<!--리뷰 간략히-->
+			<div class="col-md-7">
+				<article class="widget widget--tabbed shadow">
+					<div class="tabs">
+						<div class="number-entries">
+							<input class="spinner" name="value" value="3" />
+						</div>
+						<input type="radio" name="t" id="tab1" checked>
+						<label for="tab1" class="tabs__tab">전체 리뷰</label>
+						<input type="radio" name="t" id="tab2">
+						<label for="tab2" class="tabs__tab">신고 들어온 리뷰</label>
+						<input type="radio" name="t" id="tab3">
+						<label for="tab3" class="tabs__tab">신고 들어온 댓글</label>
+						<div class="tabs__content">
+							<!-- 전체 리뷰 -->
+							<div class="tabs__content--1">
+								<div class="media social_msg">
+									<div class="media-body">
+										<h4 class="media-heading social_msg__heading">apple(김사과)<span>from</span> <span>스시소요</span></h4>
+										<p class="social_msg__msg">음식도 맛있고, 가격도 저렴해요!</p>
+										<small class="social_msg__meta">2022.12.14</small>
+									</div>
+								</div>
+								<div class="media social_msg">
+									<div class="media-body">
+										<h4 class="media-heading social_msg__heading">melon(이메론) <span>from</span> <span> 키친마이야르</span> <i class="pe-7s-link"></i></h4>
+										<p class="social_msg__msg">가성비 오져요</p>
+										<small class="social_msg__meta">2022.12.14</small>
+									</div>
+								</div> <!-- /social-msg -->
+								<div class="media social_msg">
+									<div class="media-body">
+										<a href="/review" class="social_msg__msg">리뷰 더보기</a>
+									</div>
+								</div>
+
+							</div> <!-- /전체 리뷰끝 -->
+
+							<!-- 신고들어온 리뷰 -->
+							<div class="tabs__content--2">
+								<div class="media social_msg">
+									<div class="media-body">
+										<h4 class="media-heading social_msg__heading">orange(오렌진) <span>from</span> <span>갓.</span></h4>
+										<p class="social_msg__msg">(비속어 사용) 웨이팅도 길고, 맛도없음</p>
+										<small class="social_msg__meta">2022.12.14</small>
+									</div>
+								</div> <!-- /social-msg -->
+								<div class="media social_msg">
+									<div class="media-body">
+										<a href="/review" class="social_msg__msg">리뷰 더보기</a>
+									</div>
+								</div>
+							</div> <!-- /신고 들어온 리뷰 끝-->
+
+							<!-- 신고 들어온 댓글 시작 -->
+							<div class="tabs__content--3">
+								<div class="media social_msg">
+									<div class="media-body">
+										<h4 class="media-heading social_msg__heading">berry(배애리) </h4><span>from</span> <span>apple(김사과)님의 2번쨰 후기</span></h4>
+										<p class="social_msg__msg">마 누가 리뷰를 이따구로 쓰나!!!</p>
+										<small class="social_msg__meta">2022.12.13 12:00:12</small>
+									</div>
+								</div> <!-- /social-msg -->
+								<div class="media social_msg">
+									<div class="media-body">
+										<a href="/review" class="social_msg__msg">리뷰 더보기</a>
+									</div>
+								</div>
+							</div> <!-- /신고 들어온 댓글 끝 -->
+
+						</div> <!-- /tabs__content CONTAINER -->
+
+					</div> <!-- /widget__tabs -->
+
+				</article>
+			</div>
+
+
+			<div class="col-md-5">  <!--유저 간략히-->
+				<article class="widget no-padding--lr shadow">
+					<header class="widget__header">
+						<h3 class="widget__title">Total users / <span>184,036</span></h3>
+						<div class="widget__config">
+							<div class="dropdown">
+								<select name="one" class="dropdown-select">
+									<option value="">Sort by</option>
+									<option value="1">이름순</option>
+									<option value="2">예약순</option>
+									<option value="3">가입순</option>
+								</select>
+							</div>
+						</div>
+					</header>
+					<div class="widget__content">
+						<div class="media user user--added">
+							<div class="media-body">
+								<h4 class="media-heading user__name">apple (김사과)</h4>
+								<small class="user__location"><i class="pe-7f-map-marker"></i> 서울시 강남구</small>
+
+								<a class="c-btn--check"></a>
+								<input type="checkbox" class="btn-more-check" id="more1">
+								<label class="c-btn--more" for="more1"></label>
+
+								<div class="accordion__details">
+									<p>핸드폰 번호 <span><a href="#">010-1111-1111</a></span></p>
+									<p>포인트<span><a class="color--dark-grey" href="#">0</a></span></p>
+									<p>고객 유의사항 <span>진상 기질있음</span></p>
+									<p>관리자 메모<span class="btn-badge bg--orange">신고 두번 들어옴</span></p>
+								</div>
+							</div>
+						</div> <!-- /user -->
+
+						<div class="media user">
+							<div class="media-body">
+								<h4 class="media-heading user__name">banana (반하나)</h4>
+								<small class="user__location"><i class="pe-7f-map-marker"></i>서울시 서초구</small>
+
+								<a class="c-btn--check"></a>
+								<input type="checkbox" class="btn-more-check" id="more2">
+								<label class="c-btn--more" for="more2"></label>
+
+								<div class="accordion__details">
+									<p>핸드폰 번호 <span><a href="#">010-2222-2222</a></span></p>
+									<p>포인트 <span><a class="color--dark-grey" href="#">10000</a></span></p>
+									<p>고객 유의사항 <span>후기 많이 남김</span></p>
+									<p>관리자 메모 <span class="btn-badge bg--skyblue">포인트왕</span></p>
+								</div>
+							</div>
+						</div> <!-- /user -->
+
+						<div class="media user user--added">
+							<div class="media-body">
+								<h4 class="media-heading user__name">orange(오렌지)</h4>
+								<small class="user__location"><i class="pe-7f-map-marker"></i>강원도 삼척시</small>
+
+								<a class="c-btn--check"></a>
+								<input type="checkbox" class="btn-more-check" id="more3" checked>
+								<label class="c-btn--more" for="more3"></label>
+
+								<div class="accordion__details">
+									<p>핸드폰 번호 <span><a href="#">010-3333-3333</a></span></p>
+									<p>포인트 <span><a class="color--dark-grey" href="#">200</a></span></p>
+									<p>고객 유의사항 <span></span></p>
+									<p>관리자 메모 <span class="btn-badge bg--skyblue">신규회원수준</span></p>
+								</div>
+							</div>
+
+						</div> <!-- /user -->
+
+						<div class="media user">
+							<div class="media-body">
+								<h4 class="media-heading user__name">melon (이메론)</h4>
+								<small class="user__location"><i class="pe-7f-map-marker"></i>경기도 수원시</small>
+
+								<a class="c-btn--check"></a>
+								<input type="checkbox" class="btn-more-check" id="more4">
+								<label class="c-btn--more" for="more4"></label>
+								<div class="accordion__details">
+									<p>핸드폰 번호 <span><a href="#">010-4444-4444</a></span></p>
+									<p>포인트  <span><a class="color--dark-grey" href="#">5000</a></span></p>
+									<p>고객 유의사항 <span>노쇼 두번</span></p>
+									<p>관리자 메모 <span class="btn-badge bg--orange">노쇼 한번 더 추가시 블락</span></p>
+								</div>
+							</div>
+
+						</div> <!-- /user -->
+
+						<div class="user__more">
+							<a href="/user" id="loadmore"><i class="pe-7s-plus"></i>회원 상세히 보기</a>
+						</div>
+
+					</div> <!-- /user 끝 -->
+
+				</article>
+			</div>
+
+		</div> <!-- /row -->
+	</section>
+<!--footer-->
+<div th:replace="fragment/footer :: footer"/>
+<!--footer 끝-->
+
+</div> <!-- /wrapper -->
+
+<!--js 연결 시작-->
+<div th:replace="fragment/js :: js"/>
+<!--js 연결 끝-->
 
 </body>
 </html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입점 문의 상세</title>
+	<!--css 및 라이브러리 링크 시작-->
+	<div th:replace="fragment/link :: link"/>
+	<!--css 및 라이브러리 링크 끝-->
+</head>
+<style>
+    .value {
+        width: 400px;
+    }
+    .memo {
+        height: 200px;
+    }
+    .contents {
+		padding: 15px;
+	}
+</style>
+<body>
+<!--header 시작-->
+<div th:replace="fragment/header :: header"/>
+<!--프로필 시작-->
+<div th:replace="fragment/profile :: profile"/>
+<!--프로필 끝-->
+<!--header 끝-->
+
+
+<div class="wrapper">
+	<!--owner_nav 시작-->
+	<div th:replace = "fragment/owner_aside :: owner_aside"/>
+	<!--owner_nav 끝-->
+
+        <section class="content">
+			<header class="main-header clearfix">
+				<h1 class="main-header__title">
+					<i class="icon pe-7s-menu"></i>
+					입점 문의 <small>식당 조회 및 관리</small>
+				</h1>
+				<div class="main-header__date">
+					<i class="icon pe-7s-date"></i>
+					<span class="date"></span>
+				</div>
+			</header>
+        <div class="row">
+
+			<div class="col-md-12">
+				<article class="widget shadow">
+					<header class="widget__header">
+						<h3 class="widget__title">스시도온</h3>
+					</header>
+
+					<div class="widget__content">
+                        <form>
+                            <p>문의자 : <input type="text" class="input-text value" placeholder="" value="안가도" /></p>
+                            <p>문의자 번호 : <input type="text" class="input-text value" placeholder="" value="010-1111-11111" /></p>
+                            <p> 문의자 직책 : <input type="text" class="input-text value" placeholder="" value="대표" /> </p>
+                            <p>식당 지역 : <input type="text" class="input-text value" placeholder="" value="인천광역시 연수구 하모니로.."/></p>
+                            <p>발급 해줄 ID : <input type="text" name="resid" class="input-text value" placeholder="아이디를 입력하세요"></p>
+                            <p>초기 비밀번호 : <input type="text" name="respw" class="input-text value" value="1234"></p>
+                            <div style="display:flex;  justify-content: right;">
+                                <button class="btn btn-skyblue" type="submit">식당 등록</button>
+                                <button class="modal__open btn btn-light">메시지 보내기</button>
+                                <button class="btn btn-light">뒤로 가기</button>
+                            </div>
+						</form>
+					</div>
+
+				</article>
+			</div>
+		</div>
+    </section>
+    </div> <!-- /row -->
+</section>
+	<!--footer 시작-->
+	<div th:replace="fragment/footer :: footer"/>
+	<!--footer 끝-->
+	<div th:replace="fragment/owner_modal ::  owner_modal"/>
+	</div> <!-- /wrapper -->
+
+	<!-- Scripts -->
+	<!--js 연결 시작-->
+	<div th:replace="fragment/js :: js"/>
+	<!--js 연결 끝-->
+
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전체 회원</title>
+<!--css 및 라이브러리 링크 시작-->
+	<div th:replace="fragment/link :: link"/>
+<!--css 및 라이브러리 링크 끝-->
+</head>
+<style>
+	.main-content {
+		display:flex;
+		justify-content: space-between;
+	}
+
+	.search-box {
+		box-sizing: border-box;
+		height: 45px;
+	}
+
+	.search {
+		position: relative;
+		margin: 0;
+		border-radius: 2px;
+		vertical-align: middle;
+		height: 100%;
+		background: transparent;
+		padding: 10px;
+	}
+
+	.search-btn {
+		vertical-align: middle;
+		height: 100%;
+		position: relative;
+		bottom:28px;
+		left:150px;
+		font-size: 12px;
+		background: transparent;
+		border: none;
+		outline : none;
+	}
+
+	.sort-select{
+		height: 38px;
+		width: 100px;
+		border : 1px solid #e5e5e5;
+		border-radius: 2px;
+		background: transparent;
+		font-size: 12px;
+	}
+
+	p {
+		padding:6px;
+	}
+
+	.page_wrap {
+		padding : 15px;
+		margin-top: 20px;
+	}
+
+
+</style>
+<body>
+<!--header 시작-->
+<div th:replace="fragment/header :: header"/>
+<!--프로필 시작-->
+<div th:replace="fragment/profile :: profile"/>
+<!--프로필 끝-->
+<!--header 끝-->
+	
+	<div class="wrapper">
+<!--user_nav 시작-->
+	<div th:replace = "fragment/user_aside :: user_aside"/>
+<!--user_nav 끝-->
+        <section class="content">
+			<!-- 메인 컨텐츠 헤더 -->
+			<header class="main-header clearfix">
+				<div class="main-content">
+					<div class="search-box">
+						<form>
+							<input class="input-text search" type="text" placeholder="회원 검색">
+							<button class="search-btn">
+								<i class="pe-7s-search"></i>
+							</button>
+						</form>
+					</div>
+					<select class="sort-select">
+						<option>이름순</option>
+						<option>닉네임순</option>
+						<option>가입날짜순</option>
+					</select>
+				</div>
+
+			</header> <!--헤더 끝-->
+		
+			<div class="row"> <!--회원 시작-->
+				<div class="col-md-4">
+					<article class="widget shadow">
+						<header class="widget__header">
+							<a href="/user/detail"><h3 class="widget__title">회원 번호 : 1 </h3></a>
+						</header>
+						<div class="widget__content">
+							<p>김사과 / 애쁠</p>
+							<p>핸드폰 번호 : 010-1111-1111</p>
+							<p>지역 : 서울시 강남구</p>
+							<p>등록일 : 2022.12.15</p>
+				
+							<table class="table">
+								<thead>
+								<tr>
+									<th>총 예약</th>
+									<th>예약 취소</th>
+									<th>노쇼</th>
+									<th>포인트</th>
+								</tr>
+								</thead>
+								<tr>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>2000P</td>	
+								</tr>
+							</table>
+							<div>
+								<a href="/user/detail"><button class="btn btn-light">상세보기</button></a>
+							</div>
+						</div>
+					</article><!-- /widget -->
+				</div> <!-- /회원 한명 끝 -->
+				
+				<!--회원 1명 시작  -->
+				<div class="col-md-4">
+					<article class="widget shadow">
+						<header class="widget__header">
+							<a href="/user/detail"><h3 class="widget__title">회원 번호 : 2 </h3></a>
+						</header>
+						<div class="widget__content">
+							<p>김사과 / 애쁠<span>(apple)</span></p>
+							<p>핸드폰 번호 : 010-1111-1111</p>
+							<p>지역 : 서울시 강남구</p>
+							<p>가입 날짜 : 2022.12.15</p>
+				
+							<table class="table">
+								<thead>
+								<tr>
+									<th>총 예약</th>
+									<th>예약 취소</th>
+									<th>노쇼</th>
+									<th>포인트</th>
+								</tr>
+								</thead>
+								<tr>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>2000P</td>	
+								</tr>
+							</table>
+							<div>
+								<a><button class="btn btn-light">상세보기</button></a>
+							</div>
+						</div>
+					</article><!-- /widget -->
+				</div>
+				
+				<!--회원 1명 시작 -->
+				<div class="col-md-4">
+				<article class="widget shadow">
+					<header class="widget__header">
+						<a href="/user/detail"><h3 class="widget__title">회원 번호 : 3 </h3></a>
+					</header>
+					<div class="widget__content">
+						<p>김사과 / 애쁠<span>(apple)</span></p>
+						<p>핸드폰 번호 : 010-1111-1111</p>
+						<p>지역 : 서울시 강남구</p>
+						<p>가입날짜 : 2022.12.15</p>
+				
+						<table class="table">
+							<thead>
+							<tr>
+								<th>총 예약</th>
+								<th>예약 취소</th>
+								<th>노쇼</th>
+								<th>포인트</th>
+							</tr>
+							</thead>
+							<tr>
+								<td>0</td>
+								<td>0</td>
+								<td>0</td>
+								<td>2000P</td>	
+							</tr>
+						</table>
+						<div>
+							<button class="btn btn-light">상세보기</button>
+						</div>
+					</div>
+				</article><!-- /widget -->
+				</div>
+			</div> <!--회원 끝-->
+
+			<!--페이징 처리-->
+			<div class="page_wrap">
+				<div class="page_nation">
+				   <a class="arrow pprev" href="#"></a>
+				   <a class="arrow prev" href="#"></a>
+				   <a href="#" class="active">1</a>
+				   <a href="#">2</a>
+				   <a href="#">3</a>
+				   <a href="#">4</a>
+				   <a href="#">5</a>
+				   <a href="#">6</a>
+				   <a href="#">7</a>
+				   <a href="#">8</a>
+				   <a href="#">9</a>
+				   <a href="#">10</a>
+				   <a class="arrow next" href="#"></a>
+				   <a class="arrow nnext" href="#"></a>
+				</div>
+			 </div>
+			<!--페이징 끝-->
+        </section>
+	<!--footer 시작-->
+		<div th:replace="fragment/footer :: footer"/>
+	<!--footer 끝-->
+
+    </div> <!-- /wrapper -->
+
+    <!-- Scripts -->
+<!--js 연결 시작-->
+	<div th:replace="fragment/js :: js"/>
+<!--js 연결 끝-->
+</body>
+</html>
