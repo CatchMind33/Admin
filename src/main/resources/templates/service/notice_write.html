@@ -29,9 +29,9 @@
 <!--header 끝-->
 
 <div class="wrapper">
-	<!--user_nav 시작-->
-	<div th:replace = "fragment/service_aside :: service_aside"/>
-	<!--user_nav 끝-->
+	<!-- 사이드바 시작 -->
+	<div th:replace="fragment/aside_nav :: aside_nav"/>
+	<!--사이드바 끝-->
 
         <section class="content">
 			<header class="main-header clearfix">
@@ -60,13 +60,10 @@
                         작성자 : <input type="text" class="input-text value" value="이레몬">
                         </div>
 
-						<input type="file" name="uploader" id="uploader">
-						<label for="uploader">Single file uploader</label>
-
 						<textarea class="textarea" rows="6" placeholder=""></textarea>
 
 						<button class="btn btn-light pull-right" type="submit">등록</button>
-						<button class="btn btn-light pull-right" type="submit">뒤로가기</button>
+						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
 						<div class="clearfix"></div>
 				</article>
 					</div>

@@ -30,9 +30,9 @@
 <!--header 끝-->
 
 <div class="wrapper">
-	<!--user_nav 시작-->
-	<div th:replace = "fragment/service_aside :: service_aside"/>
-	<!--user_nav 끝-->
+	<!-- 사이드바 시작 -->
+	<div th:replace="fragment/aside_nav :: aside_nav"/>
+	<!--사이드바 끝-->
 
 
         <section class="content">
@@ -63,9 +63,6 @@
                         <div>
                         작성자 : <input type="text" class="input-text value" value="이레몬">
                         </div>
-
-						<input type="file" name="uploader" id="uploader">
-						<label for="uploader">Single file uploader</label>
 
 						<textarea class="textarea" rows="6" placeholder="">연말이벤트 공지입니다. 12월 24일부터 25일까지 ~~</textarea>
 

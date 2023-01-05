@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div th:fragment="review_modal" class="modal hidden">
+    <div class="modal">
+        <div class="modal__overlay"></div>
+        <div class="modal__contents">
+            <div class="modal__header">
+                신고 받은 회원에게 메세지 보내기
+            </div>
+            <div class="modal__main">
+                <form>
+                    <p>작성자 : 오렌지(오렌쥐)</p>
+                    <p>식당 : 키친마이야르</p>
+                    <p>작성자 번호 : 010-4444-4444</p>
+                    <p>보내는 관리자 : 이레몬</p>
+                    <p><input type="text" class="input-text message" name="message" placeholder="보낼 메세지를 입력하세요."></p>
+                    <div>
+                        <button class="btn btn-skyblue">보내기</button><button class="btn btn-light close_button" type="button">닫기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-</body>
-</html>
+    </div>
+</div>

@@ -66,9 +66,9 @@
 <!--header 끝-->
 
 <div class="wrapper">
-    <!--user_nav 시작-->
-    <div th:replace = "fragment/service_aside :: service_aside"/>
-    <!--user_nav 끝-->
+    <!-- 사이드바 시작 -->
+    <div th:replace="fragment/aside_nav :: aside_nav"/>
+    <!--사이드바 끝-->
 
         <section class="content">
             <header class="main-header clearfix">
@@ -110,18 +110,18 @@
                                         <th>작성자</th>
                                         <th>내용</th>
                                         <th>등록일</th>
-                                        <th>관리자 메모</th>
+                                        <th>답변 상태</th>
                                         <th>관리</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>문의</td>
-                                        <td><a href="/service/ask/detail">회원가입</a></td>     <!-- 들어가면 상세페이지로 -->
+                                        <td>회원가입</td>
                                         <td>김사과</td>
                                         <td>회원가입은 따로...</td>
                                         <td>2022.12.16 14:00</td>
-                                        <td>댓글 안담</td>
+                                        <td></td>
                                         <td><a href="/service/ask/detail"><button class="btn btn-light">댓글 달기</button></a></td>
                                     </tr>
 

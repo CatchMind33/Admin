@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메세지 관리</title>
+    <!--css 및 라이브러리 링크 시작-->
+    <div th:replace="fragment/link :: link"/>
+    <!--css 및 라이브러리 링크 끝-->
+</head>
+<style>
+    .value {
+        width: 400px;
+    }
+    p{
+        padding: 6px;
+    }
+</style>
+<body>
+<!--header 시작-->
+<div th:replace="fragment/header :: header"/>
+<!--프로필 시작-->
+<div th:replace="fragment/profile :: profile"/>
+<!--프로필 끝-->
+<!--header 끝-->
+
+<div class="wrapper">
+    <!-- 사이드바 시작 -->
+    <div th:replace="fragment/aside_nav :: aside_nav"/>
+    <!--사이드바 끝-->
+
+    <section class="content">
+        <header class="main-header clearfix">
+            <h1 class="main-header__title">
+                <i class="icon pe-7s-menu"></i>
+                회원 <small>상세 정보</small>
+            </h1>
+            <div class="main-header__date">
+                <i class="icon pe-7s-date"></i>
+                <span class="date"></span>
+            </div>
+        </header>
+
+        <!--메인 컨텐츠 시작-->
+        <div class="row">
+
+            <div class="col-md-12">
+                <article class="widget shadow">
+                    <div class="widget__content">
+                        <p> 보낸 사람 : <input type="text" class="input-text value" placeholder="" value="캐치테이블" readonly/> </p>
+                        <p> 받는 사람 : <input type="text" class="input-text value" placeholder="" value="건강한 마스터 1234" readonly/> </p>
+                        <p> 내용 : <input type="text" class="input-text value" placeholder="" value="안녕하세요 건강한 마스터1234님 미지급 포인트가 있어서 1000P를 추가로 지급했습니다." readonly /></p>
+                        <p> 보낸 날짜 : <input type="text" class="input-text value" placeholder="" value="2022.12.16" readonly /></p>
+
+                        <button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
+<!--                        <button class="btn btn-red pull-right" type="button">삭제</button>-->
+<!--                        <button class="btn btn-light pull-right" type="button">관리자 메모 등록</button>-->
+<!--                        <button class="modal__open btn btn-light pull-right" type="button">포인트 지급</button>-->
+<!--                        <button class="modal__open btn btn-red pull-right">노쇼 블락</button>-->
+                        <div class="clearfix"></div>
+                    </div>
+
+
+                </article>
+            </div>
+
+        </div> <!-- /row -->
+
+        <div th:replace="fragment/user_modal :: user_modal"/>
+    </section>
+    <!--footer 시작-->
+    <div th:replace="fragment/footer :: footer"/>
+    <!--footer 끝-->
+
+</div> <!-- /wrapper -->
+</body>
+</html>

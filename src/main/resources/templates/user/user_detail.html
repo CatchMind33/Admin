@@ -26,9 +26,9 @@
 <!--header 끝-->
 
 <div class="wrapper">
-	<!--user_nav 시작-->
-	<div th:replace = "fragment/user_aside :: user_aside"/>
-	<!--user_nav 끝-->
+	<!-- 사이드바 시작 -->
+	<div th:replace="fragment/aside_nav :: aside_nav"/>
+	<!--사이드바 끝-->
 
         <section class="content">
 			<header class="main-header clearfix">
@@ -48,15 +48,17 @@
 			<div class="col-md-12">
 				<article class="widget shadow">
 					<div class="widget__content">
-                        <p> 이름 : <input type="text" class="input-text value" placeholder="" value="김사과" /> </p>
-                        <p> 닉네임 : <input type="text" class="input-text value" placeholder="" value="애쁠" /> </p>
-                        <p> 핸드폰 번호 : <input type="text" class="input-text value" placeholder="" value="010-1111-1111" /></p>
-                        <p> 선호 지역 : <input type="text" class="input-text value" placeholder="" value="서울시 강남구" /></p>
-                        <p> 선호 취향 : <input type="text" class="input-text value" placeholder="" value="일식, 스시오마카세" /></p>
+                        <p> 이름 : <input type="text" class="input-text value" placeholder="" value="김사과" readonly/> </p>
+                        <p> 닉네임 : <input type="text" class="input-text value" placeholder="" value="애쁠" readonly/> </p>
+                        <p> 핸드폰 번호 : <input type="text" class="input-text value" placeholder="" value="010-1111-1111" readonly /></p>
+                        <p> 선호 지역 : <input type="text" class="input-text value" placeholder="" value="서울시 강남구" readonly /></p>
+                        <p> 선호 취향 : <input type="text" class="input-text value" placeholder="" value="일식, 스시오마카세" readonly/></p>
                         <p> 가입 경로 : 전화번호 가입 </p>
 						<p> 가입 날짜 : 2022.12.15 </p>
-                        <p> 관리자메모</p>
-                        <p> <textarea class="textarea" row="6" cols="12" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
+						<form>
+                        	<p>관리자메모</p>
+                        	<p><textarea class="textarea" row="6" cols="12" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
+						</form>
 						<table class="table">
 							<thead>
 							<tr>
@@ -73,9 +75,9 @@
 								<td>2000P</td>	
 							</tr>
 						</table>
-						<button class="btn btn-light pull-right" type="submit">뒤로가기</button>
-						<button class="btn btn-light pull-right" type="submit">관리자 메모 등록</button>
-						<button class="modal__open btn btn-light pull-right" type="submit">포인트 지급</button>
+						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
+						<button class="btn btn-light pull-right" type="button">관리자 메모 등록</button>
+						<button class="modal__open btn btn-light pull-right" type="button">포인트 지급</button>
                         <button class="modal__open btn btn-red pull-right">노쇼 블락</button>
 						<div class="clearfix"></div>
 					</div>

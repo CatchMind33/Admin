@@ -25,9 +25,14 @@ public class PageController {
         return new ModelAndView("/join");
     }
 
-    @GetMapping("calender")
-    public ModelAndView calender() {
-        return new ModelAndView("/calender");
+    @GetMapping("message")
+    public ModelAndView message() {
+        return new ModelAndView("/message");
+    }
+
+    @GetMapping("message/detail")
+    public ModelAndView messageDetail() {
+        return new ModelAndView("/message_detail");
     }
 
 }

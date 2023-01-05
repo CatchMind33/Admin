@@ -11,7 +11,7 @@
 </head>
 <style>
     .main-content {
-        display:flex;
+        display: flex;
         justify-content: end;
     }
 
@@ -34,35 +34,36 @@
         vertical-align: middle;
         height: 100%;
         position: relative;
-        bottom:28px;
-        left:150px;
+        bottom: 28px;
+        left: 150px;
         font-size: 12px;
         background: transparent;
         border: none;
-        outline : none;
+        outline: none;
     }
 
-    .sort-select{
+    .sort-select {
         height: 38px;
         width: 100px;
-        border : 1px solid #e5e5e5;
+        border: 1px solid #e5e5e5;
         border-radius: 2px;
         background: transparent;
         font-size: 12px;
     }
 
-    .widget__header{
+    .widget__header {
         display: flex;
         justify-content: space-between;
     }
 
-	th, td {
-		text-align: center;
-	}
-	.page_wrap {
-		padding : 15px;
-		margin-top: 20px;
-	}
+    th, td {
+        text-align: center;
+    }
+
+    .page_wrap {
+        padding: 15px;
+        margin-top: 20px;
+    }
 
 </style>
 <body>
@@ -72,196 +73,109 @@
 <div th:replace="fragment/profile :: profile"/>
 <!--프로필 끝-->
 <!--header 끝-->
-	
-	<div class="wrapper">
-        <!-- 왼쪽 메뉴 사이드바 -->
-        <div th:replace="fragment/review_aside :: review_aside" />
-		
-        <section class="content">
-            <header class="main-header clearfix">
-                <h1 class="main-header__title">
-                    <i class="icon pe-7s-menu"></i>
-                    전체 리뷰 <small> 조회 및 관리</small>
-                </h1>
-                <div class="main-content">
-                    <div class="search-box">
-                        <form>
-                            <input class="input-text search" type="text" placeholder="리뷰 검색">
-                            <button class="search-btn">
-                                <i class="pe-7s-search"></i>
-                            </button>
-                        </form>
-                    </div>
+
+<div class="wrapper">
+    <!-- 사이드바 시작 -->
+    <div th:replace="fragment/aside_nav :: aside_nav"/>
+    <!--사이드바 끝-->
+
+    <section class="content">
+        <header class="main-header clearfix">
+            <h1 class="main-header__title">
+                <i class="icon pe-7s-menu"></i>
+                전체 리뷰 <small> 조회 및 관리</small>
+            </h1>
+            <div class="main-content">
+                <div class="search-box">
+                    <form>
+                        <input class="input-text search" type="text" placeholder="리뷰 검색">
+                        <button class="search-btn">
+                            <i class="pe-7s-search"></i>
+                        </button>
+                    </form>
                 </div>
-            </header> <!--헤더 끝-->
+            </div>
+        </header> <!--헤더 끝-->
 
-            <div class="row">
+        <div class="row">
 
-                <div class="col-md-12">
-                    <article class="widget shadow">
-                        <header class="widget__header">
-                            <h3 class="widget__title">총 게시글 : 10개</h3>
-                                <select class="sort-select">
-                                    <option value="">이름순</option>
-                                    <option value="">닉네임순</option>
-                                    <option valie="">식당순</option>
-                                    <option value="">등록날짜순</option>
-                                </select>
-                        </header>
-    
-                        <div class="widget__content">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>번호</th>
-                                        <th>내용</th>
-                                        <th>식당</th>
-                                        <th>작성자</th>
-                                        <th>별점</th>
-                                        <th>작성일</th>
-                                        <th>댓글 수</th>
-                                        <th>비고</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review/detail">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td>
-											<a href="review/detail"><button class="btn btn-light btn-xs">상세 보기</button></a>
-											<button class="btn btn-red btn-xs">삭제</button>
-										</td>
-                                    </tr>
-                                    <tr>
-										<td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review_detail.html">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td><button class="btn btn-light btn-xs">상세 보기</button><button class="btn btn-red btn-xs">삭제</button></td>
-                                    </tr>
-                                    <tr>
-										<td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review_detail.html">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td><button class="btn btn-light btn-xs">상세 보기</button><button class="btn btn-red btn-xs">삭제</button></td>
-                                    </tr>
-                                    <tr>
-										<td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review_detail.html">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td><button class="btn btn-light btn-xs">상세 보기</button><button class="btn btn-red btn-xs">삭제</button></td>
-                                    </tr>
-                                    <tr>
-										<td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review_detail.html">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td><button class="btn btn-light btn-xs">상세 보기</button><button class="btn btn-red btn-xs">삭제</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review_detail.html">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td><button class="btn btn-light btn-xs">상세 보기</button><button class="btn btn-red btn-xs">삭제</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review_detail.html">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td><button class="btn btn-light btn-xs">상세 보기</button><button class="btn btn-red btn-xs">삭제</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review_detail.html">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td><button class="btn btn-light btn-xs">상세 보기</button><button class="btn btn-red btn-xs">삭제</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review_detail.html">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td><button class="btn btn-light btn-xs">상세 보기</button><button class="btn btn-red btn-xs">삭제</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="review_detail.html">생선찜이 맛있ㅇ요...</a></td>
-                                        <td>스시소요</td>
-                                        <td>이레몬 (lemon) / 건강한 마스터1234</td>
-                                        <td>4.5</td>
-                                        <td>2022.12.14</td>
-                                        <td>0</td>
-                                        <td><button class="btn btn-light btn-xs">상세 보기</button><button class="btn btn-red btn-xs">삭제</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </article><!-- /widget -->
-                    </div>
-    
-                </div> <!-- /row -->
-			<!--페이징 처리-->
-			<div class="page_wrap">
-				<div class="page_nation">
-				   <a class="arrow pprev" href="#"></a>
-				   <a class="arrow prev" href="#"></a>
-				   <a href="#" class="active">1</a>
-				   <a href="#">2</a>
-				   <a href="#">3</a>
-				   <a href="#">4</a>
-				   <a href="#">5</a>
-				   <a href="#">6</a>
-				   <a href="#">7</a>
-				   <a href="#">8</a>
-				   <a href="#">9</a>
-				   <a href="#">10</a>
-				   <a class="arrow next" href="#"></a>
-				   <a class="arrow nnext" href="#"></a>
-				</div>
-			 </div>
-			<!--페이징 끝-->
-            </section>
-<!--    footer 시작-->
-        <div th:replace="fragment/footer :: footer" />
-<!--    footer 끝-->
+            <div class="col-md-12">
+                <article class="widget shadow">
+                    <header class="widget__header">
+                        <h3 class="widget__title">총 게시글 : 10개</h3>
+                        <select class="sort-select">
+                            <option value="">이름순</option>
+                            <option value="">닉네임순</option>
+                            <option valie="">식당이름순</option>
+                            <option value="">등록날짜순</option>
+                        </select>
+                    </header>
 
-    </div> <!-- /wrapper -->
+                    <div class="widget__content">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>식당</th>
+                                <th>내용</th>
+                                <th>닉네임</th>
+                                <th>별점</th>
+                                <th>좋아요</th>
+                                <th>등록 날짜</th>
+                                <th>비고</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>스시소요</td>
+                                <td>생선찜이 맛잇...</td>
+                                <td>건강한 마스터1234</td>
+                                <td>4.5</td>
+                                <td>2</td>
+                                <td>2022.12.27</td>
+                                <td>
+                                    <a href="review/detail">
+                                        <button class="btn btn-light btn-small">상세 보기</button>
+                                    </a>
+                                    <button class="btn btn-red btn-small">삭제</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </article><!-- /widget -->
+            </div>
+
+        </div> <!-- /row -->
+        <!--페이징 처리-->
+        <div class="page_wrap">
+            <div class="page_nation">
+                <a class="arrow pprev" href="#"></a>
+                <a class="arrow prev" href="#"></a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">7</a>
+                <a href="#">8</a>
+                <a href="#">9</a>
+                <a href="#">10</a>
+                <a class="arrow next" href="#"></a>
+                <a class="arrow nnext" href="#"></a>
+            </div>
+        </div>
+        <!--페이징 끝-->
+    </section>
+    <!--    footer 시작-->
+    <div th:replace="fragment/footer :: footer"/>
+    <!--    footer 끝-->
+
+</div> <!-- /wrapper -->
 
 <!--js 연결 시작-->
-    <div th:replace="fragment/js :: js"/>
+<div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
 
 

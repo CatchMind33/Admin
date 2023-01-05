@@ -66,26 +66,27 @@
 <!--header 끝-->
 
 <div class="wrapper">
-	<!-- 왼쪽 메뉴 사이드바 -->
-	<div th:replace="fragment/review_aside :: review_aside" />
+	<!-- 사이드바 시작 -->
+	<div th:replace="fragment/aside_nav :: aside_nav"/>
+	<!--사이드바 끝-->
 		
         <section class="content">
 			<header class="main-header clearfix">
-				<div class="main-content">
-					<div class="search-box">
-						<form>
-							<input class="input-text search" type="text" placeholder="신고리뷰 검색">
-							<button class="search-btn">
-								<i class="pe-7s-search"></i>
-							</button>
-						</form>
-					</div>
-					<select class="sort-select">
-						<option>이름순</option>
-						<option>닉네임순</option>
-						<option>가입날짜순</option>
-					</select>
-				</div>
+<!--				<div class="main-content">-->
+<!--					<div class="search-box">-->
+<!--						<form>-->
+<!--							<input class="input-text search" type="text" placeholder="신고리뷰 검색">-->
+<!--							<button class="search-btn">-->
+<!--								<i class="pe-7s-search"></i>-->
+<!--							</button>-->
+<!--						</form>-->
+<!--					</div>-->
+<!--					<select class="sort-select">-->
+<!--						<option>이름순</option>-->
+<!--						<option>닉네임순</option>-->
+<!--						<option>가입날짜순</option>-->
+<!--					</select>-->
+<!--				</div>-->
 			</header> <!--헤더 끝-->
 
 			<div class="row">	
@@ -109,7 +110,7 @@
 											<p class="social_msg__msg">내용 : 이게 뭔 음식임..? 진짜 쓰레기다. </p>
 											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
 											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
+												<button class="modal__open btn btn-skyblue">메세지 보내기</button>
 												<button class="btn btn-red">삭제</button>
 											</div>
 										</div>
@@ -259,7 +260,7 @@
 	<!--    footer 시작-->
 	<div th:replace="fragment/footer :: footer" />
 	<!--    footer 끝-->
-
+	<div th:replace="fragment/review_modal :: review_modal"></div>
 </div> <!-- /wrapper -->
 
 <!--js 연결 시작-->

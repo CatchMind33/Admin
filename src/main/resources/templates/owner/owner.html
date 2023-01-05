@@ -72,9 +72,9 @@
 <!--header 끝-->
 
 	<div class="wrapper">
-		<!--owner_nav 시작-->
-		<div th:replace = "fragment/owner_aside :: owner_aside"/>
-		<!--owner_nav 끝-->
+		<!-- 사이드바 시작 -->
+		<div th:replace="fragment/aside_nav :: aside_nav"/>
+		<!--사이드바 끝-->
 
         <section class="content">
 			<header class="main-header clearfix">
@@ -115,7 +115,7 @@
                                     <tr>
                                         <th>번호</th>
                                         <th>이름</th>
-                                        <th>대표</th>
+                                        <th>관리자</th>
                                         <th>전화번호</th>
                                         <th>위치</th>
                                         <th>입점 날짜</th>
@@ -126,15 +126,15 @@
                                 <tbody>
                                     <tr>
                                         <td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td><a href="/owner/detail">스시소요</a></td>
+                                        <td>스시소요</td>
                                         <td>이메론 (admin_sushi)</td>
                                         <td>02-1234-1234</td>
                                         <td>서울시 강남구 </td>
-                                        <td>02-1234-1234</td>
+										<td>2022.12.14</td>
                                         <td>4.8</td>
                                         <td>
-											<a href="/owner/detail"><button class="btn btn-light btn-xs">상세 보기</button></a>
-											<button class="btn btn-red btn-xs">삭제</button>
+											<a href="/owner/detail"><button class="btn btn-light btn-small">상세 보기</button></a>
+											<button class="btn btn-red btn-small">삭제</button>
 										</td>
                                     </tr>
 

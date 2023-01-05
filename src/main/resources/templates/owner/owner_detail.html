@@ -13,11 +13,8 @@
     .value {
         width: 400px;
     }
-    .memo {
-        height: 200px;
-    }
-    .contents {
-		padding: 15px;
+	p{
+		padding: 6px;
 	}
 </style>
 <body>
@@ -30,9 +27,9 @@
 
 
 <div class="wrapper">
-	<!--owner_nav 시작-->
-	<div th:replace = "fragment/owner_aside :: owner_aside"/>
-	<!--owner_nav 끝-->
+	<!-- 사이드바 시작 -->
+	<div th:replace="fragment/aside_nav :: aside_nav"/>
+	<!--사이드바 끝-->
 
         <section class="content">
 			<header class="main-header clearfix">
@@ -52,47 +49,34 @@
 					<header class="widget__header">
 						<h3 class="widget__title">스시도온</h3>
 					</header>
-
 					<div class="widget__content">
-                        <p>
-						대표 : <input type="text" class="input-text value" placeholder="" value="이메론" />
-                        </p>
-                        <p>
-						ID : <input type="text" class="input-text value" placeholder="" value="admin_sushi" />
-                        </p>
-                        <p>
-						PW : <input type="text" class="input-text value" placeholder="" value="1234" />
-                        </p>
-                        <p>
-                        번호 : <input type="text" class="input-text value" placeholder="" value="02-1234-1234"/>
-                         </p>
-                        <p>
-                        위치 : 서울시 강남구
-                         </p>
-                        <p>
-                            관리자메모
-                        </p>
-                        <p>
-                        <textarea class="textarea" placeholder="식당 관련 관리자 메모를 작성해주세요."></textarea>
-                        </p>
-                        <table class="table">
-							<thead>
-							<tr>
-								<th>총 예약 현황</th>
-								<th>예약 취소</th>
-								<th>노쇼</th>
-							</tr>
-							</thead>
-							<tr>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-							</tr>
-						</table>
-                        <button class="btn btn-red pull-right">식당 삭제</button>
-                        <button class="modal__open btn btn-light pull-right" >메시지 보내기</button>
-						<button class="btn btn-light pull-right" type="submit">등록하기</button>
-						<button class="btn btn-light pull-right">뒤로가기</button>
+                        <p>ID : <input type="text" class="input-text value" placeholder="" value="admin_sushi" readonly/></p>
+                        <p>PW : <input type="text" class="input-text value" placeholder="" value="1234" readonly /></p>
+                        <p>관리자 : <input type="text" class="input-text value" placeholder="" value="이메론" readonly/></p>
+                        <p>번호 : <input type="text" class="input-text value" placeholder="" value="02-1234-1234" readonly/></p>
+                        <p>위치 : 서울시 강남구</p>
+						<form>
+							<p>관리자메모</p>
+                        	<p><textarea class="textarea" placeholder="식당 관련 관리자 메모를 작성해주세요."></textarea></p>
+							<table class="table">
+								<thead>
+								<tr>
+									<th>총 예약 현황</th>
+									<th>예약 취소</th>
+									<th>노쇼</th>
+								</tr>
+								</thead>
+								<tr>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+								</tr>
+							</table>
+							<button class="btn btn-red pull-right" type="button">식당 삭제</button>
+							<button class="modal__open btn btn-light pull-right" type="button">메시지 보내기</button>
+							<button class="btn btn-light pull-right" type="button">등록하기</button>
+							<button class="btn btn-light pull-right" type="button" onclick="history.back()">뒤로가기</button>
+						</form>
 						<div class="clearfix"></div>
 					</div>
 				</article>
@@ -104,9 +88,9 @@
     </div> <!-- /row -->
 </section>
 <!--footer 시작-->
-<div th:replace="fragment/footer :: footer"/>
-<!--footer 끝-->
-<div th:replace="fragment/owner_modal :: owner_modal"/>
+	<div th:replace="fragment/footer :: footer"/>
+	<!--footer 끝-->
+	<div th:replace="fragment/owner_modal :: owner_modal"/>
 </div> <!-- /wrapper -->
 
 <!-- Scripts -->

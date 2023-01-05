@@ -11,47 +11,6 @@
 	<!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
-	.main-content {
-		display:flex;
-		justify-content: space-between;
-	}
-
-	.search-box {
-		box-sizing: border-box;
-		height: 45px;
-	}
-
-	.search {
-		position: relative;
-		margin: 0;
-		border-radius: 2px;
-		vertical-align: middle;
-		height: 100%;
-		background: transparent;
-		padding: 10px;
-	}
-
-	.search-btn {
-		vertical-align: middle;
-		height: 100%;
-		position: relative;
-		bottom:28px;
-		left:150px;
-		font-size: 12px;
-		background: transparent;
-		border: none;
-		outline : none;
-	}
-
-	.sort-select{
-		height: 38px;
-		width: 100px;
-		border : 1px solid #e5e5e5;
-		border-radius: 2px;
-		background: transparent;
-		font-size: 12px;
-	}
-
 	.page_wrap {
 		padding : 15px;
 		margin-top: 20px;
@@ -68,27 +27,12 @@
 
 
 <div class="wrapper">
-	<!--owner_nav 시작-->
-	<div th:replace = "fragment/owner_aside :: owner_aside"/>
-	<!--owner_nav 끝-->
+	<!-- 사이드바 시작 -->
+	<div th:replace="fragment/aside_nav :: aside_nav"/>
+	<!--사이드바 끝-->
 
         <section class="content">
 			<header class="main-header clearfix">
-				<div class="main-content">
-					<div class="search-box">
-						<form>
-							<input class="input-text search" type="text" placeholder="식당 검색">
-							<button class="search-btn">
-								<i class="pe-7s-search"></i>
-							</button>
-						</form>
-					</div>
-					<select class="sort-select">
-						<option>이름순</option>
-						<option>식당순</option>
-						<option>문의날짜순</option>
-					</select>
-				</div>
 			</header> <!--헤더 끝-->
 
 			<div class="row">
@@ -100,7 +44,6 @@
 						<div class="widget__content">
 							<p>문의자 : <span>안가도</span></p>
 							<p>문의자 번호 : 010-1111-1111</p>
-							<p>문의자 직책 : 대표</p>
 							<p>식당 지역 : 인천광역시 송도</p>
 							<p>월 평균 예약 수 : 200건</p>
 							<div>
