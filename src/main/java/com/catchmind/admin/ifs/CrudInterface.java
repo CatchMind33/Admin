@@ -10,7 +10,7 @@ public interface CrudInterface<Req,Res>{
     Header<Res> read(Long id);
 
     // 요청(데이터)를 받아 update후, Header<Res>로 응답
-    Header<Res> update(Header<Res> request);
+    Header<Res> update(Header<Req> request);
 
     // id값을 받아서, delete 후 Header<Res>로 응답
     Header<Res> delete(Long id);

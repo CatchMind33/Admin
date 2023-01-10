@@ -50,29 +50,31 @@
 
 
 		<div class="row">
-
 			<div class="col-md-12">
 				<article class="widget">
 					<header class="widget__header">
 						<h3 class="widget__title">공지사항 상세보기</h3>
 					</header>
 
-					<div class="widget__content">
-						공지사항 제목 : <input type="text" class="input-text value" placeholder="" value="이벤트 공지"/>
-                        </div>
+					<div class="widget__content" th:object="${detail}">
+						공지사항 제목 : <input type="text" class="input-text value" placeholder=""  th:field="${detail.noTitle}" >
+
                         <div>
-                        작성자 : <input type="text" class="input-text value" value="이레몬">
+                        작성자 : <input type="text" class="input-text value"  th:field="${detail.adName}"  >
                         </div>
 
-						<textarea class="textarea" rows="6" placeholder="">연말이벤트 공지입니다. 12월 24일부터 25일까지 ~~</textarea>
+						<textarea class="textarea" rows="6" placeholder="" th:field="${detail.noContent}" >연말이벤트 공지입니다. 12월 24일부터 25일까지 ~~</textarea>
 
-						<button class="btn btn-light pull-right" type="submit">수정</button>
-						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
+						<input type="hidden" class="notice_update"  id="notice_update" th:value="${detail.noIdx}" >
+						<button class="btn btn-light pull-right" type="button" id="update_btn">수정</button>
+						<button class="btn btn-light pull-right"  type="button" onclick="history.back();">뒤로가기</button>
 						<div class="clearfix"></div>
 					</div>
 
+
 				</article>
 			</div>
+		</div>
         </section>
 	<!--footer 시작-->
 	<div th:replace="fragment/footer :: footer"/>
