@@ -37,7 +37,7 @@ public class RestAdminApiLogicService extends BaseService<ResAdminApiRequest, Re
     }
 
     @Override
-    public Header<ResAdminApiResponse>  create(Header<ResAdminApiRequest> request) {
+    public Header<ResAdminApiResponse> create(Header<ResAdminApiRequest> request) {
         ResAdminApiRequest resAdminApiRequest = request.getData();
         ResAdmin users = ResAdmin.builder().resaUserid(resAdminApiRequest.getResaUserid())
                 .resaUserpw(resAdminApiRequest.getResaUserpw())
@@ -46,7 +46,7 @@ public class RestAdminApiLogicService extends BaseService<ResAdminApiRequest, Re
                 .resaRegion(resAdminApiRequest.getResaRegion())
                 .resaBisName(resAdminApiRequest.getResaBisName())
                 .build();
-        ResAdmin newUsers = baseRepository.save(users);
+        ResAdmin newUsers = restAdminRepository.save(users);
         return Header.OK(response(newUsers));
     }
 
@@ -70,7 +70,7 @@ public class RestAdminApiLogicService extends BaseService<ResAdminApiRequest, Re
     }
 
     public Header<List<ResAdminApiResponse>> search(Pageable pageable){
-        Page<ResAdmin> users = baseRepository.findAll(pageable);
+        Page<ResAdmin> users = restAdminRepository.findAll(pageable);
         List<ResAdminApiResponse> userApiResponses = users.stream().map(
                 user -> response(user)).collect(Collectors.toList());
         Pagination pagination = Pagination.builder()
@@ -86,7 +86,7 @@ public class RestAdminApiLogicService extends BaseService<ResAdminApiRequest, Re
     public Header deleteOk(String resaUserid) {
         Optional<ResAdmin> resAdmin = restAdminRepository.findByResaUserid(resaUserid);
         return resAdmin.map(deleteUser -> {
-            baseRepository.delete(deleteUser);
+            restAdminRepository.delete(deleteUser);
             return Header.Ok();
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
