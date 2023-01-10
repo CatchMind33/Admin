@@ -10,11 +10,9 @@
 	<!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
-    .value {
-        width: 400px;
-    }
-    p{
+	.widget__content > p{
         padding: 6px;
+		font-size: 17px;
     }
 </style>
 <body>
@@ -48,17 +46,14 @@
 			<div class="col-md-12">
 				<article class="widget shadow">
 					<div class="widget__content">
-                        <p> 이름 : <input type="text" class="input-text value" placeholder="" value="김사과" readonly/> </p>
-                        <p> 닉네임 : <input type="text" class="input-text value" placeholder="" value="애쁠" readonly/> </p>
-                        <p> 핸드폰 번호 : <input type="text" class="input-text value" placeholder="" value="010-1111-1111" readonly /></p>
-                        <p> 선호 지역 : <input type="text" class="input-text value" placeholder="" value="서울시 강남구" readonly /></p>
-                        <p> 선호 취향 : <input type="text" class="input-text value" placeholder="" value="일식, 스시오마카세" readonly/></p>
-                        <p> 가입 경로 : 전화번호 가입 </p>
-						<p> 가입 날짜 : 2022.12.15 </p>
-						<form>
+						<p id="prIdx"> 회원 번호 :  [[${user.prIdx}]]</p>
+                        <p> 이름 : [[${user.prName}]]</p>
+                        <p> 닉네임 : [[${user.prNick}]] </p>
+                        <p> 핸드폰 번호 : [[${user.prHp}]]</p>
+                        <p> 선호 지역 : [[${user.prRegion}]]</p>
+						<p> 가입 날짜 : [[${user.regDate}]]</p>
                         	<p>관리자메모</p>
-                        	<p><textarea class="textarea" row="6" cols="12" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
-						</form>
+                        	<p><textarea id="prMemo" class="textarea" row="8" cols="12" th:text ="${user.prMemo}" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
 						<table class="table">
 							<thead>
 							<tr>
@@ -71,14 +66,14 @@
 							<tr>
 								<td>0</td>
 								<td>0</td>
-								<td>0</td>
+								<td th:text="${user.prNoshow}">0</td>
 								<td>2000P</td>	
 							</tr>
 						</table>
 						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
-						<button class="btn btn-light pull-right" type="button">관리자 메모 등록</button>
+						<button id="memoBtn" class="btn btn-light pull-right" type="submit">관리자 메모 등록</button>
 						<button class="modal__open btn btn-light pull-right" type="button">포인트 지급</button>
-                        <button class="modal__open btn btn-red pull-right">노쇼 블락</button>
+                        <button class="modal__open btn btn-red pull-right" type="button">노쇼 블락</button>
 						<div class="clearfix"></div>
 					</div>
 
@@ -87,8 +82,8 @@
 			</div>
 
     </div> <!-- /row -->
+<div th:replace="fragment/user_modal :: user_modal"/>
 
-	<div th:replace="fragment/user_modal :: user_modal"/>
 </section>
 <!--footer 시작-->
 <div th:replace="fragment/footer :: footer"/>
@@ -98,6 +93,7 @@
 
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
+<script src="/js/prMemo.js"></script>
 <!--js 연결 끝-->
 
 

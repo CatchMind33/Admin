@@ -1,60 +1,45 @@
 package com.catchmind.admin.controller.api;
 
 import com.catchmind.admin.controller.CrudController;
-import com.catchmind.admin.ifs.CrudInterface;
-import com.catchmind.admin.model.entity.Notice;
+import com.catchmind.admin.model.entity.Admin;
 import com.catchmind.admin.model.network.Header;
-import com.catchmind.admin.model.network.request.NoticeApiRequest;
-import com.catchmind.admin.model.network.response.NoticeApiResponse;
-import com.catchmind.admin.service.NoticeApiLogicService;
+import com.catchmind.admin.model.network.request.AdminApiRequest;
+import com.catchmind.admin.model.network.response.AdminApiResponse;
+import com.catchmind.admin.service.AdminLogicService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class AdminApiController extends CrudController<NoticeApiRequest,NoticeApiResponse, Notice> {
+public class AdminApiController extends CrudController<AdminApiRequest, AdminApiResponse, Admin> {
 
-    private final NoticeApiLogicService noticeApiLogicService;
+    private final AdminLogicService adminLogicService;
+
 
     @Override
-    @PostMapping("/notice")
-    public Header<NoticeApiResponse> create(@RequestBody Header<NoticeApiRequest> request){
+    @PostMapping("/join")
+    public Header<AdminApiResponse> create(@RequestBody Header<AdminApiRequest> request) {
         System.out.println(request.getData());
-        return noticeApiLogicService.create(request);
-    }
-
-
-
-    @Override
-    @GetMapping("{noIdx}") // http://localhost:8888/api/user/{id} (get)
-    public Header<NoticeApiResponse> read(@PathVariable(name="noIdx") Long id) {
-        return noticeApiLogicService.read(id);
+       return adminLogicService.create(request);
     }
 
     @Override
-    @PostMapping ("") // http://localhost:9999/api/  (put)
-    public Header<NoticeApiResponse> update(@RequestBody Header<NoticeApiRequest> request) {
-        return noticeApiLogicService.update(request);
+    public Header<AdminApiResponse> read(Long id) {
+        return super.read(id);
     }
-//
 
     @Override
-    @DeleteMapping("/delete/{noIdx}") // http://localhost: (delete)
-    public Header<NoticeApiResponse> delete(@PathVariable(name="noIdx") Long id) {
-        return noticeApiLogicService.delete(id);
+    public Header<AdminApiResponse> update(Header<AdminApiResponse> request) {
+        return super.update(request);
     }
 
-//    @GetMapping("") // http://localhost:9999/api
-//    public Header<List<NoticeApiResponse>> findAll(@PageableDefault(sort={"id"}, direction= Sort.Direction.DESC) Pageable pageable){
-//        return noticeApiLogicService.search(pageable);
-//    }
-
-
-
-
+    @Override
+    public Header<AdminApiResponse> delete(Long id) {
+        return super.delete(id);
+    }
 }
