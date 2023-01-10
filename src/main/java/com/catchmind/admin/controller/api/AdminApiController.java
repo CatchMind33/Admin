@@ -20,7 +20,6 @@ public class AdminApiController extends CrudController<AdminApiRequest, AdminApi
 
     private final AdminLogicService adminLogicService;
 
-
     @Override
     @PostMapping("/join")
     public Header<AdminApiResponse> create(@RequestBody Header<AdminApiRequest> request) {

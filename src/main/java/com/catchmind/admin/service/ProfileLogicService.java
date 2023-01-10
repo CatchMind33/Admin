@@ -1,24 +1,17 @@
 package com.catchmind.admin.service;
 
-import com.catchmind.admin.model.entity.Admin;
-import com.catchmind.admin.model.entity.Pending;
 import com.catchmind.admin.model.entity.Profile;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.Pagination;
 import com.catchmind.admin.model.network.request.ProfileRequest;
-import com.catchmind.admin.model.network.response.AdminApiResponse;
 import com.catchmind.admin.model.network.response.ProfileResponse;
-import com.catchmind.admin.model.type.UserSortType;
 import com.catchmind.admin.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -85,7 +78,7 @@ public class ProfileLogicService extends BaseService<ProfileRequest, ProfileResp
     }
 
     @Override
-    public Header<ProfileResponse> update(Header<ProfileResponse> request) {
+    public Header<ProfileResponse> update(Header<ProfileRequest> request) {
         return null;
     }
 

@@ -10,5 +10,4 @@ public abstract class BaseService<Req,Res,Entity> implements CrudInterface<Req,R
     @Autowired(required = false)
     protected JpaRepository<Entity,Long> baseRepository;
 
-
 }

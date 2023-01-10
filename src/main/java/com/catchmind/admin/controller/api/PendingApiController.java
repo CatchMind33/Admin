@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PendingApiController {
 
-
     private final PendingApiLogicService pendingApiLogicService;
 
     @PostMapping("/delete")
