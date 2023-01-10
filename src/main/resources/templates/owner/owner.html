@@ -7,6 +7,8 @@
     <title>전체 오너</title>
 	<!--css 및 라이브러리 링크 시작-->
 	<div th:replace="fragment/link :: link"/>
+	<script src="https://unpkg.com/vue@3"></script>
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 	<!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
@@ -71,10 +73,10 @@
 <!--프로필 끝-->
 <!--header 끝-->
 
-	<div class="wrapper">
-		<!-- 사이드바 시작 -->
-		<div th:replace="fragment/aside_nav :: aside_nav"/>
-		<!--사이드바 끝-->
+<div class="wrapper">
+		<!--owner_nav 시작-->
+    <div th:replace = "fragment/owner_aside :: owner_aside"/>
+		<!--owner_nav 끝-->
 
         <section class="content">
 			<header class="main-header clearfix">
@@ -84,99 +86,101 @@
 				</h1>
 				<div class="main-content">
 					<div class="search-box">
-						<form>
-							<input class="input-text search" type="text" placeholder="식당 검색">
+						<form action="/owner/" method="GET">
+							<input name="keyword" id="searchShop" class="input-text search" type="text" placeholder="식당 검색">
 							<button class="search-btn">
 								<i class="pe-7s-search"></i>
 							</button>
 						</form>
 					</div>
-
 				</div>
-
 			</header> <!--헤더 끝-->
-			<div class="row">
 
-                <div class="col-md-12">
-                    <article class="widget shadow">
-                        <header class="widget__header">
-                            <h3 class="widget__title">총 게시글 : 10개</h3>
-								<select class="sort-select">
-									<option>이름순</option>
-									<option>식당순</option>
-									<option>별점순</option>
-									<option>가입날짜순</option>
-								</select>
-                        </header>
+                <div class="row">
+                    <div class="col-md-12">
+                        <article class="widget shadow">
+                            <header id="showPage" class="widget__header">
+                                <h3 class="widget__title">총 페이지 중 페이지</h3>
+                            </header>
     
-                        <div class="widget__content">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>번호</th>
-                                        <th>이름</th>
-                                        <th>관리자</th>
-                                        <th>전화번호</th>
-                                        <th>위치</th>
-                                        <th>입점 날짜</th>
-                                        <th>평균 별점</th>
-                                        <th>비고</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td>스시소요</td>
-                                        <td>이메론 (admin_sushi)</td>
-                                        <td>02-1234-1234</td>
-                                        <td>서울시 강남구 </td>
-										<td>2022.12.14</td>
-                                        <td>4.8</td>
-                                        <td>
-											<a href="/owner/detail"><button class="btn btn-light btn-small">상세 보기</button></a>
-											<button class="btn btn-red btn-small">삭제</button>
-										</td>
-                                    </tr>
+                            <div class="widget__content">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>식당이름</th>
+                                            <th>대표</th>
+                                            <th>전화번호</th>
+                                            <th>위치</th>
+                                            <th>비고</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody th:each="list : ${list}">
+                                        <tr>
+                                            <td style="display: none;" id="resa_userid" th:text="${list.resaUserid}"></td>
+                                            <td><a href="/owner/detail" th:text="${list.resaBisName}"></a></td>
+                                            <td th:text="${list.resaName}"></td>     <!-- 들어가면 상세페이지로 -->
+                                            <td th:text="${list.resaHp}"></td>
+                                            <td th:text="${list.resaRegion}"></td>
+                                            <td>
+                                                <a href="/owner/detail"><button class="btn btn-light btn-xs">상세 보기</button></a>
+                                                <button class="btn btn-red btn-xs">삭제</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </article>
+                        <div class="page_wrap">
+                            <div class="page_nation">
+                                <div id="pageNum" class="dataTables_info" role="status">
 
-                                </tbody>
-                            </table>
-                        </article><!-- /widget -->
+                                </div>
+                            </div>
+                         </div>
                     </div>
-    
                 </div> <!-- /row -->
-			<!--페이징 처리-->
-			<div class="page_wrap">
-				<div class="page_nation">
-				   <a class="arrow pprev" href="#"></a>
-				   <a class="arrow prev" href="#"></a>
-				   <a href="#" class="active">1</a>
-				   <a href="#">2</a>
-				   <a href="#">3</a>
-				   <a href="#">4</a>
-				   <a href="#">5</a>
-				   <a href="#">6</a>
-				   <a href="#">7</a>
-				   <a href="#">8</a>
-				   <a href="#">9</a>
-				   <a href="#">10</a>
-				   <a class="arrow next" href="#"></a>
-				   <a class="arrow nnext" href="#"></a>
-				</div>
-			 </div>
+
+<!--			<div class="page_wrap">-->
+<!--				<div class="page_nation">-->
+<!--					<div id="pageNum" class="dataTables_info" role="status">-->
+
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
 			<!--페이징 끝-->
-            </section>
 		<!--footer 시작-->
 		<div th:replace="fragment/footer :: footer"/>
 		<!--footer 끝-->
-
-	</div> <!-- /wrapper -->
+    </section>
+</div><!-- /wrapper -->
 
 <!-- Scripts -->
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
-
-
+<script>
+    function deleteRes(){
+        const resaUserid = document.getElementById('resa_userid').innerText;
+        console.log(resaUserid);
+        fetch(`http://localhost:8888/api/restAdmin/delete/`+resaUserid, {
+            method: 'DELETE'
+        })
+            .then((res) => {
+                console.log(resaUserid)
+                alert("삭제성공!");
+                location.href='/owner';
+                return;
+            })
+            .then((data) => {
+                console.log(data);
+                return;
+            })
+            .catch((err) => {
+                alert('에러!!');
+                location.reload();
+                return;
+            });
+    }
+</script>
 </body>
-</html></body>
 </html>

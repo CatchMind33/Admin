@@ -11,6 +11,38 @@
 	<!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
+	.main-content {
+		display:flex;
+		justify-content: space-between;
+	}
+
+	.search-box {
+		box-sizing: border-box;
+		height: 45px;
+	}
+
+	.search {
+		position: relative;
+		margin: 0;
+		border-radius: 2px;
+		vertical-align: middle;
+		height: 100%;
+		background: transparent;
+		padding: 10px;
+	}
+
+	.search-btn {
+		vertical-align: middle;
+		height: 100%;
+		position: relative;
+		bottom:28px;
+		left:150px;
+		font-size: 12px;
+		background: transparent;
+		border: none;
+		outline : none;
+	}
+
 	.page_wrap {
 		padding : 15px;
 		margin-top: 20px;
@@ -27,27 +59,29 @@
 
 
 <div class="wrapper">
-	<!-- 사이드바 시작 -->
-	<div th:replace="fragment/aside_nav :: aside_nav"/>
-	<!--사이드바 끝-->
+	<!--owner_nav 시작-->
+	<div th:replace = "fragment/owner_aside :: owner_aside"/>
+	<!--owner_nav 끝-->
 
         <section class="content">
 			<header class="main-header clearfix">
 			</header> <!--헤더 끝-->
 
 			<div class="row">
-				<div class="col-md-4"> <!--식당 1개 시작-->
+				<div class="col-md-4" th:each="list :${list}"> <!--식당 1개 시작-->
 					<article class="widget shadow">
 						<header class="widget__header">
-							<a href="/owner/new/detail"><h3 class="widget__title">식당 : 수라일점</h3></a>
+							<a href="/owner/new/detail"><h3 class="widget__title"><span th:text="${list.penBisName}"></span></h3></a>
 						</header>
 						<div class="widget__content">
-							<p>문의자 : <span>안가도</span></p>
-							<p>문의자 번호 : 010-1111-1111</p>
-							<p>식당 지역 : 인천광역시 송도</p>
-							<p>월 평균 예약 수 : 200건</p>
+							<p style="display: none" id="penIdx" th:text="${list.penIdx}"></p>
+							<p>문의자 : <span th:text="${list.penName}"></span></p>
+							<p>문의자 번호 : <span th:text="${list.penHp}"></span></p>
+							<p>음식 타입 : <span th:text="${list.penFoodtype}"></span></p>
+							<p>식당 지역 : <span th:text="${list.penRegion}"></span></p>
+							<p>월 평균 예약 수 : <span th:text="${list.penBook}"></span></p>
 							<div>
-								<a href="/owner/new/detail"><button class="btn btn-light">승인</button></a>
+								<a th:href="'/owner/new/detail/'+${list.penIdx}"><button class="btn btn-light">승인</button></a>
 								<button class="modal__open btn btn-red">미승인</button>
 							</div>
 						</div>
@@ -88,7 +122,6 @@
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
-
 
 
 </body>
