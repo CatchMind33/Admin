@@ -1,10 +1,8 @@
 package com.catchmind.admin.service;
 
-import com.catchmind.admin.model.entity.Pending;
 import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.Pagination;
-import com.catchmind.admin.model.network.request.PendingApiRequest;
 import com.catchmind.admin.model.network.request.ResAdminApiRequest;
 import com.catchmind.admin.model.network.response.ResAdminApiResponse;
 import com.catchmind.admin.repository.ResAdminRepository;
@@ -87,7 +85,7 @@ public class RestAdminApiLogicService extends BaseService<ResAdminApiRequest, Re
         Optional<ResAdmin> resAdmin = restAdminRepository.findByResaUserid(resaUserid);
         return resAdmin.map(deleteUser -> {
             restAdminRepository.delete(deleteUser);
-            return Header.Ok();
+            return Header.ok();
         }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 

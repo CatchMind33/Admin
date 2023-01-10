@@ -17,7 +17,6 @@ public class ServiceController {
     @Autowired
     private NoticeApiLogicService noticeApiLogicService;
 
-
     @GetMapping("/notice")
     public ModelAndView notice() {
         ModelAndView view = new ModelAndView("/service/notice"); //

@@ -33,7 +33,7 @@ public class ProfileApiController extends CrudController<ProfileRequest, Profile
     }
 
     @Override
-    public Header<ProfileResponse> update(Header<ProfileResponse> request) {
+    public Header<ProfileResponse> update(Header<ProfileRequest> request) {
         return super.update(request);
     }
 

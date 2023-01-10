@@ -9,14 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 @RequiredArgsConstructor
 public class AdminLogicService extends BaseService<AdminApiRequest, AdminApiResponse, Admin> {
 
-    @Autowired
-    AdminRepository adminRepository;
+    private final AdminRepository adminRepository;
 
     private AdminApiResponse response(Admin admin) {
         AdminApiResponse adminApiResponse = AdminApiResponse.builder()
@@ -57,7 +54,7 @@ public class AdminLogicService extends BaseService<AdminApiRequest, AdminApiResp
     }
 
     @Override
-    public Header<AdminApiResponse> update(Header<AdminApiResponse> request) {
+    public Header<AdminApiResponse> update(Header<AdminApiRequest> request) {
         return null;
     }
 

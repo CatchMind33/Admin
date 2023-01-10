@@ -60,7 +60,7 @@ public class PendingApiLogicService extends BaseService<PendingApiRequest, Pendi
         Optional<Pending> users = pendingRepository.findByPenBisName(pendingApiRequest.getPenBisName());
         return users.map(user ->{
             baseRepository.delete(user);
-            return Header.Ok();
+            return Header.ok();
         }).orElseGet(() -> Header.ERROR("데이터없음"));
     }
 

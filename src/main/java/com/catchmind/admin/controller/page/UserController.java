@@ -2,13 +2,10 @@ package com.catchmind.admin.controller.page;
 
 import com.catchmind.admin.model.entity.Profile;
 import com.catchmind.admin.model.network.Header;
-import com.catchmind.admin.model.network.Pagination;
 import com.catchmind.admin.model.network.response.ProfileResponse;
-import com.catchmind.admin.model.type.UserSortType;
 import com.catchmind.admin.service.PaginationService;
 import com.catchmind.admin.service.ProfileLogicService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
