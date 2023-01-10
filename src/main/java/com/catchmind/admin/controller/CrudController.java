@@ -18,7 +18,7 @@ public abstract class CrudController<Req,Res,Entity> implements CrudInterface<Re
     }
 
     @Override
-    public Header<Res> update(Header<Res> request) {
+    public Header<Res> update(Header<Req> request) {
         return null;
     }
 

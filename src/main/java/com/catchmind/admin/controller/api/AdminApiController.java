@@ -34,7 +34,7 @@ public class AdminApiController extends CrudController<AdminApiRequest, AdminApi
     }
 
     @Override
-    public Header<AdminApiResponse> update(Header<AdminApiResponse> request) {
+    public Header<AdminApiResponse> update(Header<AdminApiRequest> request) {
         return super.update(request);
     }
 

@@ -86,7 +86,7 @@
 				</h1>
 				<div class="main-content">
 					<div class="search-box">
-						<form action="/owner/" method="GET">
+						<form action="/owner/search" method="GET">
 							<input name="keyword" id="searchShop" class="input-text search" type="text" placeholder="식당 검색">
 							<button class="search-btn">
 								<i class="pe-7s-search"></i>
@@ -123,7 +123,7 @@
                                             <td th:text="${list.resaRegion}"></td>
                                             <td>
                                                 <a href="/owner/detail"><button class="btn btn-light btn-xs">상세 보기</button></a>
-                                                <button class="btn btn-red btn-xs">삭제</button>
+                                                <a th:id="${list.resaUserid}" th:onclick="deleteRes(this.getAttribute('id'))"><button class="btn btn-red btn-xs">삭제</button></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -159,8 +159,7 @@
 <div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
 <script>
-    function deleteRes(){
-        const resaUserid = document.getElementById('resa_userid').innerText;
+    function deleteRes(resaUserid){
         console.log(resaUserid);
         fetch(`http://localhost:8888/api/restAdmin/delete/`+resaUserid, {
             method: 'DELETE'

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class AdminApiController extends CrudController<NoticeApiRequest,NoticeApiResponse, Notice> {
+public class NoticeApiController extends CrudController<NoticeApiRequest,NoticeApiResponse, Notice> {
 
     private final NoticeApiLogicService noticeApiLogicService;
 
