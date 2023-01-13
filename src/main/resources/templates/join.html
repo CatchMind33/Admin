@@ -20,26 +20,26 @@
                 <form>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="pe-7f-user pe-fw"></i></span>
-                        <input type="text" class="input-text form-control" placeholder="ID" />
+                        <input type="text" id="adUserid" class="input-text form-control" placeholder="ID" />
                     </div>
                     <div class="input-group mtop-25">
                         <span class="input-group-addon"><i class="pe-7f-user pe-fw"></i></span>
-                        <input type="password" class="input-text form-control" placeholder="PW" />
+                        <input type="password" id="adUserpw" class="input-text form-control" placeholder="PW" />
                     </div>
                     <div class="input-group mtop-25">
                         <span class="input-group-addon"><i class="pe-7f-user pe-fw"></i></span>
-                        <input type="text" class="input-text form-control" placeholder="NAME" />
+                        <input type="text" id="adName" class="input-text form-control" placeholder="NAME" />
                     </div>
                     <div class="input-group mtop-25">
                         <span class="input-group-addon"><i class="pe-7f-user pe-fw"></i></span>
-                        <input type="hp" class="input-text form-control" placeholder="HP" />
+                        <input type="hp" id="adHp" class="input-text form-control" placeholder="HP" />
                     </div>
                     <div class="input-group mtop-25">
                         <span class="input-group-addon"><i class="pe-7f-user pe-fw"></i></span>
-                        <input type="email" class="input-text form-control" placeholder="EMAIL" />
+                        <input type="email" id="adEmail" class="input-text form-control" placeholder="EMAIL" />
                     </div>
                     <div class="clearfix"></div>
-                    <a href="login" class="btn btn-skyblue pull-right">JOIN</a>
+                    <a id="joinBtn" class="btn btn-skyblue pull-right">JOIN</a>
                 </form>
 
 			</div>
@@ -53,6 +53,7 @@
     <!--js 연결 시작-->
     <div th:replace="fragment/js :: js"/>
     <!--js 연결 끝-->
+    <script src="/js/join.js"></script>
 
 
 
