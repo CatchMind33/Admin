@@ -1,13 +1,20 @@
 package com.catchmind.admin.controller.page;
 
 import com.catchmind.admin.controller.api.RestAdminApiController;
+import com.catchmind.admin.model.entity.Pending;
+import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.response.NoticeApiResponse;
 import com.catchmind.admin.model.network.response.PendingApiResponse;
 import com.catchmind.admin.repository.PendingRepository;
+import com.catchmind.admin.service.PaginationService;
 import com.catchmind.admin.service.PendingApiLogicService;
 import com.catchmind.admin.service.RestAdminApiLogicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,16 +31,18 @@ public class OwnerController {
 
     @Autowired
     private PendingApiLogicService pendingApiLogicService;
-
     @Autowired
     private RestAdminApiLogicService restAdminApiLogicService;
+    @Autowired
+    private PaginationService paginationService;
 
     @GetMapping("")
-    public ModelAndView ownerMain() {
-        ModelAndView view = new ModelAndView("owner/owner");
-        System.out.println(restAdminApiLogicService.resAdminList());
-        view.addObject("list", restAdminApiLogicService.resAdminList());
-        return view;
+    public String ownerMain(@PageableDefault(size=10, sort="resaBisName", direction = Sort.Direction.DESC)Pageable pageable, ModelMap map) {
+        Page<ResAdmin> resAdmins = restAdminApiLogicService.resAdminList(pageable);
+        List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), resAdmins.getTotalPages());
+        map.addAttribute("resAdmins", resAdmins);
+        map.addAttribute("paginationBarNumbers", barNumbers);
+        return "owner/owner";
     }
 
     @GetMapping("/")
@@ -51,11 +60,12 @@ public class OwnerController {
     }
 
     @GetMapping("/new")
-    public ModelAndView newOwner() {
-        ModelAndView view = new ModelAndView("owner/new_owner");
-        view.addObject("list", pendingApiLogicService.ownerlist());
-        System.out.println(pendingApiLogicService.ownerlist());
-        return view;
+    public String newOwner(@PageableDefault(size=10, sort="penIdx", direction = Sort.Direction.DESC)Pageable pageable, ModelMap map) {
+        Page<Pending> pendings = pendingApiLogicService.ownerlist(pageable);
+        List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), pendings.getTotalPages());
+        map.addAttribute("pendings", pendings);
+        map.addAttribute("paginationBarNumbers", barNumbers);
+        return "owner/new_owner";
     }
 
     @GetMapping("/new/detail/{penIdx}")

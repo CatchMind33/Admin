@@ -11,6 +11,6 @@ spring:
         format_sql: true
 
 server:
-  port: 8888
+  port: 9999
 
 

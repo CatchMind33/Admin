@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -53,8 +54,9 @@ public class RestAdminApiLogicService extends BaseService<ResAdminApiRequest, Re
         return null;
     }
 
-    public List<ResAdmin> resAdminList() {
-        return restAdminRepository.findAll();
+    @Transactional(readOnly = true)
+    public Page<ResAdmin> resAdminList(Pageable pageable) {
+        return restAdminRepository.findAll(pageable);
     }
 
     @Override

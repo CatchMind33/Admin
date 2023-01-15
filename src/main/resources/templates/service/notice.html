@@ -10,7 +10,7 @@
     <!--css 및 라이브러리 링크 끝-->
     <style>
         .main-content {
-            display:flex;
+            display: flex;
             justify-content: end;
         }
 
@@ -33,24 +33,16 @@
             vertical-align: middle;
             height: 100%;
             position: relative;
-            bottom:28px;
-            left:150px;
+            bottom: 28px;
+            left: 150px;
             font-size: 12px;
             background: transparent;
             border: none;
-            outline : none;
+            outline: none;
         }
 
-        .sort-select{
-            height: 38px;
-            width: 100px;
-            border : 1px solid #e5e5e5;
-            border-radius: 2px;
-            background: transparent;
-            font-size: 12px;
-        }
 
-        .widget__header{
+        .widget__header {
             display: flex;
             justify-content: space-between;
         }
@@ -71,79 +63,87 @@
     <div th:replace="fragment/aside_nav :: aside_nav"/>
     <!--사이드바 끝-->
 
-        <section class="content">
-            <header class="main-header clearfix">
-                <h1 class="main-header__title">
+    <section class="content">
+        <header class="main-header clearfix">
+            <h1 class="main-header__title">
                 <i class="icon pe-7s-menu"></i>
                 전체 공지사항 <small> 조회 및 관리</small>
             </h1>
-                <div class="main-content">
-                    <div class="search-box">
-                        <form>
-                            <input class="input-text search" type="text" placeholder="공지 검색">
-                            <button class="search-btn">
-                                <i class="pe-7s-search"></i>
-                            </button>
-                        </form>
-                    </div>
+            <div class="main-content">
+                <div class="search-box">
+                    <form>
+                        <input class="input-text search" type="text" placeholder="공지 검색">
+                        <button class="search-btn">
+                            <i class="pe-7s-search"></i>
+                        </button>
+                    </form>
                 </div>
+            </div>
 
-            </header> <!--헤더 끝-->
+        </header> <!--헤더 끝-->
 
-            <div class="row">
+        <div class="row">
 
-                <div class="col-md-12">
-                    <article class="widget shadow">
-                        <header class="widget__header">
-                            <h3 class="widget__title">총 게시글 : 10개</h3>
-                        </header>
-    
-                        <div class="widget__content" id="notice_List">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="no_idx">공지 번호</th>
-                                        <th class="no_title">공지 제목</th>
-                                        <th class="ad_name">작성자</th>
-                                        <th class="no_content">공지 내용</th>
-                                        <th class="regdate">등록일</th>
-                                        <th class="btn">관리</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="itemList">
-                                    <tr th:each="notice :${notices}">
-                                        <td class="no_idx" th:text="${notice.noIdx}">1</td>
-                                        <td class="no_title" th:text="${notice.noTitle}">이벤트 공지</td>     <!-- 들어가면 상세페이지로 -->
-                                        <td class="ad_name" th:text="${notice.adName}">이레몬</td>
-                                        <td class="no_content" th:text="${notice.noContent}">연말이벤트~</td>
-                                        <td class="regdate" th:text="${notice.regDate}">2022.12.15</td>
-                                        <td>
-                                            <a th:href="'/service/notice/detail/'+${notice.noIdx}">
-                                                <button class="btn btn-light" >수정</button>
-                                             </a>
-                                            <button th:onclick="|javascript:deleteit('${notice.noIdx}')|" class="btn btn-red" >삭제</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="notice_write">
-                                <a href="/service/notice/write"><button class="btn btn-light">작성하기</button></a>
+            <div class="col-md-12">
+                <article class="widget shadow">
+                    <header class="widget__header">
+                        <h3 class="widget__title">총 게시글 : 10개</h3>
+                    </header>
+
+                    <div class="widget__content" id="notice_List">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="no_idx">공지 번호</th>
+                                <th class="no_title">공지 제목</th>
+                                <th class="ad_name">작성자</th>
+                                <th class="no_content">공지 내용</th>
+                                <th class="regdate">등록일</th>
+                                <th class="btn">관리</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="notice :${notices}">
+                                <td class="no_idx" th:text="${notice.noIdx}">1</td>
+                                <td class="no_title" th:text="${notice.noTitle}">이벤트 공지</td>     <!-- 들어가면 상세페이지로 -->
+                                <td class="ad_name" th:text="${notice.adName}">이레몬</td>
+                                <td class="no_content" th:text="${notice.noContent}">연말이벤트~</td>
+                                <td class="regdate" th:text="${notice.regDate}">2022.12.15</td>
+                                <td>
+                                    <a th:href="'/service/notice/detail/'+${notice.noIdx}">
+                                        <button class="btn btn-light">수정</button>
+                                    </a>
+                                    <button th:onclick="|javascript:deleteit('${notice.noIdx}')|" class="btn btn-red">
+                                        삭제
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="notice_write">
+                            <a href="/service/notice/write">
+                                <button class="btn btn-light">작성하기</button>
+                            </a>
+                        </div>
+                        <!--                        페이징 처리 시작-->
+                        <div class="page_wrap">
+                            <div class="page_nation" aria-label="Page navigation example">
+                                <a th:text="'<'" th:href="@{/service/notice/(page=${notices.number - 1})}"
+                                   th:class="'page-link' + (${notices.number} <= 0 ? ' disabled':'')"></a>
+                                <span id="nums" th:class="page-item" th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}" th:href="@{/service/notice/(page=${pageNumber})}"
+                           th:class="'page-link' + (${pageNumber} == ${notices.number} ? ' disabled' : '')">1</a></span>
+                                <a th:text="'>'" th:href="@{/service/notice/(page=${notices.number + 1})}" th:class="'page-link' +
+                    (${notices.number} >= ${notices.totalPages - 1} ? ' disabled':'')"></a>
+
                             </div>
-                            <div class="notice_page">
-                                <nav id="pagination" aria-label="Page navigation example" style="font-size:14px ">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item"><a class="page-link" href="#">이전</a></li>
-                                        <li class="page-item" id><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">다음</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
+                        </div>
 
-                         </article><!-- /widget -->
-                    </div>
-    
-                </div> <!-- /row -->
-            </section>
+                </article><!-- /widget -->
+            </div>
+
+        </div> <!-- /row -->
+    </section>
 
     <!--footer 시작-->
     <div th:replace="fragment/footer :: footer"/>

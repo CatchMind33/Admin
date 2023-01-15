@@ -8,6 +8,8 @@ import com.catchmind.admin.model.network.response.NoticeApiResponse;
 import com.catchmind.admin.model.network.response.PendingApiResponse;
 import com.catchmind.admin.repository.PendingRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,7 +66,7 @@ public class PendingApiLogicService extends BaseService<PendingApiRequest, Pendi
         }).orElseGet(() -> Header.ERROR("데이터없음"));
     }
 
-    public List<Pending> ownerlist() {
-        return pendingRepository.findAll();
+    public Page<Pending> ownerlist(Pageable pageable) {
+        return pendingRepository.findAll(pageable);
     }
 }

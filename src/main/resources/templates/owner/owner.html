@@ -100,7 +100,6 @@
                     <div class="col-md-12">
                         <article class="widget shadow">
                             <header id="showPage" class="widget__header">
-                                <h3 class="widget__title">총 페이지 중 페이지</h3>
                             </header>
     
                             <div class="widget__content">
@@ -114,16 +113,16 @@
                                             <th>비고</th>
                                         </tr>
                                     </thead>
-                                    <tbody th:each="list : ${list}">
-                                        <tr>
-                                            <td style="display: none;" id="resa_userid" th:text="${list.resaUserid}"></td>
-                                            <td><a href="/owner/detail" th:text="${list.resaBisName}"></a></td>
-                                            <td th:text="${list.resaName}"></td>     <!-- 들어가면 상세페이지로 -->
-                                            <td th:text="${list.resaHp}"></td>
-                                            <td th:text="${list.resaRegion}"></td>
+                                    <tbody>
+                                        <tr th:each="resAdmin : ${resAdmins}">
+                                            <td style="display: none;" id="resa_userid" th:text="${resAdmin.resaUserid}"></td>
+                                            <td><a href="/owner/detail" th:text="${resAdmin.resaBisName}"></a></td>
+                                            <td th:text="${resAdmin.resaName}"></td>     <!-- 들어가면 상세페이지로 -->
+                                            <td th:text="${resAdmin.resaHp}"></td>
+                                            <td th:text="${resAdmin.resaRegion}"></td>
                                             <td>
                                                 <a href="/owner/detail"><button class="btn btn-light btn-xs">상세 보기</button></a>
-                                                <a th:id="${list.resaUserid}" th:onclick="deleteRes(this.getAttribute('id'))"><button class="btn btn-red btn-xs">삭제</button></a>
+                                                <a th:id="${resAdmin.resaUserid}" th:onclick="deleteRes(this.getAttribute('id'))"><button class="btn btn-red btn-xs">삭제</button></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -140,13 +139,18 @@
                     </div>
                 </div> <!-- /row -->
 
-<!--			<div class="page_wrap">-->
-<!--				<div class="page_nation">-->
-<!--					<div id="pageNum" class="dataTables_info" role="status">-->
+            <div class="page_wrap">
+                <div class="page_nation" aria-label="Page navigation example">
+                    <a th:text="'<'" th:href="@{/owner(page=${resAdmins.number - 1})}"
+                       th:class="'page-link' + (${resAdmins.number} <= 0 ? ' disabled':'')"></a>
+                    <span id="nums" th:class="page-item" th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}" th:href="@{/owner(page=${pageNumber})}"
+                           th:class="'page-link' + (${pageNumber} == ${resAdmins.number} ? ' disabled' : '')">1</a></span>
+                    <a th:text="'>'" th:href="@{/owner(page=${resAdmins.number + 1})}" th:class="'page-link' +
+                    (${resAdmins.number} >= ${resAdmins.totalPages - 1} ? ' disabled':'')"></a>
 
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
+                </div>
+            </div>
 			<!--페이징 끝-->
 		<!--footer 시작-->
 		<div th:replace="fragment/footer :: footer"/>
