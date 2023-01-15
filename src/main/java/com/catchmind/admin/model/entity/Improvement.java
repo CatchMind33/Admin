@@ -15,6 +15,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@Builder
 public class Improvement extends BaseEntityUpdate implements AuditableUpdate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,7 @@ public class Improvement extends BaseEntityUpdate implements AuditableUpdate {
     private String impNick;
     private String impAnswer;
     private String impStatus;
+
 
 }
 

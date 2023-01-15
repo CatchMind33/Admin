@@ -7,11 +7,12 @@
     <title>개선 사항</title>
     <!--css 및 라이브러리 링크 시작-->
     <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/paging.css">
     <!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
     .main-content {
-        display:flex;
+        display: flex;
         justify-content: end;
     }
 
@@ -34,26 +35,12 @@
         vertical-align: middle;
         height: 100%;
         position: relative;
-        bottom:28px;
-        left:150px;
+        bottom: 28px;
+        left: 150px;
         font-size: 12px;
         background: transparent;
         border: none;
-        outline : none;
-    }
-
-    .sort-select{
-        height: 38px;
-        width: 100px;
-        border : 1px solid #e5e5e5;
-        border-radius: 2px;
-        background: transparent;
-        font-size: 12px;
-    }
-
-    .widget__header{
-        display: flex;
-        justify-content: space-between;
+        outline: none;
     }
 
 </style>
@@ -70,66 +57,80 @@
     <div th:replace="fragment/aside_nav :: aside_nav"/>
     <!--사이드바 끝-->
 
-        <section class="content">
-            <header class="main-header clearfix">
-                <h1 class="main-header__title">
-                    <i class="icon pe-7s-menu"></i>
-                    전체 개선 사항 <small> 조회 및 관리</small>
-                </h1>
-                <div class="main-content">
-                    <div class="search-box">
-                        <form>
-                            <input class="input-text search" type="text" placeholder="검색">
-                            <button class="search-btn">
-                                <i class="pe-7s-search"></i>
-                            </button>
-                        </form>
-                    </div>
+    <section class="content">
+        <header class="main-header clearfix">
+            <h1 class="main-header__title">
+                <i class="icon pe-7s-menu"></i>
+                전체 개선 사항 <small> 조회 및 관리</small>
+            </h1>
+            <div class="main-content">
+                <div class="search-box">
+                    <form>
+                        <input class="input-text search" type="text" placeholder="검색">
+                        <button class="search-btn">
+                            <i class="pe-7s-search"></i>
+                        </button>
+                    </form>
                 </div>
-
-            </header> <!--헤더 끝-->
-
-            <div class="row">
-
-                <div class="col-md-12">
-                    <article class="widget shadow">
-                        <header class="widget__header">
-                            <h3 class="widget__title">총 게시글 : 10개</h3>
-                        </header>
-    
-                        <div class="widget__content">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>분류</th>
-                                        <th>제목</th>
-                                        <th>작성자</th>
-                                        <th>내용</th>
-                                        <th>등록일</th>
-                                        <th>답변 상태</th>
-                                        <th>관리</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>개선</td>
-                                        <td>회원가입</td>
-                                        <td>김사과</td>
-                                        <td>캐치테이블...</td>
-                                        <td>2022.12.16 14:00</td>
-                                        <td></td>
-                                        <td><a href="/service/imp/detail"><button class="btn btn-light">댓글 달기</button></a></td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
-                        </article><!-- /widget -->
-                    </div>
             </div>
 
-    
-                </section>
+        </header> <!--헤더 끝-->
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <article class="widget shadow">
+                    <header class="widget__header">
+                        <h3 class="widget__title">총 게시글 : [[${improvements.getTotalElements}]]</h3>
+                    </header>
+
+                    <div class="widget__content">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="imp_idx">번호</th>
+                                <th class="imp_title">제목</th>
+                                <th class="imp_nick">작성자</th>
+                                <th>내용</th>
+                                <th class="imp_regdate">등록일</th>
+                                <th>답변 상태</th>
+                                <th>관리</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="improvement :${improvements}">
+                                <td class="imp_idx" th:text="${improvement.impIdx}">1</td>
+                                <td class="imp_title" th:text="${improvement.impTitle}">회원가입</td>
+                                <td class="imp_nick" th:text="${improvement.impNick}">김사과</td>
+                                <td class="imp_content" th:text="${improvement.impContent}">캐치테이블...</td>
+                                <td class="imp_regdate" th:text="${improvement.regDate}">2022.12.16 14:00</td>
+                                <td></td>
+                                <td><a th:href="'/service/imp/detail/'+${improvement.impIdx}">
+                                    <button class="btn btn-light">댓글 달기</button>
+                                </a></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </article><!-- /widget -->
+            </div>
+        </div>
+        <!--                        페이징 처리 시작-->
+        <div class="page_wrap">
+            <div class="page_nation" aria-label="Page navigation example">
+                <a th:href="@{/service/imp(page=${improvements.number - 1})}"
+                   th:class="'page-prev' + (${improvements.number} <= 0 ? ' page-disabled':'')"></a>
+                <span th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}" th:href="@{/service/imp(page=${pageNumber})}"
+                           th:class="(${pageNumber} == ${improvements.number} ? 'active' : '')">1</a></span>
+                <a th:href="@{/service/imp(page=${improvements.number + 1})}" th:class="'page-next' +
+                    (${improvements.number} >= ${improvements.totalPages - 1} ? '':' page-disabled')"></a>
+            </div>
+        </div>
+        <!--                        페이징 처리 끝-->
+
+    </section>
     <!--footer 시작-->
     <div th:replace="fragment/footer :: footer"/>
     <!--footer 끝-->
@@ -139,6 +140,6 @@
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
-        
+
 </body>
 </html>

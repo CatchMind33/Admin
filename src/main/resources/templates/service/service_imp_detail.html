@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개선 사항 상세</title>
 
-	<!--css 및 라이브러리 링크 시작-->
-	<div th:replace="fragment/link :: link"/>
-	<!--css 및 라이브러리 링크 끝-->
+    <!--css 및 라이브러리 링크 시작-->
+    <div th:replace="fragment/link :: link"/>
+    <!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
-     .value {
+    .value {
         width: 400px;
     }
 </style>
@@ -24,54 +24,59 @@
 <!--header 끝-->
 
 <div class="wrapper">
-	<!-- 사이드바 시작 -->
-	<div th:replace="fragment/aside_nav :: aside_nav"/>
-	<!--사이드바 끝-->
+    <!-- 사이드바 시작 -->
+    <div th:replace="fragment/aside_nav :: aside_nav"/>
+    <!--사이드바 끝-->
 
-        <section class="content">
-			<header class="main-header clearfix">
-				<h1 class="main-header__title">
-					<i class="icon pe-7s-menu"></i>
-					캐치테이블 <small>개선 사항</small>
-				</h1>
-				<div class="main-header__date">
-					<i class="icon pe-7s-date"></i>
-					<span class="date"></span>
-				</div>
-			</header>
+    <section class="content">
+        <header class="main-header clearfix">
+            <h1 class="main-header__title">
+                <i class="icon pe-7s-menu"></i>
+                캐치테이블 <small>개선 사항</small>
+            </h1>
+            <div class="main-header__date">
+                <i class="icon pe-7s-date"></i>
+                <span class="date"></span>
+            </div>
+        </header>
 
-		<div class="row">
+        <div class="row">
 
-			<div class="col-md-12">
-				<article class="widget shadow">
-					<header class="widget__header">
-						<h3 class="widget__title">개선 사항</h3>
-					</header>
+            <div class="col-md-12">
+                <article class="widget shadow">
+                    <header class="widget__header">
+                        <h3 class="widget__title">개선 사항</h3>
+                    </header>
 
-					<div class="widget__content">
-						제목 : <input type="text" class="input-text value" placeholder="" value="개선 사항 있음"/>
-                        </div>
-                        <div>
-                        작성자 : <input type="text" class="input-text value" value="김사과 (apple)">
-                        </div>
+                    <div class="widget__content">
+                        제목 : <input type="text" disabled="true" class="input-text value" placeholder=""
+                                    th:field="${imp.impTitle}"/>
+                    </div>
+                    <div>
+                        작성자 : <input type="text" disabled="true" class="input-text value" th:field="${imp.impNick}">
+                    </div>
+                    <textarea class="textarea" rows="6" disabled="true" placeholder=""
+                              th:field="${imp.impContent}"></textarea>
+                    <hr>
 
-						<textarea class="textarea" rows="6" placeholder="">캐치테이블 대표 나와!!</textarea>
-                        <hr>
-                        <form>
-                            관리자 (이레몬) : <input type="text" class="input-text value"> <button class="btn btn-skyblue">답글 등록</button>
-                        </form>
-						<div class="clearfix"></div>
-				</article>
-			</div>
-		</div>
-        </section>
-	<!--footer 시작-->
-	<div th:replace="fragment/footer :: footer"/>
-	<!--footer 끝-->
+                    <span>캐치테이블 : </span> <input type="text" class="input-text value" id="input_imp">
+                    <button class="btn btn-skyblue" id="imp_btn">답글 등록</button>
+                    <input type="hidden" id="imp_idx" th:value="${imp.impIdx}">
+                    <div id="imp_answer" th:text="${imp.impAnswer}"></div>
+
+                    <div class="clearfix"></div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <!--footer 시작-->
+    <div th:replace="fragment/footer :: footer"/>
+    <!--footer 끝-->
 
 </div> <!-- /wrapper -->
 
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
+<script src="/js/comment_imp.js"></script>
 </body>
 </html>

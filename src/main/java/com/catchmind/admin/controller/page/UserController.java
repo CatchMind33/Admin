@@ -28,7 +28,7 @@ public class UserController {
     private final PaginationService paginationService;
 
     @GetMapping("")
-    public String totalUser(@PageableDefault(size=10, sort="prIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map) {
+    public String totalUser(@PageableDefault(size=9, sort="prIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map) {
         Page<Profile> profiles = profileLogicService.list(pageable);
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), profiles.getTotalPages());
         map.addAttribute("profiles",profiles);
