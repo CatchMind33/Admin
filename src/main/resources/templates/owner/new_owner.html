@@ -68,20 +68,20 @@
 			</header> <!--헤더 끝-->
 
 			<div class="row">
-				<div class="col-md-4" th:each="list :${list}"> <!--식당 1개 시작-->
+				<div class="col-md-4" th:each="pendings :${pendings}"> <!--식당 1개 시작-->
 					<article class="widget shadow">
 						<header class="widget__header">
-							<a href="/owner/new/detail"><h3 class="widget__title"><span th:text="${list.penBisName}"></span></h3></a>
+							<a href="/owner/new/detail"><h3 class="widget__title"><span th:text="${pendings.penBisName}"></span></h3></a>
 						</header>
 						<div class="widget__content">
-							<p style="display: none" id="penIdx" th:text="${list.penIdx}"></p>
-							<p>문의자 : <span th:text="${list.penName}"></span></p>
-							<p>문의자 번호 : <span th:text="${list.penHp}"></span></p>
-							<p>음식 타입 : <span th:text="${list.penFoodtype}"></span></p>
-							<p>식당 지역 : <span th:text="${list.penRegion}"></span></p>
-							<p>월 평균 예약 수 : <span th:text="${list.penBook}"></span></p>
+							<p style="display: none" id="penIdx" th:text="${pendings.penIdx}"></p>
+							<p>문의자 : <span th:text="${pendings.penName}"></span></p>
+							<p>문의자 번호 : <span th:text="${pendings.penHp}"></span></p>
+							<p>음식 타입 : <span th:text="${pendings.penFoodtype}"></span></p>
+							<p>식당 지역 : <span th:text="${pendings.penRegion}"></span></p>
+							<p>월 평균 예약 수 : <span th:text="${pendings.penBook}"></span></p>
 							<div>
-								<a th:href="'/owner/new/detail/'+${list.penIdx}"><button class="btn btn-light">승인</button></a>
+								<a th:href="'/owner/new/detail/'+${pendings.penIdx}"><button class="btn btn-light">승인</button></a>
 								<button class="modal__open btn btn-red">미승인</button>
 							</div>
 						</div>
@@ -92,23 +92,16 @@
 			
 			<!--페이징 처리-->
 			<div class="page_wrap">
-				<div class="page_nation">
-				   <a class="arrow pprev" href="#"></a>
-				   <a class="arrow prev" href="#"></a>
-				   <a href="#" class="active">1</a>
-				   <a href="#">2</a>
-				   <a href="#">3</a>
-				   <a href="#">4</a>
-				   <a href="#">5</a>
-				   <a href="#">6</a>
-				   <a href="#">7</a>
-				   <a href="#">8</a>
-				   <a href="#">9</a>
-				   <a href="#">10</a>
-				   <a class="arrow next" href="#"></a>
-				   <a class="arrow nnext" href="#"></a>
+				<div class="page_nation" aria-label="Page navigation example">
+					<a th:text="'<'" th:href="@{/owner/new/(page=${pendings.number - 1})}"
+					   th:class="'page-link' + (${pendings.number} <= 0 ? ' disabled':'')"></a>
+					<span id="nums" th:class="page-item" th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}" th:href="@{/owner/new(page=${pageNumber})}"
+						   th:class="'page-link' + (${pageNumber} == ${pendings.number} ? ' disabled' : '')">1</a></span>
+					<a th:text="'>'" th:href="@{/owner/new/(page=${pendings.number + 1})}"  th:class="'page-link' +
+                    (${pendings.number} >= ${pendings.totalPages - 1} ? ' disabled':'')" ></a>
 				</div>
-			 </div>
+			</div>
 			<!--페이징 끝-->
 
 		</section>

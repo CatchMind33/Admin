@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -85,8 +86,9 @@ public class NoticeApiLogicService extends BaseService<NoticeApiRequest, NoticeA
     }
 
 
-    public List<Notice> noticeList() {
-        return noticeRepository.findAll();
+    @Transactional(readOnly = true)
+    public Page<Notice> noticeList(Pageable pageable) {
+        return noticeRepository.findAll(pageable);
 
     }
 

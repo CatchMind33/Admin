@@ -57,7 +57,7 @@
 						공지사항 제목 : <input type="text" id="no_title" class="input-text value" placeholder="" value=""/>
                         </div>
                         <div>
-                        작성자 : <input type="text" id="ad_name" class="input-text value" value="이레몬">
+                        작성자 : <input type="text" id="ad_name" class="input-text value" th:value="${session.name}">
                         </div>
 
 						<textarea class="textarea" id="no_content" rows="6" placeholder=""></textarea>
