@@ -7,8 +7,7 @@
     <title>전체 오너</title>
 	<!--css 및 라이브러리 링크 시작-->
 	<div th:replace="fragment/link :: link"/>
-	<script src="https://unpkg.com/vue@3"></script>
-	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/paging.css">
 	<!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
@@ -43,15 +42,6 @@
 		border: none;
 		outline : none;
 	}
-
-	.sort-select{
-		height: 38px;
-		width: 100px;
-		border : 1px solid #e5e5e5;
-		border-radius: 2px;
-		background: transparent;
-		font-size: 12px;
-	}
 	.widget__header{
 		display: flex;
 		justify-content: space-between;
@@ -64,6 +54,15 @@
 		padding : 15px;
 		margin-top: 20px;
 	}
+    a.active {
+        background-color:#66cccc;
+        color:#fff;
+        border:1px solid #66cccc;
+    }
+
+    a.disabled{
+        pointer-events: none;
+    }
 </style>
 <body>
 <!--header 시작-->
@@ -99,9 +98,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <article class="widget shadow">
-                            <header id="showPage" class="widget__header">
+                            <header class="widget__header">
+                                <h3 class="widget__title">전체 식당 관리자 수 : [[${resAdmins.getTotalElements}]]</h3>
                             </header>
-    
                             <div class="widget__content">
                                 <table class="table">
                                     <thead>
@@ -129,26 +128,18 @@
                                 </table>
                             </div>
                         </article>
-                        <div class="page_wrap">
-                            <div class="page_nation">
-                                <div id="pageNum" class="dataTables_info" role="status">
-
-                                </div>
-                            </div>
-                         </div>
                     </div>
                 </div> <!-- /row -->
-
+<!--            페이징 처리 시작-->
             <div class="page_wrap">
                 <div class="page_nation" aria-label="Page navigation example">
-                    <a th:text="'<'" th:href="@{/owner(page=${resAdmins.number - 1})}"
-                       th:class="'page-link' + (${resAdmins.number} <= 0 ? ' disabled':'')"></a>
-                    <span id="nums" th:class="page-item" th:each="pageNumber : ${paginationBarNumbers}">
+                    <a th:href="@{/owner(page=${resAdmins.number - 1})}"
+                       th:class="'page-prev' + (${resAdmins.number} <= 0 ? ' page-disabled':'')"></a>
+                    <span th:each="pageNumber : ${paginationBarNumbers}">
                         <a th:text="${pageNumber + 1}" th:href="@{/owner(page=${pageNumber})}"
-                           th:class="'page-link' + (${pageNumber} == ${resAdmins.number} ? ' disabled' : '')">1</a></span>
-                    <a th:text="'>'" th:href="@{/owner(page=${resAdmins.number + 1})}" th:class="'page-link' +
-                    (${resAdmins.number} >= ${resAdmins.totalPages - 1} ? ' disabled':'')"></a>
-
+                           th:class="(${pageNumber} == ${resAdmins.number} ? 'active' : '')">1</a></span>
+                    <a th:href="@{/owner(page=${resAdmins.number + 1})}" th:class="'page-next' +
+                    (${resAdmins.number} >= ${resAdmins.totalPages - 1} ? '':' page-disabled')"></a>
                 </div>
             </div>
 			<!--페이징 끝-->

@@ -13,8 +13,8 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
+@Builder
+
 public class Ask extends BaseEntityUpdate implements AuditableUpdate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

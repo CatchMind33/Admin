@@ -7,6 +7,7 @@
     <title>전체 공지사항</title>
     <!--css 및 라이브러리 링크 시작-->
     <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/paging.css">
     <!--css 및 라이브러리 링크 끝-->
     <style>
         .main-content {
@@ -39,12 +40,6 @@
             background: transparent;
             border: none;
             outline: none;
-        }
-
-
-        .widget__header {
-            display: flex;
-            justify-content: space-between;
         }
 
 
@@ -87,7 +82,7 @@
             <div class="col-md-12">
                 <article class="widget shadow">
                     <header class="widget__header">
-                        <h3 class="widget__title">총 게시글 : 10개</h3>
+                        <h3 class="widget__title">총 게시글 : [[${notices.getTotalElements}]]</h3>
                     </header>
 
                     <div class="widget__content" id="notice_List">
@@ -125,24 +120,21 @@
                                 <button class="btn btn-light">작성하기</button>
                             </a>
                         </div>
-                        <!--                        페이징 처리 시작-->
-                        <div class="page_wrap">
-                            <div class="page_nation" aria-label="Page navigation example">
-                                <a th:text="'<'" th:href="@{/service/notice/(page=${notices.number - 1})}"
-                                   th:class="'page-link' + (${notices.number} <= 0 ? ' disabled':'')"></a>
-                                <span id="nums" th:class="page-item" th:each="pageNumber : ${paginationBarNumbers}">
-                        <a th:text="${pageNumber + 1}" th:href="@{/service/notice/(page=${pageNumber})}"
-                           th:class="'page-link' + (${pageNumber} == ${notices.number} ? ' disabled' : '')">1</a></span>
-                                <a th:text="'>'" th:href="@{/service/notice/(page=${notices.number + 1})}" th:class="'page-link' +
-                    (${notices.number} >= ${notices.totalPages - 1} ? ' disabled':'')"></a>
-
-                            </div>
-                        </div>
-
+                    </div>
                 </article><!-- /widget -->
             </div>
-
         </div> <!-- /row -->
+        <div class="page_wrap">
+            <div class="page_nation" aria-label="Page navigation example">
+                <a th:href="@{/service/notice(page=${notices.number - 1})}"
+                   th:class="'page-prev' + (${notices.number} <= 0 ? ' page-disabled':'')"></a>
+                <span th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}" th:href="@{/service/notice(page=${pageNumber})}"
+                           th:class="(${pageNumber} == ${notices.number} ? 'active' : '')">1</a></span>
+                <a th:href="@{/service/notice(page=${notices.number + 1})}" th:class="'page-next' +
+                    (${notices.number} >= ${notices.totalPages - 1} ? '':' page-disabled')"></a>
+            </div>
+        </div>
     </section>
 
     <!--footer 시작-->

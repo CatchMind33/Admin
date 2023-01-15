@@ -36,6 +36,7 @@ public class OwnerController {
     @Autowired
     private PaginationService paginationService;
 
+    // 식당관리자 정보 출력
     @GetMapping("")
     public String ownerMain(@PageableDefault(size=10, sort="resaBisName", direction = Sort.Direction.DESC)Pageable pageable, ModelMap map) {
         Page<ResAdmin> resAdmins = restAdminApiLogicService.resAdminList(pageable);
@@ -45,6 +46,8 @@ public class OwnerController {
         return "owner/owner";
     }
 
+
+    // 식당관리자 검색
     @GetMapping("/")
     public ModelAndView searchMain(@RequestParam(value = "keyword")String keyword){
         ModelAndView view = new ModelAndView("owner/owner");
@@ -54,13 +57,16 @@ public class OwnerController {
         return view;
     }
 
+    
+    // 식당관리자 상세보기
     @GetMapping("/detail")
     public ModelAndView ownerDetail() {
         return new ModelAndView("owner/owner_detail");
     }
 
+    // 입점문의
     @GetMapping("/new")
-    public String newOwner(@PageableDefault(size=10, sort="penIdx", direction = Sort.Direction.DESC)Pageable pageable, ModelMap map) {
+    public String newOwner(@PageableDefault(size=9, sort="penIdx", direction = Sort.Direction.DESC)Pageable pageable, ModelMap map) {
         Page<Pending> pendings = pendingApiLogicService.ownerlist(pageable);
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), pendings.getTotalPages());
         map.addAttribute("pendings", pendings);
@@ -68,6 +74,7 @@ public class OwnerController {
         return "owner/new_owner";
     }
 
+    // 입점문의 상세
     @GetMapping("/new/detail/{penIdx}")
     public ModelAndView newOwnerDetail(@PathVariable Long penIdx) {
         ModelAndView view = new ModelAndView("owner/new_owner_detail");

@@ -4,51 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEW 오너</title>
-
-	<!--css 및 라이브러리 링크 시작-->
-	<div th:replace="fragment/link :: link"/>
-	<!--css 및 라이브러리 링크 끝-->
+    <title>식당 입점 문의</title>
+    <!--css 및 라이브러리 링크 시작-->
+    <div th:replace="fragment/link :: link"/>
+    <link rel="stylesheet" href="/css/paging.css">
+    <!--css 및 라이브러리 링크 끝-->
 </head>
-<style>
-	.main-content {
-		display:flex;
-		justify-content: space-between;
-	}
-
-	.search-box {
-		box-sizing: border-box;
-		height: 45px;
-	}
-
-	.search {
-		position: relative;
-		margin: 0;
-		border-radius: 2px;
-		vertical-align: middle;
-		height: 100%;
-		background: transparent;
-		padding: 10px;
-	}
-
-	.search-btn {
-		vertical-align: middle;
-		height: 100%;
-		position: relative;
-		bottom:28px;
-		left:150px;
-		font-size: 12px;
-		background: transparent;
-		border: none;
-		outline : none;
-	}
-
-	.page_wrap {
-		padding : 15px;
-		margin-top: 20px;
-	}
-
-</style>
 <body>
 <!--header 시작-->
 <div th:replace="fragment/header :: header"/>
@@ -59,56 +20,57 @@
 
 
 <div class="wrapper">
-	<!--owner_nav 시작-->
-	<div th:replace = "fragment/aside_nav :: aside_nav"/>
-	<!--owner_nav 끝-->
+    <!--owner_nav 시작-->
+    <div th:replace="fragment/aside_nav :: aside_nav"/>
+    <!--owner_nav 끝-->
 
-        <section class="content">
-			<header class="main-header clearfix">
-			</header> <!--헤더 끝-->
+    <section class="content">
+        <header class="main-header clearfix">
+        </header> <!--헤더 끝-->
 
-			<div class="row">
-				<div class="col-md-4" th:each="pendings :${pendings}"> <!--식당 1개 시작-->
-					<article class="widget shadow">
-						<header class="widget__header">
-							<a href="/owner/new/detail"><h3 class="widget__title"><span th:text="${pendings.penBisName}"></span></h3></a>
-						</header>
-						<div class="widget__content">
-							<p style="display: none" id="penIdx" th:text="${pendings.penIdx}"></p>
-							<p>문의자 : <span th:text="${pendings.penName}"></span></p>
-							<p>문의자 번호 : <span th:text="${pendings.penHp}"></span></p>
-							<p>음식 타입 : <span th:text="${pendings.penFoodtype}"></span></p>
-							<p>식당 지역 : <span th:text="${pendings.penRegion}"></span></p>
-							<p>월 평균 예약 수 : <span th:text="${pendings.penBook}"></span></p>
-							<div>
-								<a th:href="'/owner/new/detail/'+${pendings.penIdx}"><button class="btn btn-light">승인</button></a>
-								<button class="modal__open btn btn-red">미승인</button>
-							</div>
-						</div>
-					</article><!-- /widget -->
-				</div> <!-- /식당 1개 끝 -->
-			</div>
-
-			
-			<!--페이징 처리-->
-			<div class="page_wrap">
-				<div class="page_nation" aria-label="Page navigation example">
-					<a th:text="'<'" th:href="@{/owner/new/(page=${pendings.number - 1})}"
-					   th:class="'page-link' + (${pendings.number} <= 0 ? ' disabled':'')"></a>
-					<span id="nums" th:class="page-item" th:each="pageNumber : ${paginationBarNumbers}">
+        <div class="row">
+            <div class="col-md-4" th:each="pendings :${pendings}"> <!--식당 1개 시작-->
+                <article class="widget shadow">
+                    <header class="widget__header">
+                        <a href="/owner/new/detail"><h3 class="widget__title"><span
+                                th:text="${pendings.penBisName}"></span></h3></a>
+                    </header>
+                    <div class="widget__content">
+                        <p style="display: none" id="penIdx" th:text="${pendings.penIdx}"></p>
+                        <p>문의자 : <span th:text="${pendings.penName}"></span></p>
+                        <p>문의자 번호 : <span th:text="${pendings.penHp}"></span></p>
+                        <p>음식 타입 : <span th:text="${pendings.penFoodtype}"></span></p>
+                        <p>식당 지역 : <span th:text="${pendings.penRegion}"></span></p>
+                        <p>월 평균 예약 수 : <span th:text="${pendings.penBook}"></span></p>
+                        <div>
+                            <a th:href="'/owner/new/detail/'+${pendings.penIdx}">
+                                <button class="btn btn-light">승인</button>
+                            </a>
+                            <button class="modal__open btn btn-red">미승인</button>
+                        </div>
+                    </div>
+                </article><!-- /widget -->
+            </div> <!-- /식당 1개 끝 -->
+        </div>
+        <!--페이징 처리-->
+        <div class="page_wrap">
+            <div class="page_nation" aria-label="Page navigation example">
+                <a th:href="@{/owner/new(page=${pendings.number - 1})}"
+                   th:class="'page-prev' + (${pendings.number} <= 0 ? ' page-disabled':'')"></a>
+                <span th:each="pageNumber : ${paginationBarNumbers}">
                         <a th:text="${pageNumber + 1}" th:href="@{/owner/new(page=${pageNumber})}"
-						   th:class="'page-link' + (${pageNumber} == ${pendings.number} ? ' disabled' : '')">1</a></span>
-					<a th:text="'>'" th:href="@{/owner/new/(page=${pendings.number + 1})}"  th:class="'page-link' +
-                    (${pendings.number} >= ${pendings.totalPages - 1} ? ' disabled':'')" ></a>
-				</div>
-			</div>
-			<!--페이징 끝-->
+                           th:class="(${pageNumber} == ${pendings.number} ? 'active' : '')">1</a></span>
+                <a th:href="@{/owner/new(page=${pendings.number + 1})}" th:class="'page-next' +
+                    (${pendings.number} >= ${pendings.totalPages - 1} ? '':' page-disabled')"></a>
+            </div>
+        </div>
+        <!--페이징 끝-->
 
-		</section>
-	<!--footer 시작-->
-	<div th:replace="fragment/footer :: footer"/>
-	<!--footer 끝-->
-<div th:replace="fragment/new_owner_modal :: owner_modal"/>
+    </section>
+    <!--footer 시작-->
+    <div th:replace="fragment/footer :: footer"/>
+    <!--footer 끝-->
+    <div th:replace="fragment/new_owner_modal :: owner_modal"/>
 </div> <!-- /wrapper -->
 
 <!-- Scripts -->
