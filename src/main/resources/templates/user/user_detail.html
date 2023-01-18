@@ -7,7 +7,6 @@
     <title>회원 상세 정보</title>
 	<!--css 및 라이브러리 링크 시작-->
 	<div th:replace="fragment/link :: link"/>
-	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
@@ -68,13 +67,13 @@
 								<td>0</td>
 								<td>0</td>
 								<td th:text="${user.prNoshow}">0</td>
-								<td th:text="${point?.poTot}"></td>
+								<td>2000P</td>	
 							</tr>
 						</table>
 						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
 						<button id="memoBtn" class="btn btn-light pull-right" type="submit">관리자 메모 등록</button>
 						<button class="modal__open btn btn-light pull-right" type="button">포인트 지급</button>
-                        <button class="other__modal btn btn-red pull-right" type="button">노쇼 블락</button>
+                        <button class="modal__open btn btn-red pull-right" type="button">노쇼 블락</button>
 						<div class="clearfix"></div>
 					</div>
 
@@ -84,7 +83,6 @@
 
     </div> <!-- /row -->
 <div th:replace="fragment/user_modal :: user_modal"/>
-<div th:replace="fragment/noShow_modal :: noShow_modal"/>
 
 </section>
 <!--footer 시작-->
