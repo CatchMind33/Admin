@@ -55,6 +55,8 @@ public class ReviewLogicService extends BaseService<ReviewApiRequest, ReviewApiR
         return reviewApiResponse;
     }
 
+    /*ㅎㅇㅎㅇ*/
+
     @Override
     public Header<ReviewApiResponse> read(Long id) {
         return baseRepository.findById(id).map(review -> response(review))

@@ -26,3 +26,4 @@ public class DeclareComment extends BaseEntity implements Auditable {
     private String prNick;
     private String decContent;
 }
+/*ㅎㅇㅎㅇ*/
