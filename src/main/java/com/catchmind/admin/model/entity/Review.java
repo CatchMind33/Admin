@@ -28,3 +28,4 @@ public class Review extends BaseEntityUpdate implements AuditableUpdate {
     private Double revScore;
     private String resaBisName;
 }
+/*ㅎㅇㅎㅇ*/
