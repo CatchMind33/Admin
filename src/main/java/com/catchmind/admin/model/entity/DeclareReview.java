@@ -25,3 +25,4 @@ public class DeclareReview extends BaseEntity implements Auditable {
     private String prNick;
     private String derContent;
 }
+/*ㅎㅇㅎㅇ*/

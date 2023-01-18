@@ -18,7 +18,7 @@ public class ReviewController {
 //    public ModelAndView reviewMain() {
 //        return new ModelAndView("review/review");
 //    }
-
+/*ㅎㅇㅎㅇ*/
     @GetMapping("")
     public ModelAndView reviewMain() {
         ModelAndView view = new ModelAndView("/review/review");
