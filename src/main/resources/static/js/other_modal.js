@@ -2,56 +2,50 @@
 // 모달 키기/끄기 관련 변수---------------------------------------------------------
 
 // 모달을 키는 버튼을 모두(중복되는 버튼까지) 가져옴
-let openBtn = document.querySelectorAll(".modal__open");
+let open = document.querySelectorAll(".other__modal");
 // modal hidden클래스의 modal클래스만 가져옴
-let modals = document.querySelector(".modal");
+let otherModal = document.querySelector(".other_modal");
 // close_button을 가져옴
-let closeBtn = modals.querySelector(".close_button");
+let closeButton = otherModal.querySelector(".close_btn");
 // -----------------------------------------------------
 // 모달을 켜주는 함수
-const openModal = () => {
+const openOtherModal = () => {
     // modal의 hidden클래스를 지워줌으로서 display:none효과가 없어지면서 모달이 나타남
-    modals.classList.remove("hidden")
+    otherModal.classList.remove("hidden")
 };
 // 모달을 꺼주는 함수
-const closeModal = () =>{
+const closeOtherModal = () =>{
     // modal에 hidden클래스를 추가해줌으로서 display:none효과가 적용되어 모달이 사라짐
-    modals.classList.add("hidden")
+    otherModal.classList.add("hidden")
     // 드래그로 옮겨진 모달을 원래 위치로 복귀시킴
     // (만약 modal__contents의 top left값이 바뀐다면 밑에 wrap.style.top의 값과 wrap.style.left를 바꿔줘야한다)
-    wrap.style.top = `100px`;
-    wrap.style.left = `700px`;
-
+    content.style.top = `100px`;
+    content.style.left = `700px`;
 }
-// foreach문으로 openButton배열에 담긴 모든 버튼을 모두 선택 할 수있게 해줌
-// [].forEach.call(openBtns, function(col) {
-//     col.addEventListener("click", openModal);
-// });
-[].forEach.call(openBtn, function(col) {
-    col.addEventListener("click", openModal);
+
+[].forEach.call(open, function(col) {
+    col.addEventListener("click", openOtherModal);
 });
 // closeBtn을 누르면 모달을 닫아줌
-closeBtn.addEventListener("click", closeModal);
+closeButton.addEventListener("click", closeOtherModal);
 
-
-
-let wrap = document.querySelector(".modal__contents");
-let header = document.querySelector(".modal__header");
-let lastX = 0;
-let lastY = 0;
-let startX = 0;
-let startY = 0;
+let content = document.querySelector(".modal__content");
+let other_header = document.querySelector(".other__modal__header");
+let recentX = 0;
+let recentY = 0;
+let pastX = 0;
+let pastY = 0;
 
 // 1. 마우스다운시 실행되는 이벤트
-header.addEventListener('mousedown', function(e){
+other_header.addEventListener('mousedown', function(e){
     e.preventDefault();
     // 현재 클라이언트의 가로값을 가지고 온다
-    startX = e.clientX;
+    pastX = e.clientX;
     // 현재 클라이언트의 세로값을 가지고 온다
-    startY = e.clientY;
+    pastY = e.clientY;
 
     // 2.
-    header.classList.add('active');
+    other_header.classList.add('active');
 
     // 3. 마우스 클릭이 끝나는 시점에 onRemoveEvent함수 호출
     document.addEventListener('mouseup', onRemoveEvent);
@@ -61,19 +55,19 @@ header.addEventListener('mousedown', function(e){
 });
 
 function onRemoveEvent() {
-    header.classList.remove('active');
+    other_header.classList.remove('active');
     document.removeEventListener('mouseup', onRemoveEvent);
     document.removeEventListener('mousemove', onMove);
 }
 
 function onMove(e) {
     e.preventDefault();
-    lastX = startX - e.clientX;
-    lastY = startY - e.clientY;
+    recentX = pastX - e.clientX;
+    recentY = pastY - e.clientY;
 
-    startX = e.clientX;
-    startY = e.clientY;
+    pastX = e.clientX;
+    pastY = e.clientY;
 
-    wrap.style.top = `${wrap.offsetTop - lastY}px`;
-    wrap.style.left = `${wrap.offsetLeft - lastX}px`;
+    content.style.top = `${content.offsetTop - recentY}px`;
+    content.style.left = `${content.offsetLeft - recentX}px`;
 }
