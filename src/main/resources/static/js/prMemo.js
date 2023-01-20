@@ -1,20 +1,15 @@
-window.onload= function() {
-    const btn = document.getElementById("memoBtn");
-    btn.addEventListener('click',sendit);
-}
-function sendit() {
+function sendMemo() {
+    const prIdx = document.getElementById("prIdx").innerText;
     const prMemo = document.getElementById("prMemo");
-    const prIdx = document.getElementById("prIdx");
 
-
+    console.log(prMemo)
     if(prMemo.value == '') {
         alert("관리자 메모를 입력해주세요!");
         prMemo.focus();
         return false;
     }
 
-    const api = "http://localhost:8888/api/user/memo";
-    fetch(api, {
+    fetch("http://localhost:8888/api/user/memo", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -22,7 +17,7 @@ function sendit() {
             "resultCode": "ok",
             "description": "정상",
             "data": {
-                "prIdx": `${prIdx.value}`,
+                "prIdx": `${prIdx}`,
                 "prMemo": `${prMemo.value}`
             }
         }),

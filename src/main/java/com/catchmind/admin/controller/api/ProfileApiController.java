@@ -49,10 +49,15 @@ public class ProfileApiController extends CrudController<ProfileRequest, Profile
     }
 
     @PostMapping(path="/memo")
-    public Header<ProfileResponse> createMemo(@RequestBody Header<ProfileRequest> request) {
+    public Header<ProfileResponse> updateMemo(@RequestBody Header<ProfileRequest> request) {
         System.out.println("컨트롤러..");
         System.out.println(request.getData().getPrMemo());
-        return profileLogicService.create(request);
+        return profileLogicService.updateMemo(request);
+    }
+
+    @PostMapping("updatePoint")
+    public Header<ProfileResponse> updatePoint(@RequestBody Header<ProfileRequest> request){
+        return profileLogicService.updatePoint(request);
     }
 
 }

@@ -2,7 +2,6 @@ package com.catchmind.admin.model.entity;
 
 
 import com.catchmind.admin.model.config.AuditableUpdate;
-import com.catchmind.admin.model.config.BaseEntity;
 import com.catchmind.admin.model.config.BaseEntityUpdate;
 import lombok.*;
 
@@ -28,6 +27,7 @@ public class Profile extends BaseEntityUpdate implements AuditableUpdate {
     private String prRegion;
     private String prHp;
     private String prUserpw;
+    private int prPoint;
     private String prGender;
     private String prBirth;
     private String prMemo;
