@@ -5,10 +5,7 @@ import com.catchmind.admin.model.config.BaseEntity;
 import com.catchmind.admin.model.config.BaseEntityUpdate;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -26,6 +23,7 @@ public class Review extends BaseEntityUpdate implements AuditableUpdate {
     private Long revLike;
     private String revContent;
     private Double revScore;
-    private String resaBisName;
+    @ManyToOne
+    @JoinColumn(name="resaBisName")
+    private ResAdmin resAdmin;
 }
-/*ㅎㅇㅎㅇ*/

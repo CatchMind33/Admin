@@ -38,7 +38,7 @@
         <header class="main-header clearfix">
             <h1 class="main-header__title">
                 <i class="icon pe-7s-menu"></i>
-                회원 <small>상세 정보</small>
+                메세지 <small>상세 보기</small>
             </h1>
             <div class="main-header__date">
                 <i class="icon pe-7s-date"></i>
@@ -52,10 +52,11 @@
             <div class="col-md-12">
                 <article class="widget shadow">
                     <div class="widget__content">
-                        <p> 보낸 사람 : <input type="text" class="input-text value" placeholder="" value="캐치테이블" readonly/> </p>
-                        <p> 받는 사람 : <input type="text" class="input-text value" placeholder="" value="건강한 마스터 1234" readonly/> </p>
-                        <p> 내용 :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" class="input-text msg-content" placeholder="" value="안녕하세요 건강한 마스터1234님 미지급 포인트가 있어서 1000P를 추가로 지급했습니다." readonly /></p>
-                        <p> 보낸 날짜 : <input type="text" class="input-text value" placeholder="" value="2022.12.16" readonly /></p>
+                        <p> 보낸 사람 : <input type="text" class="input-text value" value="캐치테이블" readonly/> </p>
+                        <p th:if="${talk.taaNick != null}"> 받는 사람 : <input type="text" class="input-text value" th:field="${talk.taaNick}" readonly/> </p>
+                        <p th:if="${talk.taaResaBisName != null}"> 받는 사람 : <input type="text" class="input-text value" th:field="${talk.taaResaBisName}" readonly/></p>
+                        <p> 내용 :&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" class="input-text msg-content" placeholder="" th:value="${talk.taaContent}" readonly /></p>
+                        <p> 보낸 날짜 : <input type="text" class="input-text value" th:value="${talk.regDate}" readonly /></p>
 
                         <button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
 <!--                        <button class="btn btn-red pull-right" type="button">삭제</button>-->
@@ -71,7 +72,6 @@
 
         </div> <!-- /row -->
 
-        <div th:replace="fragment/user_modal :: user_modal"/>
     </section>
     <!--footer 시작-->
     <div th:replace="fragment/footer :: footer"/>

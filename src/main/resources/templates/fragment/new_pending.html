@@ -1,0 +1,23 @@
+<div th:fragment="new_pending" class="modal hidden">
+    <div class="modal">
+        <div class="modal__overlay"></div>
+        <div class="modal__contents">
+            <div class="modal__header">
+                입점문의자에게 승인 메세지 보내기
+            </div>
+            <div class="modal__main">
+                <input type="hidden" id="pen-idx" th:value="${owner.penIdx}">
+                <p>식당 이름 : <span id="bis-name">[[${owner.penBisName}]]</span></p>
+                <p>대표 이름 : [[${owner.penName}]]</p>
+                <p>식당 번호 : [[${owner.penHp}]]</p>
+                <p>보내는 관리자 : 캐치테이블</p>
+                <p><input type="text" class="input-text message" id="pendingMsg" placeholder="승인 메세지를 입력하세요."></p>
+                <div>
+                    <button class="btn btn-skyblue" onclick="sendPendingMsg()" type="button">보내기</button>
+                    <button class="btn btn-light close_button" type="button">닫기</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

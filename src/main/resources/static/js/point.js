@@ -7,7 +7,7 @@ function updateTotPoint(){
     const poNick = document.getElementById('pr_nick').innerText;
     const poList = document.getElementById('point');
 
-    fetch('http://localhost:8888/api/user/updatePoint', {
+    fetch('http://localhost:7070/api/user/updatePoint', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -40,7 +40,7 @@ function sendit() {
         return false;
     }
 
-    const api = "/api/join";
+    const api = "http://localhost:7070/api/join";
 
     fetch(api, {
         method: "POST",

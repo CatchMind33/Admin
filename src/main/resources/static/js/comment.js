@@ -7,7 +7,7 @@ function comment(){
     const askAnswer = document.getElementById('input_txt').value;
     const askIdx = document.getElementById('ask_idx').value;
     // console.log(askAnswer,askIdx)
-    fetch('http://localhost:9999/askapi/'+askIdx, {
+    fetch('http://localhost:7070/askapi/'+askIdx, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

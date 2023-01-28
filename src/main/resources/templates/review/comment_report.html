@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신고 리뷰 및 댓글</title>
+    <!--css 및 라이브러리 링크 시작-->
+    <div th:replace="fragment/link :: link"/>
+    <!--css 및 라이브러리 링크 끝-->
+</head>
+<style>
+    .display {
+        display: block;
+    }
+    .none {
+        display: none;
+    }
+</style>
+<body>
+<!--header 시작-->
+<div th:replace="fragment/header :: header"/>
+<!--프로필 시작-->
+<div th:replace="fragment/profile :: profile"/>
+<!--프로필 끝-->
+<!--header 끝-->
+
+<div class="wrapper">
+    <!-- 사이드바 시작 -->
+    <div th:replace="fragment/aside_nav :: aside_nav"/>
+    <!--사이드바 끝-->
+
+    <section class="content">
+        <header class="main-header clearfix">
+        </header> <!--헤더 끝-->
+
+        <div class="row">
+            <div class="col-md-12">
+                <article class="widget widget--tabbed shadow">
+                    <div class="tabs">
+                        <div class="number-entries">
+                            <input class="spinner" name="value" value="5"/>
+                        </div>
+                        <input type="radio" name="t" id="tab2" checked>
+                        <label for="tab2" class="tabs__tab">신고 들어온 댓글</label>
+                        <div class="tabs__content">
+
+                            <!-- 신고들어온 댓글-->
+                            <div class="tabs__content--2">
+                                <div class="media social_msg" th:each="comments : ${decComs}">
+                                    <div class="media-body">
+                                        <h4 class="media-heading social_msg__heading">댓글 번호 :[[${comments.comIdx}]] / 신고
+                                            번호 : [[${comments.decIdx}]]</h4>
+                                        <p class="social_msg__msg">식당 : [[${comments.resaBisName}]]</p>
+                                        <p class="social_msg__msg">댓글 작성자 : [[${comments.decNick}]]</p>
+                                        <p class="social_msg__msg">댓글 내용 : [[${comments.comContent}]]</p>
+                                        <hr>
+                                        <p class="social_msg__msg">신고자 : [[${comments.prNick}]]</p>
+                                        <p class="social_msg__msg">신고 내용 : [[${comments.decContent}]]</p>
+                                        <p class="social_msg__meta">신고일 : [[${comments.regDate}]]</p>
+                                        <div>
+                                            <button class="btn btn-skyblue">메세지 보내기</button>
+                                            <button class="btn btn-red">삭제</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div> <!-- /tabs__content 3 -->
+
+                        </div> <!-- /tabs__content CONTAINER -->
+
+                    </div> <!-- /widget__tabs -->
+
+                </article>
+            </div>
+        </div> <!--/row-->
+        <!--페이징 처리-->
+        <div class="page_wrap">
+                <div class="page_nation" aria-label="Page navigation example">
+                    <a th:href="@{/review/comment/report(page=${decComs.number - 1})}"
+                       th:class="'page-prev' + (${decComs.number} <= 0 ? ' page-disabled':'')"></a>
+                    <span th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}" th:href="@{/review/comment/report(page=${pageNumber})}"
+                           th:class="(${pageNumber} == ${decComs.number} ? 'active' : '')">1</a></span>
+                    <a th:href="@{/review/comment/report(page=${decComs.number + 1})}" th:class="'page-next' +
+                    (${decComs.number} >= ${decComs.totalPages - 1} ? '':' page-disabled')"></a>
+                </div>
+            </div>
+        <!--페이징 끝-->
+    </section>
+    <!--    footer 시작-->
+    <div th:replace="fragment/footer :: footer"/>
+    <!--    footer 끝-->
+    <div th:replace="fragment/review_modal :: review_modal"></div>
+</div> <!-- /wrapper -->
+
+<!--js 연결 시작-->
+<div th:replace="fragment/js :: js"/>
+<!--js 연결 끝-->
+
+
+</body>
+</html></body>
+</html>

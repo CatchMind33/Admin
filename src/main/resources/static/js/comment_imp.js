@@ -7,7 +7,7 @@ function impp(){
     const impAnswer = document.getElementById('input_imp').value;
     const impIdx = document.getElementById('imp_idx').value;
     // console.log(askAnswer,askIdx)
-    fetch('http://localhost:9999/impapi/'+impIdx, {
+    fetch('http://localhost:7070/impapi/'+impIdx, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -1,44 +1,39 @@
 <div th:fragment="user_modal" class="modal hidden">
-  <div class="modal">
-    <div class="modal__overlay"></div>
-    <div class="modal__contents">
-      <div class="modal__header">
-        회원에게 메세지 보내기
-      </div>
-      <div class="modal__main">
-        <p>
-          회원 번호 : 1
-        </p>
-        <p>
-          회원 이름 : 김사과 / 애쁠
-        </p>
-        <p>
-          회원 핸드폰 번호 : 010-1111-1111
-        </p>
-        <p>
-          보내는 관리자 : 이레몬
-        </p>
-        <p>
+    <div class="modal">
+        <div class="modal__overlay"></div>
+        <div class="modal__contents">
+            <div class="modal__header">
+                회원에게 포인트 지급 메세지 보내기
+            </div>
+            <div class="modal__main">
+                <p>
+                    회원 번호 : [[${profile.prIdx}]]
+                </p>
+                <p>
+                    회원 이름 : [[${profile.prName}]] / [[${profile.prNick}]]
+                </p>
+                <p>
+                    회원 핸드폰 번호 : [[${profile.prHp}]]
+                </p>
+                <p>
+                    보내는 관리자 : [[${session.name}]]
+                </p>
+                <p>
 
-          <input type="text" class="input-text message" name="message" placeholder="고객에게 보낼 메세지를 입력하세요.">
-        </p>
+                    <input type="text" class="input-text modal-message" name="message" placeholder="회원에게 보낼 메세지를 입력하세요.">
+                </p>
+                <form action="">
+                    <p>
+                        <input type="text" class="input-text modal-point" name="message" placeholder="회원에게 보낼 포인트를 입력하세요.">
+                    </p>
+                </form>
 
-          보내는 관리자 : [[${session.name}]]
-        </p>
-        <form action="">
-          <p>
-            <input type="text" class="input-text message" name="message" placeholder="회원에게 보낼 포인트를 입력하세요.">
-          </p>
-          <p>
-            <input type="text" class="input-text message" name="message" placeholder="회원에게 보낼 메세지를 입력하세요.">
-          </p>
-        </form>
-
-        <div>
-          <button class="btn btn-skyblue" type="submit">보내기</button><button class="btn btn-light close_button" type="button">닫기</button>
+                <div>
+                    <button class="btn btn-skyblue" type="submit">보내기</button>
+                    <button class="btn btn-light close_button" type="button">닫기</button>
+                </div>
+            </div>
         </div>
-    </div>
-  </div>
 
-</div>
+    </div>
 </div>

@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class TalkAdminApiResponse {
     private Long taaIdx;
     private String taaNick;
+    private String taaResaBisName;
     private String taaContent;
-    private String regDate;
+    private LocalDateTime regDate;
 }

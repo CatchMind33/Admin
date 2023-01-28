@@ -5,58 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>신고 리뷰 및 댓글</title>
-	<!--css 및 라이브러리 링크 시작-->
-	<div th:replace="fragment/link :: link"/>
-	<!--css 및 라이브러리 링크 끝-->
+    <!--css 및 라이브러리 링크 시작-->
+    <div th:replace="fragment/link :: link"/>
+    <!--css 및 라이브러리 링크 끝-->
 </head>
-<style>
-	.main-content {
-		display:flex;
-		justify-content: space-between;
-	}
-	<!--        /*ㅎㅇㅎㅇ*/-->
-	.search-box {
-		box-sizing: border-box;
-		height: 45px;
-	}
-
-	.search {
-		position: relative;
-		margin: 0;
-		border-radius: 2px;
-		vertical-align: middle;
-		height: 100%;
-		background: transparent;
-		padding: 10px;
-	}
-
-	.search-btn {
-		vertical-align: middle;
-		height: 100%;
-		position: relative;
-		bottom:28px;
-		left:150px;
-		font-size: 12px;
-		background: transparent;
-		border: none;
-		outline : none;
-	}
-
-	.sort-select{
-		height: 38px;
-		width: 100px;
-		border : 1px solid #e5e5e5;
-		border-radius: 2px;
-		background: transparent;
-		font-size: 12px;
-	}
-
-	.page_wrap {
-		padding : 15px;
-		margin-top: 20px;
-	}
-
-</style>
 <body>
 <!--header 시작-->
 <div th:replace="fragment/header :: header"/>
@@ -66,186 +18,71 @@
 <!--header 끝-->
 
 <div class="wrapper">
-	<!-- 사이드바 시작 -->
-	<div th:replace="fragment/aside_nav :: aside_nav"/>
-	<!--사이드바 끝-->
-		
-        <section class="content">
-			<header class="main-header clearfix">
-			</header> <!--헤더 끝-->
+    <!-- 사이드바 시작 -->
+    <div th:replace="fragment/aside_nav :: aside_nav"/>
+    <!--사이드바 끝-->
 
-			<div class="row">	
-				<div class="col-md-12">
-					<article class="widget widget--tabbed shadow">
-						<div class="tabs">
-							<div class="number-entries">
-								<input class="spinner" name="value" value="5" />
-							</div>
-							<input type="radio" name="t" id="tab1" checked>
-							<label for="tab1" class="tabs__tab">신고 들어온 리뷰</label>
-							<input type="radio" name="t" id="tab2">
-							<label for="tab2" class="tabs__tab">신고 들어온 댓글</label>
-							<div class="tabs__content">
-								<!-- 신고들어온 리뷰 -->
-								<div class="tabs__content--1">
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">리뷰 번호 : 1234 / 작성자 : orange(오렌지)</h4>
-											<p class="social_msg__msg">식당 : 키친마이야르</p>
-											<p class="social_msg__msg">내용 : 이게 뭔 음식임..? 진짜 쓰레기다. </p>
-											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
-											<div>
-												<button class="modal__open btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div> <!-- /social-msg -->
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">리뷰 번호 : 1234 / 작성자 : orange(오렌지)</h4>
-											<p class="social_msg__msg">식당 : 키친마이야르</p>
-											<p class="social_msg__msg">내용 : 이게 뭔 음식임..? 진짜 쓰레기다. </p>
-											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
-											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div> <!-- /social-msg -->
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">리뷰 번호 : 1234 / 작성자 : orange(오렌지)</h4>
-											<p class="social_msg__msg">식당 : 키친마이야르</p>
-											<p class="social_msg__msg">내용 : 이게 뭔 음식임..? 진짜 쓰레기다. </p>
-											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
-											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div> <!-- /social-msg -->
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">리뷰 번호 : 1234 / 작성자 : orange(오렌지)</h4>
-											<p class="social_msg__msg">식당 : 키친마이야르</p>
-											<p class="social_msg__msg">내용 : 이게 뭔 음식임..? 진짜 쓰레기다. </p>
-											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
-											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div> <!-- /social-msg -->
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">리뷰 번호 : 1234 / 작성자 : orange(오렌지)</h4>
-											<p class="social_msg__msg">식당 : 키친마이야르</p>
-											<p class="social_msg__msg">내용 : 이게 뭔 음식임..? 진짜 쓰레기다. </p>
-											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
-											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div> <!-- /social-msg -->
-								</div> 
-								<!-- 신고들어온 댓글-->
-								<div class="tabs__content--2">
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">댓글 번호 : 2341 / 작성자 : berry(배애리) </h4>
-											<p class="social_msg__msg">식당 : 스시소요</p>
-											<p class="social_msg__msg">내용 : 마 누가 리뷰를 이따구로 쓰나!!!</p>
-											<p class="social_msg__meta">작성일 : 2022.12.13</p>
-											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div>
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">댓글 번호 : 2341 / 작성자 : berry(배애리) </h4>
-											<p class="social_msg__msg">식당 : 스시소요</p>
-											<p class="social_msg__msg">내용 : 마 누가 리뷰를 이따구로 쓰나!!!</p>
-											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
-											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div> <!-- /social-msg -->
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">댓글 번호 : 2341 / 작성자 : berry(배애리) </h4>
-											<p class="social_msg__msg">식당 : 스시소요</p>
-											<p class="social_msg__msg">내용 : 마 누가 리뷰를 이따구로 쓰나!!!</p>
-											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
-											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div> <!-- /social-msg -->
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">댓글 번호 : 2341 / 작성자 : berry(배애리) </h4>
-											<p class="social_msg__msg">식당 : 스시소요</p>
-											<p class="social_msg__msg">내용 : 마 누가 리뷰를 이따구로 쓰나!!!</p>
-											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
-											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div> <!--/social-msg --> 
-									<div class="media social_msg">
-										<div class="media-body">
-											<h4 class="media-heading social_msg__heading">댓글 번호 : 2341 / 작성자 : berry(배애리) </h4>
-											<p class="social_msg__msg">식당 : 스시소요</p>
-											<p class="social_msg__msg">내용 : 마 누가 리뷰를 이따구로 쓰나!!!</p>
-											<p class="social_msg__meta"> 작성일 : 2022.12.12</p>
-											<div>
-												<button class="btn btn-skyblue">메세지 보내기</button>
-												<button class="btn btn-red">삭제</button>
-											</div>
-										</div>
-									</div> <!-- /social-msg - -->
+    <section class="content">
+        <header class="main-header clearfix">
+        </header> <!--헤더 끝-->
 
-								</div> <!-- /tabs__content 3 -->
-								
-							</div> <!-- /tabs__content CONTAINER -->
+        <div class="row">
+            <div class="col-md-12">
+                <article class="widget widget--tabbed shadow">
+                    <div class="tabs">
+                        <div class="number-entries">
+                            <input class="spinner" name="value" value="5"/>
+                        </div>
+                        <input type="radio" name="t" id="tab1" checked>
+                        <label for="tab1" class="tabs__tab">신고 들어온 리뷰</label>
+                        <div class="tabs__content">
+                            <!-- 신고들어온 리뷰 -->
+                            <div class="tabs__content--1">
+                                <div class="media social_msg" th:each="review: ${decReviews}">
+                                    <div class="media-body">
+                                        <h4 class="media-heading social_msg__heading">리뷰 번호 : [[${review.revIdx}]] / 신고
+                                            번호: [[${review.derIdx}]]</h4>
+                                        <p class="social_msg__msg">식당 : [[${review.resaBisName}]]</p>
+                                        <p class="social_msg__msg">리뷰 작성자 : [[${review.derNick}]]</p>
+                                        <p class="social_msg__msg">리뷰 내용 : [[${review.revContent}]]</p>
+                                        <hr>
+                                        <p class="social_msg__msg">신고자 : [[${review.prNick}]]</p>
+                                        <p class="social_msg__msg">신고 내용 : [[${review.derContent}]] </p>
+                                        <p class="social_msg__meta">신고일 : [[${review.regDate}]]</p>
+                                        <div>
+                                            <button class="modal__open btn btn-skyblue">메세지 보내기</button>
+                                            <button class="btn btn-red">삭제</button>
+                                        </div>
+                                    </div>
+                                </div> <!-- /social-msg -->
+                            </div>
+                            <!-- 신고들어온 댓글-->
 
-						</div> <!-- /widget__tabs -->
+                        </div> <!-- /tabs__content CONTAINER -->
 
-					</article>
-				</div>
-			</div>
-			<!--페이징 처리-->
-			<div class="page_wrap">
-				<div class="page_nation">
-					<a class="arrow pprev" href="#"></a>
-					<a class="arrow prev" href="#"></a>
-					<a href="#" class="active">1</a>
-					<a href="#">2</a>
-					<a href="#">3</a>
-					<a href="#">4</a>
-					<a href="#">5</a>
-					<a href="#">6</a>
-					<a href="#">7</a>
-					<a href="#">8</a>
-					<a href="#">9</a>
-					<a href="#">10</a>
-					<a class="arrow next" href="#"></a>
-					<a class="arrow nnext" href="#"></a>
-				</div>
-			</div>
-			<!--페이징 끝-->
-        </section>
-	<!--    footer 시작-->
-	<div th:replace="fragment/footer :: footer" />
-	<!--    footer 끝-->
-	<div th:replace="fragment/review_modal :: review_modal"></div>
+                    </div> <!-- /widget__tabs -->
+
+                </article>
+            </div>
+        </div> <!--/row-->
+        <!--페이징 처리-->
+        <div class="page_wrap">
+                <div class="page_nation" aria-label="Page navigation example">
+                    <a th:href="@{/review/report(page=${decReviews.number - 1})}"
+                       th:class="'page-prev' + (${decReviews.number} <= 0 ? ' page-disabled':'')"></a>
+                    <span th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}" th:href="@{/review/report(page=${pageNumber})}"
+                           th:class="(${pageNumber} == ${decReviews.number} ? 'active' : '')">1</a></span>
+                    <a th:href="@{/review/report(page=${decReviews.number + 1})}" th:class="'page-next' +
+                    (${decReviews.number} >= ${decReviews.totalPages - 1} ? '':' page-disabled')"></a>
+                </div>
+        </div>
+        <!--페이징 끝-->
+    </section>
+    <!--    footer 시작-->
+    <div th:replace="fragment/footer :: footer"/>
+    <!--    footer 끝-->
+    <div th:replace="fragment/review_modal :: review_modal"></div>
 </div> <!-- /wrapper -->
 
 <!--js 연결 시작-->

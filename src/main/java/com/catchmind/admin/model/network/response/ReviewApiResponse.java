@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,4 +19,7 @@ public class ReviewApiResponse {
     private String revContent;
     private Double revScore;
     private String resaBisName;
+    private LocalDateTime regDate;
+    private LocalDateTime updateDate;
+
 }

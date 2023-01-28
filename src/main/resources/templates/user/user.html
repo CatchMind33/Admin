@@ -7,7 +7,6 @@
     <title>전체 회원</title>
     <!--css 및 라이브러리 링크 시작-->
     <div th:replace="fragment/link :: link"/>
-    <link rel="stylesheet" href="/css/paging.css">
     <!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
@@ -100,7 +99,7 @@
                                 <td>0</td>
                                 <td>0</td>
                                 <td>[[${profile.prNoshow}]]</td>
-                                <td>2000P</td>
+                                <td>[[${profile.prPoint}]]</td>
                             </tr>
                         </table>
                         <div>

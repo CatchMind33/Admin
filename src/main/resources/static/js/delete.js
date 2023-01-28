@@ -4,8 +4,7 @@ function deleteit(num){
     const noIdx = num;
     console.log(num)
 
-
-    fetch('http://localhost:9999/api/delete/'+noIdx, {
+    fetch('http://localhost:7070/api/delete/'+noIdx, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -2,20 +2,16 @@ package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.Notice;
 import com.catchmind.admin.model.network.Header;
-import com.catchmind.admin.model.network.Pagination;
 import com.catchmind.admin.model.network.request.NoticeApiRequest;
 import com.catchmind.admin.model.network.response.NoticeApiResponse;
 import com.catchmind.admin.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

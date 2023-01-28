@@ -25,6 +25,7 @@ public class ProfileResponse {
     private String prMemo;
     private int prReview;
     private int prNoshow;
+    private int prPoint;
     private boolean prBlock;
     private LocalDateTime regDate;
     private LocalDateTime updateDate;

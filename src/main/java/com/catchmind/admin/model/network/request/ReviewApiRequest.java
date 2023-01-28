@@ -12,9 +12,6 @@ import lombok.NoArgsConstructor;
 public class ReviewApiRequest {
     private Long revIdx;
     private String revNick;
-    private String revPhoto;
-    private Long revLike;
     private String revContent;
-    private Double revScore;
     private String resaBisName;
 }
