@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>전체 공지사항</title>
+    <title>전체 메세지</title>
     <!--css 및 라이브러리 링크 시작-->
     <div th:replace="fragment/link :: link"/>
     <!--css 및 라이브러리 링크 끝-->
@@ -95,11 +95,7 @@
             <div class="col-md-12">
                 <article class="widget shadow">
                     <header class="widget__header">
-                        <h3 class="widget__title">총 메세지 : 10개</h3>
-                        <select class="sort-select">
-                            <option>제목순</option>
-                            <option>등록순</option>
-                        </select>
+                        <h3 class="widget__title">총 메세지 : [[${talks.getTotalElements}]]</h3>
                     </header>
 
                     <div class="widget__content">
@@ -114,12 +110,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>1</td>
+                            <tr th:each="talk : ${talks}">
+                                <td th:text="${talk.taaIdx}">1</td>
                                 <td>캐치테이블</td>
-                                <td>스시소요 관리자</td>
-                                <td>2022.12.16</td>
-                                <td><button class="btn btn-light" onclick="location.href='message/detail'">상세 보기</button></td>
+                                <td th:if="${talk.taaNick != null}" th:text="${talk.taaNick}">스시소요 관리자</td>
+                                <td th:if="${talk.taaResaBisName != null}" th:text="${talk.taaResaBisName}">스시소요 관리자</td>
+                                <td th:text="${talk.regDate}">2022.12.16</td>
+                                <td><a th:href="'/message/detail/'+${talk.taaIdx}"><button class="btn btn-light">상세 보기</button></a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -127,6 +124,19 @@
             </div>
 
         </div> <!-- /row -->
+        <!--페이징 처리-->
+        <div class="page_wrap">
+            <div class="page_nation" aria-label="Page navigation example">
+                <a th:href="@{/message(page=${talks.number - 1})}"
+                   th:class="'page-prev' + (${talks.number} <= 0 ? ' page-disabled':'')"></a>
+                <span th:each="pageNumber : ${paginationBarNumbers}">
+                        <a th:text="${pageNumber + 1}" th:href="@{/message(page=${pageNumber})}"
+                           th:class="(${pageNumber} == ${talks.number} ? 'active' : '')">1</a></span>
+                <a th:href="@{/message(page=${talks.number + 1})}" th:class="'page-next' +
+                    (${talks.number} >= ${talks.totalPages - 1} ? '':' page-disabled')"></a>
+            </div>
+        </div>
+        <!--페이징 끝-->
     </section>
     <!--footer 시작-->
     <div th:replace="fragment/footer :: footer"/>

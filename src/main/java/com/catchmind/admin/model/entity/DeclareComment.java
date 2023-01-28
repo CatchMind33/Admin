@@ -4,10 +4,7 @@ import com.catchmind.admin.model.config.Auditable;
 import com.catchmind.admin.model.config.BaseEntity;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -20,10 +17,13 @@ public class DeclareComment extends BaseEntity implements Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long decIdx;
-    private Long revIdx;
-    private Long comIdx;
+    @ManyToOne
+    @JoinColumn(name="revIdx")
+    private Review review;
+    @ManyToOne
+    @JoinColumn(name="comIdx")
+    private Comment comment;
     private String decNick;
     private String prNick;
     private String decContent;
 }
-/*ㅎㅇㅎㅇ*/

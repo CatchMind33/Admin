@@ -26,16 +26,3 @@ public class Ask extends BaseEntityUpdate implements AuditableUpdate {
     private String askStatus;
 
 }
-
-//
-//    create table ask(
-//        ask_idx int primary key auto_increment,
-//        ask_title varchar(1000) not null,
-//        ask_content varchar(2000) not null,
-//        ask_nick varchar(100),
-//        ask_answer varchar(2000),
-//        ask_status varchar(10),
-//        reg_date datetime default now(),
-//        update_date datetime,
-//        foreign key (ask_nick) references profile (pr_nick) on update cascade on delete cascade
-//        );

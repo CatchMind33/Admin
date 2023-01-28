@@ -2,7 +2,6 @@ package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.network.Header;
-import com.catchmind.admin.model.network.Pagination;
 import com.catchmind.admin.model.network.request.ResAdminApiRequest;
 import com.catchmind.admin.model.network.response.ResAdminApiResponse;
 import com.catchmind.admin.repository.ResAdminRepository;
@@ -47,6 +46,10 @@ public class RestAdminApiLogicService extends BaseService<ResAdminApiRequest, Re
                 .build();
         ResAdmin newUsers = restAdminRepository.save(users);
         return Header.OK(response(newUsers));
+    }
+
+    public Header<ResAdminApiResponse> insertInfo (String resaBisName){
+        return null;
     }
 
     @Override

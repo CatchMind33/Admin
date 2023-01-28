@@ -5,10 +5,8 @@ import com.catchmind.admin.model.config.AuditableUpdate;
 import com.catchmind.admin.model.config.BaseEntityUpdate;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,6 +32,9 @@ public class Profile extends BaseEntityUpdate implements AuditableUpdate {
     private int prReview;
     private int prNoshow;
     private boolean prBlock;
+
+//    @OneToMany(mappedBy = "DeclareReview")
+//    List<DeclareReview> declareReviewList;
 
 
 }

@@ -1,11 +1,8 @@
 package com.catchmind.admin.service;
 
-import com.catchmind.admin.model.entity.Point;
 import com.catchmind.admin.model.entity.Profile;
 import com.catchmind.admin.model.network.Header;
-import com.catchmind.admin.model.network.Pagination;
 import com.catchmind.admin.model.network.request.ProfileRequest;
-import com.catchmind.admin.model.network.response.ProfileResponse;
 import com.catchmind.admin.model.network.response.ProfileResponse;
 import com.catchmind.admin.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,6 +34,7 @@ public class ProfileLogicService extends BaseService<ProfileRequest, ProfileResp
                 .prGender(profile.getPrGender())
                 .prMemo(profile.getPrMemo())
                 .prNoshow(profile.getPrNoshow())
+                .prPoint(profile.getPrPoint())
                 .prBlock(profile.isPrBlock())
                 .build();
         return profileApiResponse;

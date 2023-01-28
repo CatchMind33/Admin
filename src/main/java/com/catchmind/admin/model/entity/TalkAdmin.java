@@ -2,7 +2,6 @@ package com.catchmind.admin.model.entity;
 
 import com.catchmind.admin.model.config.Auditable;
 import com.catchmind.admin.model.config.BaseEntity;
-
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -22,5 +21,6 @@ public class TalkAdmin extends BaseEntity implements Auditable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long taaIdx;
     private String taaNick;
+    private String taaResaBisName;
     private String taaContent;
 }

@@ -13,7 +13,7 @@
     .value {
         width: 400px;
     }
-    <!--        /*ㅎㅇㅎㅇ*/-->
+
     p {
         padding: 6px;
     }
@@ -48,23 +48,13 @@
             <div class="col-md-12">
                 <article class="widget shadow">
                     <div class="widget__content">
-                        <p>식당 : <input type="text" class="input-text value" placeholder="" value="스시소요"
-                                       readonly/></p>
-                        <p>내용 : <input type="text" class="input-text value" placeholder=""
-                                       value="생선찜이 맛있어요..! 나중에 또 방문할게요" readonly/></p>
-                        <p>닉네임 : <input type="text" class="input-text value" placeholder="" value="건강한 마스터1234"
-                                        readonly/></p>
-                        <p>좋아요 : <input type="text" class="input-text" value="0" readonly></p>
-                        <p>등록일 : 2022.12.15</p>
-                        <div>
-                            <!-- 리뷰 별점 -->
-                            <div class="__review-meta __review-meta--with-rating" style="width: 100%; margin-top: 5px;">
-                                <div class="__d-flex __v-center" style="justify-content: space-between;">
-                                    <a href="#" class="__rating __active">4.8</a>
-                                </div>
-                            </div>
-                        </div>
-                        <hr>
+                        <p>식당 : <input type="text" class="input-text value" th:field="${review.resaBisName}" readonly/></p>
+                        <p>내용 : <input type="text" class="input-text value" th:field="${review.revContent}" readonly/></p>
+                        <p>닉네임 : <input type="text" class="input-text value" th:field ="${review.revNick}"readonly/></p>
+                        <p>좋아요 : <input type="text" class="input-text value" th:field="${review.revLike}" readonly></p>
+                        <p>좋아요 : <input type="text" class="input-text value" th:field="${review.revScore}" readonly></p>
+                        <p>등록일 : [[${review.regDate}]]</p>
+
                         <button class="btn btn-light pull-right" type="button" onclick="history.back()">뒤로가기</button>
                         <div class="clearfix"></div>
                     </div>

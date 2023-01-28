@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class PointApiResponse {
     private Long poIdx;
-    private String poNick;
+    private Long prIdx;
     private String poList;
     private String poMessage;
     private LocalDateTime regDate;

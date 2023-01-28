@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class PointApiRequest {
-    private String poNick;
+    private Long prIdx;
     private String poList;
     private String poMessage;
+
 }

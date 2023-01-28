@@ -15,6 +15,8 @@
         padding: 6px;
 		font-size: 17px;
     }
+
+
 </style>
 <body>
 <!--header 시작-->
@@ -47,14 +49,14 @@
 			<div class="col-md-12">
 				<article class="widget shadow">
 					<div class="widget__content">
-						<p> 회원 번호 :  <span id="prIdx">[[${user.prIdx}]]</span></p>
-                        <p> 이름 : [[${user.prName}]]</p>
-                        <p> 닉네임 : [[${user.prNick}]] </p>
-                        <p> 핸드폰 번호 : [[${user.prHp}]]</p>
-                        <p> 선호 지역 : [[${user.prRegion}]]</p>
-						<p> 가입 날짜 : [[${user.regDate}]]</p>
+						<p> 회원 번호 :  <span id="prIdx">[[${profile.prIdx}]]</span></p>
+                        <p> 이름 : [[${profile.prName}]]</p>
+                        <p> 닉네임 : [[${profile.prNick}]] </p>
+                        <p> 핸드폰 번호 : [[${profile.prHp}]]</p>
+                        <p> 선호 지역 : [[${profile.prRegion}]]</p>
+						<p> 가입 날짜 : [[${profile.regDate}]]</p>
                         	<p>관리자메모</p>
-                        	<p><textarea id="prMemo" class="textarea" row="8" cols="12" th:text ="${user.prMemo}" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
+                        	<p><textarea id="prMemo" class="textarea" row="8" cols="12" th:text ="${profile.prMemo}" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
 						<table class="table">
 							<thead>
 							<tr>
@@ -67,8 +69,8 @@
 							<tr>
 								<td>0</td>
 								<td>0</td>
-								<td th:text="${user.prNoshow}">0</td>
-								<td th:text="${point?.poTot}"></td>
+								<td th:text="${profile.prNoshow}"></td>
+								<td th:text="${profile.prPoint}"></td>
 							</tr>
 						</table>
 						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
@@ -99,6 +101,7 @@
 <!--js 연결 끝-->
 <script src="/js/point.js"></script>
 <script src="/js/prMemo.js"></script>
+<script src="/js/noShow.js"></script>
 
 </body>
 </html>
