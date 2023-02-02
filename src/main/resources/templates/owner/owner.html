@@ -114,13 +114,13 @@
                                     <tbody>
                                         <tr th:each="resAdmin : ${resAdmins}">
                                             <td style="display: none;" id="resa_userid" th:text="${resAdmin.resaUserid}"></td>
-                                            <td><a href="/owner/detail" th:text="${resAdmin.resaBisName}"></a></td>
+                                            <td><span th:text="${resAdmin.resaBisName}"></span></td>
                                             <td th:text="${resAdmin.resaName}"></td>     <!-- 들어가면 상세페이지로 -->
                                             <td th:text="${resAdmin.resaHp}"></td>
                                             <td th:text="${resAdmin.resaRegion}"></td>
                                             <td>
-                                                <a href="/owner/detail"><button class="btn btn-light btn-xs">상세 보기</button></a>
-                                                <a th:id="${resAdmin.resaUserid}" th:onclick="deleteRes(this.getAttribute('id'))"><button class="btn btn-red btn-xs">삭제</button></a>
+                                                <a th:href="'/owner/detail/'+${resAdmin.resaBisName}"><button class="btn btn-light btn-xs">상세 보기</button></a>
+                                                <a th:id="${resAdmin.resaUserid}" onclick="deleteRes(this.getAttribute('id'))"><button class="btn btn-red btn-xs">삭제</button></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -155,7 +155,7 @@
 <script>
     function deleteRes(resaUserid){
         console.log(resaUserid);
-        fetch(`http://localhost:8888/api/restAdmin/delete/`+resaUserid, {
+        fetch(`http://localhost:7070/api/restAdmin/delete/`+resaUserid, {
             method: 'DELETE'
         })
             .then((res) => {

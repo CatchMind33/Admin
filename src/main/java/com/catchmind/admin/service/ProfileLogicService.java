@@ -36,6 +36,7 @@ public class ProfileLogicService extends BaseService<ProfileRequest, ProfileResp
                 .prNoshow(profile.getPrNoshow())
                 .prPoint(profile.getPrPoint())
                 .prBlock(profile.isPrBlock())
+                .regDate(profile.getRegDate())
                 .build();
         return profileApiResponse;
     }
@@ -55,6 +56,28 @@ public class ProfileLogicService extends BaseService<ProfileRequest, ProfileResp
                 );
     }
 
+    public Header<ProfileResponse> updateBlock(Long prIdx, boolean prBlock){
+        Optional<Profile> profile = profileRepository.findByPrIdx(prIdx);
+        return profile.map(                        user->{
+                    user.setPrBlock(prBlock);
+                    return user;
+                }).map(user-> baseRepository.save(user))
+                .map(user->response(user))
+                .map(Header::OK)
+                .orElseGet(()->Header.ERROR("데이터 없음"));
+    }
+
+    public Header<ProfileResponse> updatePoint(Long prIdx, Integer point){
+        Optional<Profile> profile = profileRepository.findByPrIdx(prIdx);
+        return profile.map(                        user->{
+                    user.setPrPoint(user.getPrPoint()+point);
+                    return user;
+                }).map(user-> baseRepository.save(user))
+                .map(user->response(user))
+                .map(Header::OK)
+                .orElseGet(()->Header.ERROR("데이터 없음"));
+    }
+
     @Override
     public Header<ProfileResponse> create(Header<ProfileRequest> request) {
         return null;
@@ -62,7 +85,7 @@ public class ProfileLogicService extends BaseService<ProfileRequest, ProfileResp
 
     @Override
     public Header<ProfileResponse> read(Long id) {
-        return baseRepository.findById(id).map(profile -> response(profile))
+        return profileRepository.findById(id).map(profile -> response(profile))
                 .map(Header ::OK).orElseGet(()->Header.ERROR("데이터없음"));
     }
 
@@ -71,12 +94,7 @@ public class ProfileLogicService extends BaseService<ProfileRequest, ProfileResp
         List<ProfileResponse> profileApiResponse = profiles.stream().map(
                 profile -> response(profile)).collect(Collectors.toList());
 
-        Pagination pagination = Pagination.builder().totalPages(profiles.getTotalPages())
-                .totalElements(profiles.getTotalElements())
-                .currentPage(profiles.getNumber())
-                .currentElements(profiles.getNumberOfElements())
-                .build();
-        return Header.OK(profileApiResponse, pagination);
+        return Header.OK(profileApiResponse);
     }
 
     @Transactional(readOnly = true)

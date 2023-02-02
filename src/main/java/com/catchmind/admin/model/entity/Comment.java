@@ -19,8 +19,6 @@ public class Comment extends BaseEntity implements Auditable {
     private Long comIdx;
     private String comNick;
     private String comContent;
-    @ManyToOne
-    @JoinColumn(name="revIdx")
-    private Review review;
+    private Long revIdx;
 
 }

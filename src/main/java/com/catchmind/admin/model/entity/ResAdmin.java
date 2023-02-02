@@ -24,4 +24,5 @@ public class ResAdmin extends BaseEntity implements Auditable {
     private String resaHp;
     private String resaRegion;
 
+
 }

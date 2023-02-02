@@ -2,6 +2,7 @@ package com.catchmind.admin.model.entity;
 
 import com.catchmind.admin.model.config.Auditable;
 import com.catchmind.admin.model.config.BaseEntity;
+
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

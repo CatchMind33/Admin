@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class PointApiRequest {
     private Long prIdx;
     private String poList;
-    private String poMessage;
 
 }

@@ -14,4 +14,8 @@ public interface ResAdminRepository extends JpaRepository<ResAdmin, String> {
     Optional<ResAdmin> findByResaUserid(String resaUserid);
 
     List<ResAdmin> findByResaBisNameContaining(String resaBisName);
+
+    Optional<ResAdmin> findByResaBisName(String resaBisName);
+
+    Integer countBy();
 }

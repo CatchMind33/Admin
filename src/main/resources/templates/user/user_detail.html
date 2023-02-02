@@ -54,6 +54,7 @@
                         <p> 닉네임 : [[${profile.prNick}]] </p>
                         <p> 핸드폰 번호 : [[${profile.prHp}]]</p>
                         <p> 선호 지역 : [[${profile.prRegion}]]</p>
+						<span>블락상태 :</span> <span th:if="${profile.prBlock}==true">블락</span> <span th:if="${profile.prBlock}==false">예약가능</span>
 						<p> 가입 날짜 : [[${profile.regDate}]]</p>
                         	<p>관리자메모</p>
                         	<p><textarea id="prMemo" class="textarea" row="8" cols="12" th:text ="${profile.prMemo}" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
@@ -63,14 +64,12 @@
 								<th>총 예약</th>
 								<th>예약 취소</th>
 								<th>노쇼</th>
-								<th>포인트</th> <!--팝업으로 지급-->
 							</tr>
 							</thead>
 							<tr>
 								<td>0</td>
 								<td>0</td>
 								<td th:text="${profile.prNoshow}"></td>
-								<td th:text="${profile.prPoint}"></td>
 							</tr>
 						</table>
 						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
@@ -99,9 +98,87 @@
 <div th:replace="fragment/js :: js"/>
 
 <!--js 연결 끝-->
-<script src="/js/point.js"></script>
+<!--<script src="/js/point.js"></script>-->
 <script src="/js/prMemo.js"></script>
 <script src="/js/noShow.js"></script>
+<script>
+	function sendPoint() {
+		const prNick = document.getElementById("pointnick").innerText;
+		const prIdx = document.getElementById("pointidx").innerText;
+		const pointMsg = document.getElementById("pointmsg");
+		const sendpoint = document.getElementById("sendpoint").value;
+		const list = "+"+sendpoint
+		console.log(sendpoint);
 
+		if(pointMsg.value == '') {
+		alert("메세지를 입력하세요!");
+		pointMsg.focus();
+		return false;
+	}
+		let data1 = {
+		nick : prNick,
+		idx : prIdx,
+		msg : pointMsg.value,
+		point : sendpoint}
+
+		let data2 = {
+			idx : prIdx,
+			list : list
+		}
+
+		$.ajax({
+		url: "http://localhost:7070/api/talkAdmin/point",
+		type: "GET",
+		dataType: "json",
+		processData: true,
+		contentType: "application/json; charset=UTF-8",
+		data: data1,
+		success: function(result) {
+		if (result) {
+		console.log(result)
+		alert('업데이트 성공!');
+		// itemList1.itemList1 = result.data;
+		// if(!document.querySelector('#check1').innerText){
+		//     itemList1.boolean1 = true;}
+	} else {
+		alert("전송된 값 없음");
+	}
+	},
+		error: function() {
+		alert("에러 발생");
+	}
+	});
+
+
+		$.ajax({
+			url: "http://localhost:7070/api/point/createlist",
+			type: "GET",
+			dataType: "json",
+			processData: true,
+			contentType: "application/json; charset=UTF-8",
+			data: data2,
+			success: function(result) {
+				if (result) {
+					console.log(result)
+					alert('업데이트 성공!');
+					location.href='/user';
+					// itemList1.itemList1 = result.data;
+					// if(!document.querySelector('#check1').innerText){
+					//     itemList1.boolean1 = true;}
+				} else {
+					alert("전송된 값 없음");
+				}
+			},
+			error: function() {
+				alert("에러 발생");
+			}
+		});
+
+
+
+
+
+	}
+</script>
 </body>
 </html>

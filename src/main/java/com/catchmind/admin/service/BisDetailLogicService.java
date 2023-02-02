@@ -6,10 +6,13 @@ import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.BisDetailApiRequest;
 import com.catchmind.admin.model.network.response.BisDetailApiResponse;
+import com.catchmind.admin.model.network.response.BisInfoApiResponse;
 import com.catchmind.admin.repository.BisDetailRepository;
 import com.catchmind.admin.repository.BistroInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

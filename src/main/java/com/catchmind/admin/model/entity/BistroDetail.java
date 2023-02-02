@@ -1,9 +1,8 @@
 package com.catchmind.admin.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.catchmind.admin.model.config.Auditable;
+import com.catchmind.admin.model.config.BaseEntity;
+import lombok.*;
 
 import javax.persistence.*;
 

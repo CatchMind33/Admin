@@ -24,8 +24,13 @@
         <p>
           <input type="text" class="input-text message" id="noShow-msg" placeholder="회원에게 보낼 메세지를 입력하세요.">
         </p>
+        <select id="blockstatus">
+          <option value="1">block</option>
+          <option value="0">nonblock</option>
+        </select>
         <div>
-          <button class="btn btn-skyblue" onclick="sendNoshow()">보내기</button><button class="btn btn-light close_btn" type="button">닫기</button>
+          <button class="btn btn-skyblue close_btn" onclick="sendNoshow()">보내기</button>
+          <button class="btn btn-light close_btn1" type="button">닫기</button>
         </div>
       </div>
     </div>

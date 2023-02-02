@@ -18,11 +18,18 @@ public class Review extends BaseEntityUpdate implements AuditableUpdate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long revIdx;
-    private String revNick;
-    private String revPhoto;
     private Long revLike;
     private String revContent;
     private Double revScore;
+    private String orgNm;
+    private String savedNm;
+    private String savedPath;
+    @ManyToOne
+    @JoinColumn(name="res_idx")
+    private Reserve reserve;
+    @ManyToOne
+    @JoinColumn(name="pr_idx")
+    private Profile profile;
     @ManyToOne
     @JoinColumn(name="resaBisName")
     private ResAdmin resAdmin;

@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class ReviewLogicService extends BaseService<ReviewApiRequest, ReviewApiResponse, Review> {
@@ -19,13 +21,17 @@ public class ReviewLogicService extends BaseService<ReviewApiRequest, ReviewApiR
     private ReviewApiResponse response(Review users){
         ReviewApiResponse reviewApiResponse = ReviewApiResponse.builder()
                 .revIdx(users.getRevIdx())
-                .revNick(users.getRevNick())
                 .revLike(users.getRevLike())
                 .revContent(users.getRevContent())
                 .revScore(users.getRevScore())
                 .resaBisName(users.getResAdmin().getResaBisName())
                 .regDate(users.getRegDate())
                 .updateDate(users.getUpdateDate())
+                .orgNm(users.getOrgNm())
+                .savedNm(users.getSavedNm())
+                .prNick(users.getProfile().getPrNick())
+                .res_idx(users.getReserve().getResIdx())
+                .savedPath(users.getSavedPath())
                 .build();
         return reviewApiResponse;
     }
@@ -53,5 +59,12 @@ public class ReviewLogicService extends BaseService<ReviewApiRequest, ReviewApiR
 
     public Page<ReviewApiResponse> reviewList(Pageable pageable) {
         return reviewRepository.findAll(pageable).map(review -> response(review));
+    }
+    public Header deleteok(Long idx){
+        Optional<Review> review = reviewRepository.findByRevIdx(idx);
+        return review.map(user->{
+            reviewRepository.delete(user);
+            return Header.ok();
+        }).orElseGet(() -> Header.ERROR("데이터 없음"));
     }
 }

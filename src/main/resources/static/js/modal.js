@@ -7,6 +7,7 @@ const openButton = document.querySelectorAll(".modal__open");
 const modal = document.querySelector(".modal");
 // close_button을 가져옴
 const closeBtn = modal.querySelector(".close_button");
+const closeBtn1 = modal.querySelector(".close_button1");
 // -----------------------------------------------------
 // 모달을 켜주는 함수
 const openModal = () =>{
@@ -30,6 +31,7 @@ const closeModal = () =>{
 });
 // closeBtn을 누르면 모달을 닫아줌
 closeBtn.addEventListener("click", closeModal);
+closeBtn1.addEventListener("click", closeModal);
 
 
 
