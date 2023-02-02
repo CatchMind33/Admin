@@ -15,7 +15,6 @@ public class PointApiResponse {
     private Long poIdx;
     private Long prIdx;
     private String poList;
-    private String poMessage;
     private LocalDateTime regDate;
     private LocalDateTime updateDate;
 }

@@ -19,8 +19,6 @@ public class Point extends BaseEntityUpdate implements AuditableUpdate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long poIdx;
-    @ManyToOne @JoinColumn(name="prIdx")
-    private Profile profile;
+    private Long prIdx;
     private String poList;
-    private String poMessage;
 }

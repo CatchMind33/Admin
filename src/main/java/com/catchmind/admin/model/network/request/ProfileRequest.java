@@ -20,9 +20,19 @@ import java.time.LocalDateTime;
 @Builder
 public class ProfileRequest {
     private Long prIdx;
-    private String prName;
-    private int prPoint;
     private String prNick;
+    private String prName;
+    private String prIntro;
+    private String prRegion;
+    private String prHp;
+    private String prUserpw;
+    private String prGender;
+    private String prBirth;
     private String prMemo;
+    private int prReview;
+    private int prNoshow;
+    private int prPoint;
+    private boolean prBlock;
     private LocalDateTime regDate;
+    private LocalDateTime updateDate;
 }

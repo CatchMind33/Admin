@@ -1,6 +1,7 @@
 package com.catchmind.admin.model.network.request;
 
 
+import com.catchmind.admin.model.entity.Review;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

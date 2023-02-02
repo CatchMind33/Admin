@@ -1,8 +1,10 @@
 package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.Point;
+
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.PointApiRequest;
+
 import com.catchmind.admin.model.network.response.PointApiResponse;
 import com.catchmind.admin.repository.PointRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +19,8 @@ public class PointApiLogicService extends BaseService<PointApiRequest, PointApiR
     private PointApiResponse response(Point points) {
         PointApiResponse pointApiResponse = PointApiResponse.builder()
                 .poIdx(points.getPoIdx())
-                .prIdx(points.getProfile().getPrIdx())
+                .prIdx(points.getPrIdx())
                 .poList(points.getPoList())
-                .poMessage(points.getPoMessage())
                 .regDate(points.getRegDate())
                 .updateDate(points.getUpdateDate())
                 .build();
@@ -46,6 +47,9 @@ public class PointApiLogicService extends BaseService<PointApiRequest, PointApiR
         return null;
     }
 
-
-
+    public Header<PointApiResponse> createlist(Long id, String list){
+        Point point = Point.builder().poList(list).prIdx(id).build();
+        Point point1 = baseRepository.save(point);
+        return Header.ok();
+    }
 }

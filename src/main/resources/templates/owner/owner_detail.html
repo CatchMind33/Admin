@@ -55,19 +55,19 @@
 
 					<div class="widget__content">
                         <p>
-						대표 : <input type="text" class="input-text value" placeholder="" value="이메론" />
+						대표 : <input type="text" class="input-text value" placeholder="" th:value="${resadmin.resaName}"/>
                         </p>
                         <p>
-						ID : <input type="text" class="input-text value" placeholder="" value="admin_sushi" />
+						ID : <input type="text" class="input-text value" placeholder="" th:value="${resadmin.resaUserid}"/>
                         </p>
                         <p>
-						PW : <input type="text" class="input-text value" placeholder="" value="1234" />
+						PW : <input type="text" class="input-text value" placeholder="" th:value="${resadmin.resaUserpw}"/>
                         </p>
                         <p>
-                        번호 : <input type="text" class="input-text value" placeholder="" value="02-1234-1234"/>
+                        번호 : <input type="text" class="input-text value" placeholder="" th:value="${resadmin.resaHp}"/>
                          </p>
                         <p>
-                        위치 : 서울시 강남구
+                        위치 : <span th:text="${resadmin.resaRegion}"></span>
                          </p>
                         <table class="table">
 							<thead>
@@ -77,34 +77,116 @@
 							</tr>
 							</thead>
 							<tr>
-								<td>0</td>
-								<td>0</td>
+								<td th:text="${reserve}"></td>
+								<td th:text="${cancel}"></td>
 							</tr>
 						</table>
-                        <button class="btn btn-red pull-right">식당 삭제</button>
+                        <button class="btn btn-red pull-right"
+								th:id="${resadmin.resaUserid}"
+								onclick="deleteRes(this.getAttribute('id'))">식당 삭제</button>
                         <button class="modal__open btn btn-light pull-right" >메시지 보내기</button>
-						<button class="btn btn-light pull-right" type="submit">등록하기</button>
-						<button class="btn btn-light pull-right">뒤로가기</button>
+						<button class="btn btn-light pull-right" onclick="backto()">뒤로가기</button>
 						<div class="clearfix"></div>
+					</div>
+					<div class="modal hidden">
+						<div class="modal">
+							<div class="modal__overlay"></div>
+							<div class="modal__contents">
+								<div class="modal__header">
+									식당관리자에게 메세지보내기
+								</div>
+								<div class="modal__main">
+									<p>식당 이름 : <span id="bis-name" th:text="${resadmin.resaBisName}"></span></p>
+									<p>대표 이름 : <span th:text="${resadmin.resaName}"></span></p>
+									<p>식당 번호 : <span th:text="${resadmin.resaHp}"></span></p>
+									<p>보내는 관리자 : 캐치테이블</p>
+									<p><input type="text" class="input-text message" id="adminMsg"></p>
+									<div>
+										<button class="btn btn-skyblue" onclick="sendadminmsg()" type="button">보내기</button>
+										<button class="btn btn-light close_button" type="button">닫기</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</article>
 			</div>
 		</div>
         </section>
-
-
     </div> <!-- /row -->
 </section>
 <!--footer 시작-->
 <div th:replace="fragment/footer :: footer"/>
 <!--footer 끝-->
-<div th:replace="fragment/new_pending :: owner_modal"/>
+<!--<div th:replace="fragment/new_pending :: owner_modal"/>-->
 </div> <!-- /wrapper -->
 
 <!-- Scripts -->
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
+<script>
+		function deleteRes(resaUserid){
+		console.log(resaUserid);
+		fetch(`http://localhost:7070/api/restAdmin/delete/`+resaUserid, {
+		method: 'DELETE'
+	})
+		.then((res) => {
+		console.log(resaUserid)
+		alert("삭제성공!");
+		location.href='/owner';
+		return;
+	})
+		.then((data) => {
+		console.log(data);
+		return;
+	})
+		.catch((err) => {
+		alert('에러!!');
+		location.reload();
+		return;
+	});
+	}
 
+		function sendadminmsg() {
+			const bisName = document.getElementById("bis-name").innerText;
+			const adminMsg = document.getElementById("adminMsg");
+
+			if(adminMsg.value == '') {
+				alert("메세지를 입력하세요!");
+				adminMsg.focus();
+				return false;
+			}
+			let data1 = {
+				name : bisName,
+				msg : adminMsg.value,}
+			$.ajax({
+				url: "http://localhost:7070/api/talkAdmin/adminmsg",
+				type: "GET",
+				dataType: "json",
+				processData: true,
+				contentType: "application/json; charset=UTF-8",
+				data: data1,
+				success: function(result) {
+					if (result) {
+						console.log(result)
+						alert('업데이트 성공!');
+						location.href='/owner';
+						// itemList1.itemList1 = result.data;
+						// if(!document.querySelector('#check1').innerText){
+						//     itemList1.boolean1 = true;}
+					} else {
+						alert("전송된 값 없음");
+					}
+				},
+				error: function() {
+					alert("에러 발생");
+				}
+			});}
+
+		function backto(){
+			history.back();
+		}
+</script>
 </body>
 </html>

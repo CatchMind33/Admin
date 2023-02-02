@@ -50,8 +50,30 @@
                                         <p class="social_msg__msg">신고 내용 : [[${review.derContent}]] </p>
                                         <p class="social_msg__meta">신고일 : [[${review.regDate}]]</p>
                                         <div>
-                                            <button class="modal__open btn btn-skyblue">메세지 보내기</button>
-                                            <button class="btn btn-red">삭제</button>
+                                            <button onclick="clicked(this)" class="btn btn-skyblue">메세지 보내기</button>
+                                            <button onclick="deletething()" class="btn btn-red">삭제</button>
+                                        </div>
+                                    </div>
+                                    <div class="modal hidden">
+                                        <div class="modal">
+                                            <div class="modal__overlay"></div>
+                                            <div class="modal__contents">
+                                                <div class="modal__header">
+                                                    신고 받은 회원에게 메세지 보내기
+                                                </div>
+                                                <div class="modal__main">
+                                                    <h4>리뷰 번호 : <span id="revidx">[[${review.revIdx}]]</span> / 신고
+                                                        번호: [[${review.derIdx}]]</h4>
+                                                    <p>작성자 : <span id="dernick">[[${review.derNick}]]</span></p>
+                                                    <p>식당 : [[${review.resaBisName}]]</p>
+                                                    <p>보내는 관리자 : 캐치테이블</p>
+                                                    <p><input type="text" id="dercontent" class="input-text message" name="message" placeholder="보낼 메세지를 입력하세요."></p>
+                                                    <div>
+                                                        <button onclick="sendadminmsg()" class="btn btn-skyblue">보내기</button>
+                                                        <button onclick="cclicked(this)" class="btn btn-light" type="button">닫기</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> <!-- /social-msg -->
@@ -82,14 +104,89 @@
     <!--    footer 시작-->
     <div th:replace="fragment/footer :: footer"/>
     <!--    footer 끝-->
-    <div th:replace="fragment/review_modal :: review_modal"></div>
-</div> <!-- /wrapper -->
+    </div> <!-- /wrapper -->
 
-<!--js 연결 시작-->
-<div th:replace="fragment/js :: js"/>
-<!--js 연결 끝-->
+    <!--js 연결 시작-->
+    <div th:replace="fragment/js :: js"/>
+    <!--js 연결 끝-->
+        <script>
+            function clicked(event){
+                let dv = event.parentNode.parentNode.parentNode.childNodes[3];
+                console.log(dv)
+                dv.classList.remove("hidden")
+            }
+            function cclicked(event){
+                let dv = event.parentNode.parentNode.parentNode.parentNode.parentNode;
+                console.log(dv)
+                dv.classList.add("hidden")
+            }
 
+            function sendadminmsg() {
+                const bisName = document.getElementById("dernick").innerText;
+                const adminMsg = document.getElementById("dercontent");
+                console.log(bisName)
+                console.log(adminMsg)
 
-</body>
-</html></body>
+                if(adminMsg.value == '') {
+                    alert("메세지를 입력하세요!");
+                    adminMsg.focus();
+                    return false;
+                }
+                let data1 = {
+                    taaNick : bisName,
+                    taaContent : adminMsg.value,}
+                $.ajax({
+                    url: "http://localhost:7070/api/talkAdmin/msg",
+                    type: "GET",
+                    dataType: "json",
+                    processData: true,
+                    contentType: "application/json; charset=UTF-8",
+                    data: data1,
+                    success: function(result) {
+                        if (result) {
+                            console.log(result)
+                            alert('업데이트 성공!');
+                            location.href='/review/report';
+                            // itemList1.itemList1 = result.data;
+                            // if(!document.querySelector('#check1').innerText){
+                            //     itemList1.boolean1 = true;}
+                        } else {
+                            alert("전송된 값 없음");
+                        }
+                    },
+                    error: function() {
+                        alert("에러 발생");
+                    }
+                });}
+
+            function deletething(){
+                let idx = document.querySelector("#revidx").innerText;
+                let data1 = {
+                    idx : idx}
+                $.ajax({
+                    url: "http://localhost:7070/api/review/delete",
+                    type: "GET",
+                    dataType: "json",
+                    processData: true,
+                    contentType: "application/json; charset=UTF-8",
+                    data: data1,
+                    success: function(result) {
+                        if (result) {
+                            console.log(result)
+                            alert('삭제!');
+                            location.href='/review/report';
+                            // itemList1.itemList1 = result.data;
+                            // if(!document.querySelector('#check1').innerText){
+                            //     itemList1.boolean1 = true;}
+                        } else {
+                            alert("전송된 값 없음");
+                        }
+                    },
+                    error: function() {
+                        alert("에러 발생");
+                    }
+                })
+            }
+        </script>
+    </body>
 </html>

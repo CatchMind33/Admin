@@ -76,13 +76,8 @@ public class RestAdminApiLogicService extends BaseService<ResAdminApiRequest, Re
         Page<ResAdmin> users = restAdminRepository.findAll(pageable);
         List<ResAdminApiResponse> userApiResponses = users.stream().map(
                 user -> response(user)).collect(Collectors.toList());
-        Pagination pagination = Pagination.builder()
-                .totalPages(users.getTotalPages())
-                .totalElements(users.getTotalElements())
-                .currentPage(users.getNumber())
-                .currentElements(users.getNumberOfElements())
-                .build();
-        return Header.OK(userApiResponses, pagination);
+
+        return Header.OK(userApiResponses);
     }
 
 

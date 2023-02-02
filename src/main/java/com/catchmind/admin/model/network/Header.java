@@ -16,7 +16,6 @@ public class Header<T>{
     private String resultCode;
     private T data;
     private String description;
-    private Pagination pagination;
 
     // 데이터가 없는 정상응답의 경우
     public static <T>Header<T> ok() {
@@ -37,10 +36,6 @@ public class Header<T>{
     }
 
     // 페이징 처리 정상응답
-    public static <T>Header<T> OK (T data, Pagination pagination) {
-        return (Header<T>)Header.builder().transactionTime(LocalDateTime.now())
-                .resultCode("OK").description("정상").data(data).build();
-    }
 
 
 }

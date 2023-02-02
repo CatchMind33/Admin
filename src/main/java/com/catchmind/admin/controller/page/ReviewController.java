@@ -1,5 +1,7 @@
 package com.catchmind.admin.controller.page;
 
+import com.catchmind.admin.model.entity.DeclareReview;
+import com.catchmind.admin.model.entity.Review;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.response.DecComApiResponse;
 import com.catchmind.admin.model.network.response.DecReviewApiResponse;
@@ -9,7 +11,9 @@ import com.catchmind.admin.service.DecReviewLogicService;
 import com.catchmind.admin.service.PaginationService;
 import com.catchmind.admin.service.ReviewLogicService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -38,6 +42,7 @@ public class ReviewController {
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), reviews.getTotalPages());
         map.addAttribute("reviews",reviews);
         map.addAttribute("paginationBarNumbers", barNumbers);
+        System.out.println(reviews);
         return "review/review";
     }
 
@@ -46,6 +51,7 @@ public class ReviewController {
         Header<ReviewApiResponse> review = reviewLogicService.read(revIdx);
         ModelAndView view = new ModelAndView("review/review_detail");
         view.addObject("review", review.getData());
+        System.out.println(review);
         System.out.println(review.getData());
         return view;
     }

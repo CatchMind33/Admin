@@ -49,7 +49,7 @@
                             <div class="tabs__content--2">
                                 <div class="media social_msg" th:each="comments : ${decComs}">
                                     <div class="media-body">
-                                        <h4 class="media-heading social_msg__heading">댓글 번호 :[[${comments.comIdx}]] / 신고
+                                        <h4 class="media-heading social_msg__heading">댓글 번호 :<span id="comidx">[[${comments.comIdx}]]</span> / 신고
                                             번호 : [[${comments.decIdx}]]</h4>
                                         <p class="social_msg__msg">식당 : [[${comments.resaBisName}]]</p>
                                         <p class="social_msg__msg">댓글 작성자 : [[${comments.decNick}]]</p>
@@ -59,8 +59,30 @@
                                         <p class="social_msg__msg">신고 내용 : [[${comments.decContent}]]</p>
                                         <p class="social_msg__meta">신고일 : [[${comments.regDate}]]</p>
                                         <div>
-                                            <button class="btn btn-skyblue">메세지 보내기</button>
-                                            <button class="btn btn-red">삭제</button>
+                                            <button onclick="clicked(this)" class="btn btn-skyblue">메세지 보내기</button>
+                                            <button onclick="deletething()" class="btn btn-red">삭제</button>
+                                        </div>
+                                    </div>
+                                    <div class="modal hidden">
+                                        <div class="modal">
+                                            <div class="modal__overlay"></div>
+                                            <div class="modal__contents">
+                                                <div class="modal__header">
+                                                    신고 받은 회원에게 메세지 보내기
+                                                </div>
+                                                <div class="modal__main">
+                                                    <h4>댓글이 작성된 리뷰번호 : [[${comments.revIdx}]]</h4>
+                                                    <h4>댓글 번호 :[[${comments.comIdx}]] / 신고
+                                                        번호 : [[${comments.decIdx}]]</h4>
+                                                    <p>댓글 작성자 : <span id="dernick">[[${comments.decNick}]]</span>></p>
+                                                    <p>보내는 관리자 : 캐치테이블</p>
+                                                    <p><input type="text" id="dercontent" class="input-text message" name="message" placeholder="보낼 메세지를 입력하세요."></p>
+                                                    <div>
+                                                        <button onclick="sendadminmsg()" class="btn btn-skyblue">보내기</button>
+                                                        <button onclick="cclicked(this)" class="btn btn-light" type="button">닫기</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +121,85 @@
 <div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
 
+    <script>
+        function clicked(event){
+            let dv = event.parentNode.parentNode.parentNode.childNodes[3];
+            console.log(dv)
+            dv.classList.remove("hidden")
+        }
+        function cclicked(event){
+            let dv = event.parentNode.parentNode.parentNode.parentNode.parentNode;
+            console.log(dv)
+            dv.classList.add("hidden")
+        }
 
-</body>
-</html></body>
+
+        function sendadminmsg() {
+            const bisName = document.getElementById("dernick").innerText;
+            const adminMsg = document.getElementById("dercontent");
+            console.log(bisName)
+            console.log(adminMsg)
+
+            if(adminMsg.value == '') {
+                alert("메세지를 입력하세요!");
+                adminMsg.focus();
+                return false;
+            }
+            let data1 = {
+                taaNick : bisName,
+                taaContent : adminMsg.value,}
+            $.ajax({
+                url: "http://localhost:7070/api/talkAdmin/msg",
+                type: "GET",
+                dataType: "json",
+                processData: true,
+                contentType: "application/json; charset=UTF-8",
+                data: data1,
+                success: function(result) {
+                    if (result) {
+                        console.log(result)
+                        alert('업데이트 성공!');
+                        location.href='/review/comment/report';
+                        // itemList1.itemList1 = result.data;
+                        // if(!document.querySelector('#check1').innerText){
+                        //     itemList1.boolean1 = true;}
+                    } else {
+                        alert("전송된 값 없음");
+                    }
+                },
+                error: function() {
+                    alert("에러 발생");
+                }
+            });}
+
+        function deletething(){
+            let idx = document.querySelector("#comidx").innerText;
+            let data1 = {
+                idx : idx}
+            $.ajax({
+                url: "http://localhost:7070/api/comment/delete",
+                type: "GET",
+                dataType: "json",
+                processData: true,
+                contentType: "application/json; charset=UTF-8",
+                data: data1,
+                success: function(result) {
+                    if (result) {
+                        console.log(result)
+                        alert('삭제!');
+                        location.href='/review/comment/report';
+                        // itemList1.itemList1 = result.data;
+                        // if(!document.querySelector('#check1').innerText){
+                        //     itemList1.boolean1 = true;}
+                    } else {
+                        alert("전송된 값 없음");
+                    }
+                },
+                error: function() {
+                    alert("에러 발생");
+                }
+            })
+        }
+    </script>
+    </body>
 </html>

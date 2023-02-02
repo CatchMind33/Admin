@@ -32,6 +32,7 @@ public class Profile extends BaseEntityUpdate implements AuditableUpdate {
     private int prReview;
     private int prNoshow;
     private boolean prBlock;
+    private String role;
 
 //    @OneToMany(mappedBy = "DeclareReview")
 //    List<DeclareReview> declareReviewList;

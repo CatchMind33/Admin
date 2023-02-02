@@ -7,10 +7,10 @@
             </div>
             <div class="modal__main">
                 <p>
-                    회원 번호 : [[${profile.prIdx}]]
+                    회원 번호 : <span id="pointidx">[[${profile.prIdx}]]</span>
                 </p>
                 <p>
-                    회원 이름 : [[${profile.prName}]] / [[${profile.prNick}]]
+                    회원 이름 : [[${profile.prName}]] / <span id="pointnick">[[${profile.prNick}]]</span>
                 </p>
                 <p>
                     회원 핸드폰 번호 : [[${profile.prHp}]]
@@ -20,20 +20,16 @@
                 </p>
                 <p>
 
-                    <input type="text" class="input-text modal-message" name="message" placeholder="회원에게 보낼 메세지를 입력하세요.">
+                    <input type="text" id="pointmsg" class="input-text modal-message" name="message" placeholder="회원에게 보낼 메세지를 입력하세요.">
                 </p>
-                <form action="">
-                    <p>
-                        <input type="text" class="input-text modal-point" name="message" placeholder="회원에게 보낼 포인트를 입력하세요.">
-                    </p>
-                </form>
-
+                <p>
+                    <input type="text" id="sendpoint" class="input-text modal-point" name="message" placeholder="회원에게 보낼 포인트를 입력하세요.">
+                </p>
                 <div>
-                    <button class="btn btn-skyblue" type="submit">보내기</button>
-                    <button class="btn btn-light close_button" type="button">닫기</button>
+                    <button close_button onclick="sendPoint()" class="btn btn-skyblue close_button">보내기</button>
+                    <button class="btn btn-light close_button1" type="button">닫기</button>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

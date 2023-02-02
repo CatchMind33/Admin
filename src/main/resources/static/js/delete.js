@@ -1,5 +1,3 @@
-
-
 function deleteit(num){
     const noIdx = num;
     console.log(num)

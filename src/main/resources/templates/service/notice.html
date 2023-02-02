@@ -108,7 +108,7 @@
                                     <a th:href="'/service/notice/detail/'+${notice.noIdx}">
                                         <button class="btn btn-light">수정</button>
                                     </a>
-                                    <button th:onclick="|javascript:deleteit('${notice.noIdx}')|" class="btn btn-red">
+                                    <button th:onclick="'deleteit('+${notice.noIdx}+')'" class="btn btn-red">
                                         삭제
                                     </button>
                                 </td>
@@ -145,6 +145,37 @@
 
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
+<!--<script src="/js/delete.js"/>-->
+<script>
+    function deleteit(num){
+        const noIdx = num;
+        console.log(num)
+
+        fetch('http://localhost:7070/api/delete/'+noIdx, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "transaction_time":`${new Date()}`,
+                "resultCode":"ok",
+                "description":"정상",
+                "data":{
+                    "noIdx":`${noIdx}`
+                }
+            }),
+        })
+            .then((res) => {
+                alert('삭제 완료!')
+                location.href='/service/notice'
+                return;
+            })
+
+            .catch((err) => {
+                alert('에러!!');
+                location.reload();
+                return;
+            });
+    }
+</script>
 <!--js 연결 끝-->
 </body>
 </html>

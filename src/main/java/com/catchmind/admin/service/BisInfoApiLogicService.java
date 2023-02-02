@@ -23,7 +23,6 @@ public class BisInfoApiLogicService extends BaseService<BisInfoApiRequest, BisIn
                 .bisRegion(bisInfo.getBisRegion())
                 .bisLunch(bisInfo.getBisLunch())
                 .bisDinner(bisInfo.getBisDinner())
-                .bisConvenience(bisInfo.getBisConvenience())
                 .regDate(bisInfo.getRegDate())
                 .build();
         return bisInfoApiResponse;

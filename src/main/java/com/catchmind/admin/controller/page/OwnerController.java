@@ -1,15 +1,15 @@
 package com.catchmind.admin.controller.page;
 
-import com.catchmind.admin.controller.api.RestAdminApiController;
 import com.catchmind.admin.model.entity.Pending;
 import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.network.Header;
-import com.catchmind.admin.model.network.response.NoticeApiResponse;
 import com.catchmind.admin.model.network.response.PendingApiResponse;
-import com.catchmind.admin.repository.PendingRepository;
+import com.catchmind.admin.repository.ResAdminRepository;
+import com.catchmind.admin.repository.ReserveRepository;
 import com.catchmind.admin.service.PaginationService;
 import com.catchmind.admin.service.PendingApiLogicService;
 import com.catchmind.admin.service.RestAdminApiLogicService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("owner")
+@RequiredArgsConstructor
 public class OwnerController {
 
     @Autowired
@@ -35,6 +37,9 @@ public class OwnerController {
     private RestAdminApiLogicService restAdminApiLogicService;
     @Autowired
     private PaginationService paginationService;
+    private final ResAdminRepository resAdminRepository;
+    private final ReserveRepository reserveRepository;
+
 
     // 식당관리자 정보 출력
     @GetMapping("")
@@ -59,9 +64,26 @@ public class OwnerController {
 
     
     // 식당관리자 상세보기
-    @GetMapping("/detail")
-    public ModelAndView ownerDetail() {
-        return new ModelAndView("owner/owner_detail");
+    @GetMapping("/detail/{resaBisName}")
+    public ModelAndView ownerDetail(@PathVariable String resaBisName) {
+        Optional<ResAdmin> resAdmin = resAdminRepository.findByResaBisName(resaBisName);
+        ResAdmin resadmin = resAdmin.get();
+        String status1 = "DONE";
+        String status2 = "PLANNED";
+        String status3 = "CANCEL";
+        Integer done = reserveRepository.countReserveByResStatusAndResaBisName(status1,resaBisName);
+        Integer planned = reserveRepository.countReserveByResStatusAndResaBisName(status2,resaBisName);
+        Integer cancel = reserveRepository.countReserveByResStatusAndResaBisName(status3,resaBisName);
+        System.out.println(done);
+        System.out.println(planned);
+        System.out.println(cancel);
+        Integer reserve = done+planned;
+        ModelAndView view = new ModelAndView("owner/owner_detail");
+        System.out.println(resAdmin);
+        view.addObject("resadmin",resadmin)
+                .addObject("reserve",reserve)
+                .addObject("cancel",cancel);
+        return view;
     }
 
     // 입점문의
