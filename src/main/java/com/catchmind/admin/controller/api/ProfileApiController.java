@@ -33,9 +33,9 @@ public class ProfileApiController extends CrudController<ProfileRequest, Profile
         return profileLogicService.updateMemo(request);
     }
 
-    @PostMapping("updatePoint")
-    public Header<ProfileResponse> updatePoint(@RequestBody Header<ProfileRequest> request){
-        return profileLogicService.updatePoint(request);
-    }
+//    @PostMapping("updatePoint")
+//    public Header<ProfileResponse> updatePoint(@RequestBody Header<ProfileRequest> request){
+//        return profileLogicService.updatePoint(request);
+//    }
 
 }
