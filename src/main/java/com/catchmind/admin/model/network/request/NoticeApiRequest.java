@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 public class NoticeApiRequest {
     private String noTitle;
     private String noContent;
-    private String adName;
     private Long noIdx;
 
 

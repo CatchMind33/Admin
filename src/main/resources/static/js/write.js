@@ -5,7 +5,6 @@ window.onload = function(){
 
 function sendit(){
     const noTitle = document.getElementById('no_title');
-    const adName = document.getElementById('ad_name');
     const noContent = document.getElementById('no_content');
 
     if(noTitle.value == ''){
@@ -14,11 +13,6 @@ function sendit(){
         return false;
     }
 
-    if(adName.value == ''){
-        alert('작성자를 입력하세요');
-        adName.focus()
-        return false;
-    }
 
     if(noContent.value == ''){
         alert('내용을 입력하세요');
@@ -37,7 +31,6 @@ function sendit(){
             "description":"정상",
             "data":{
                 "noTitle":`${no_title.value}`,
-                "adName":`${ad_name.value}`,
                 "noContent":`${no_content.value}`
             }
         }),
