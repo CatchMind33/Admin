@@ -20,5 +20,5 @@ public class Comment extends BaseEntity implements Auditable {
     private String comNick;
     private String comContent;
     private Long revIdx;
-
+    private Long comLike;
 }

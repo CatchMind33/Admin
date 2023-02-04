@@ -23,15 +23,11 @@ public class ReviewLogicService extends BaseService<ReviewApiRequest, ReviewApiR
                 .revIdx(users.getRevIdx())
                 .revLike(users.getRevLike())
                 .revContent(users.getRevContent())
+                .revNick(users.getRevNick())
                 .revScore(users.getRevScore())
                 .resaBisName(users.getResAdmin().getResaBisName())
                 .regDate(users.getRegDate())
                 .updateDate(users.getUpdateDate())
-                .orgNm(users.getOrgNm())
-                .savedNm(users.getSavedNm())
-                .prNick(users.getProfile().getPrNick())
-                .res_idx(users.getReserve().getResIdx())
-                .savedPath(users.getSavedPath())
                 .build();
         return reviewApiResponse;
     }
