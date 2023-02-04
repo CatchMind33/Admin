@@ -25,7 +25,6 @@ public class Profile extends BaseEntityUpdate implements AuditableUpdate {
     private String prRegion;
     private String prHp;
     private String prUserpw;
-    private int prPoint;
     private String prGender;
     private String prBirth;
     private String prMemo;

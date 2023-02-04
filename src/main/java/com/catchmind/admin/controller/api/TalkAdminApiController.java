@@ -27,12 +27,12 @@ public class TalkAdminApiController extends CrudController<TalkAdminApiRequest, 
         return profileLogicService.updateBlock(prIdx,prBlock);
     }
 
-    @GetMapping("/point")
-    public Header<ProfileResponse> point(@RequestParam("nick") String taaNick, @RequestParam("idx") Long prIdx, @RequestParam("msg") String taaContent, @RequestParam("point") Integer point ) {
-        talkAdminApiLogicService.createmsg(taaNick,taaContent);
-//        profileLogicService.updateBlock(prIdx,prBlock);
-        return profileLogicService.updatePoint(prIdx,point);
-    }
+//    @GetMapping("/point")
+//    public Header<ProfileResponse> point(@RequestParam("nick") String taaNick, @RequestParam("idx") Long prIdx, @RequestParam("msg") String taaContent, @RequestParam("point") Integer point ) {
+//        talkAdminApiLogicService.createmsg(taaNick,taaContent);
+////        profileLogicService.updateBlock(prIdx,prBlock);
+//        return profileLogicService.updatePoint(prIdx,point);
+//    }
 
     @GetMapping("/adminmsg")
     public Header<TalkAdminApiResponse> admin(@RequestParam("name") String resaBisName, @RequestParam("msg") String taaContent) {

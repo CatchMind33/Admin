@@ -34,7 +34,6 @@ public class ProfileLogicService extends BaseService<ProfileRequest, ProfileResp
                 .prGender(profile.getPrGender())
                 .prMemo(profile.getPrMemo())
                 .prNoshow(profile.getPrNoshow())
-                .prPoint(profile.getPrPoint())
                 .prBlock(profile.isPrBlock())
                 .regDate(profile.getRegDate())
                 .build();
@@ -67,16 +66,16 @@ public class ProfileLogicService extends BaseService<ProfileRequest, ProfileResp
                 .orElseGet(()->Header.ERROR("데이터 없음"));
     }
 
-    public Header<ProfileResponse> updatePoint(Long prIdx, Integer point){
-        Optional<Profile> profile = profileRepository.findByPrIdx(prIdx);
-        return profile.map(                        user->{
-                    user.setPrPoint(user.getPrPoint()+point);
-                    return user;
-                }).map(user-> baseRepository.save(user))
-                .map(user->response(user))
-                .map(Header::OK)
-                .orElseGet(()->Header.ERROR("데이터 없음"));
-    }
+//    public Header<ProfileResponse> updatePoint(Long prIdx, Integer point){
+//        Optional<Profile> profile = profileRepository.findByPrIdx(prIdx);
+//        return profile.map(                        user->{
+//                    user.setPrPoint(user.getPrPoint()+point);
+//                    return user;
+//                }).map(user-> baseRepository.save(user))
+//                .map(user->response(user))
+//                .map(Header::OK)
+//                .orElseGet(()->Header.ERROR("데이터 없음"));
+//    }
 
     @Override
     public Header<ProfileResponse> create(Header<ProfileRequest> request) {
@@ -118,18 +117,18 @@ public class ProfileLogicService extends BaseService<ProfileRequest, ProfileResp
         return cnt;
     }
 
-    public Header<ProfileResponse> updatePoint(Header<ProfileRequest> request) {
-        ProfileRequest profileRequest = request.getData();
-        Optional<Profile> profiles = profileRepository.findByPrNick(profileRequest.getPrNick());
-        return profiles.map(
-                        profile -> {
-                            int pointTot = profiles.get().getPrPoint();
-                            profile.setPrPoint(profileRequest.getPrPoint()+pointTot);
-                            return profile;
-                        }).map(profile -> baseRepository.save(profile))
-                .map(profile -> response(profile))
-                .map(Header::OK)
-                .orElseGet(() -> Header.ERROR("데이터 없음")
-                );
-    }
+//    public Header<ProfileResponse> updatePoint(Header<ProfileRequest> request) {
+//        ProfileRequest profileRequest = request.getData();
+//        Optional<Profile> profiles = profileRepository.findByPrNick(profileRequest.getPrNick());
+//        return profiles.map(
+//                        profile -> {
+//                            int pointTot = profiles.get().getPrPoint();
+//                            profile.setPrPoint(profileRequest.getPrPoint()+pointTot);
+//                            return profile;
+//                        }).map(profile -> baseRepository.save(profile))
+//                .map(profile -> response(profile))
+//                .map(Header::OK)
+//                .orElseGet(() -> Header.ERROR("데이터 없음")
+//                );
+//    }
 }
