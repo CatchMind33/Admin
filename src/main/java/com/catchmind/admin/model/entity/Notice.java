@@ -22,8 +22,6 @@ public class Notice extends BaseEntityUpdate implements AuditableUpdate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long noIdx;
     private String noTitle;
-    private String adName;
-    private String adUserid;
     private String noContent;
 
 }

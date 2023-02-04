@@ -24,8 +24,6 @@ public class NoticeApiLogicService extends BaseService<NoticeApiRequest, NoticeA
         NoticeApiResponse noticeApiResponse = NoticeApiResponse.builder()
                 .noIdx(users.getNoIdx())
                 .noTitle(users.getNoTitle())
-                .adName(users.getAdName())
-                .adUserid(users.getAdUserid())
                 .noContent(users.getNoContent())
                 .build();
         return noticeApiResponse;
@@ -37,7 +35,6 @@ public class NoticeApiLogicService extends BaseService<NoticeApiRequest, NoticeA
         NoticeApiRequest noticeApiRequest = request.getData();
 
         Notice notice = Notice.builder().noTitle(noticeApiRequest.getNoTitle())
-                .adName(noticeApiRequest.getAdName())
                 .noContent(noticeApiRequest.getNoContent())
                 .build();
         Notice newNotice = baseRepository.save(notice);

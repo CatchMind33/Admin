@@ -13,8 +13,6 @@ public class NoticeApiResponse {
 
     private Long noIdx;
     private String noTitle;
-    private String adName;
-    private String adUserid;
     private String noContent;
 
 }
