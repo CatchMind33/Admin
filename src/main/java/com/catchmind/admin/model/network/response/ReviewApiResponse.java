@@ -17,15 +17,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class ReviewApiResponse {
-    private Long revLike;
-    private String revContent;
-    private Double revScore;
-    private String orgNm;
-    private String savedNm;
-    private String savedPath;
-    private Long res_idx;
-    private String prNick;
     private Long revIdx;
+    private String revNick;
+    private int revLike;
+    private String revContent;
+    private double revScore;
+    private Long revComm;
     private String resaBisName;
     private LocalDateTime regDate;
     private LocalDateTime updateDate;
