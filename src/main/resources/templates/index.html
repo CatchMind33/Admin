@@ -123,7 +123,8 @@
 							<div class="tabs__content--1">
 								<div class="media social_msg" th:each="reviews:${reviews}">
 									<div class="media-body">
-										<h4 class="media-heading social_msg__heading"><span th:text="${reviews.Profile.PrNick}"></span><span>from</span> <span th:text="${reviews.ResAdmin.ResaBisName}"></span></h4>
+										<h4 class="media-heading social_msg__heading">방문유저 : <span th:text="${reviews.Profile.PrNick}"></span></h4>
+										<h4 class="media-heading social_msg__heading">방문식당 : <span th:text="${reviews.ResAdmin.ResaBisName}"></span></h4>
 										<p class="social_msg__msg" th:text="${reviews.revContent}"></p>
 										<small class="social_msg__meta" th:text="${reviews.regDate}"></small>
 									</div>
@@ -140,14 +141,15 @@
 							<div class="tabs__content--2">
 								<div class="media social_msg" th:each="decrev:${decrev}">
 									<div class="media-body">
-										<h4 class="media-heading social_msg__heading"> <span th:text="${decrev.derNick}"></span> <span>from</span> <span th:text="${decrev.prNick}">갓.</span></h4>
-										<p class="social_msg__msg" th:text="${decrev.derContent}"></p>
+										<h4 class="media-heading social_msg__heading"> 신고당한 유저 : <span th:text="${decrev.derNick}"></span></h4>
+										<p class="social_msg__msg">신고제목 : <span th:text="${decrev.derTitle}"></span></p>
+										<p class="social_msg__msg">신고내용 : <span th:text="${decrev.derContent}"></span></p>
 										<small class="social_msg__meta" th:text="${decrev.regDate}"></small>
 									</div>
 								</div> <!-- /social-msg -->
 								<div class="media social_msg">
 									<div class="media-body">
-										<a href="/review" class="social_msg__msg">리뷰신고리스트 더보기</a>
+										<a href="/review/report" class="social_msg__msg">리뷰신고리스트 더보기</a>
 									</div>
 								</div>
 							</div> <!-- /신고 들어온 리뷰 끝-->
@@ -156,14 +158,15 @@
 							<div class="tabs__content--3">
 								<div class="media social_msg" th:each="decCom:${decCom}">
 									<div class="media-body">
-										<h4 class="media-heading social_msg__heading"> <span th:text="${decCom.decNick}"></span><span>from</span> <span th:text="${decCom.prNick}"></span></h4>
-										<p class="social_msg__msg" th:text="${decCom.decContent}"></p>
+										<h4 class="media-heading social_msg__heading">신고당한 유저 : <span th:text="${decCom.decNick}"></span></h4>
+										<p class="social_msg__msg">신고제목 : <span th:text="${decCom.decTitle}"></span></p>
+										<p class="social_msg__msg">신고내용 : <span th:text="${decCom.decContent}"></span></p>
 										<small class="social_msg__meta" th:text="${decCom.regDate}"></small>
 									</div>
 								</div> <!-- /social-msg -->
 								<div class="media social_msg">
 									<div class="media-body">
-										<a href="/review" class="social_msg__msg">댓글신고리스트 더보기</a>
+										<a href="/review/comment/report" class="social_msg__msg">댓글신고리스트 더보기</a>
 									</div>
 								</div>
 							</div> <!-- /신고 들어온 댓글 끝 -->

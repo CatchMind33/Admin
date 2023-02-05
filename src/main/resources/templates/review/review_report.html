@@ -42,11 +42,11 @@
                                     <div class="media-body">
                                         <h4 class="media-heading social_msg__heading">리뷰 번호 : [[${review.revIdx}]] / 신고
                                             번호: [[${review.derIdx}]]</h4>
+                                        <p style="display: none" id="prIdx">[[${review.prIdx.prIdx}]]</p>
                                         <p class="social_msg__msg">식당 : [[${review.resaBisName}]]</p>
                                         <p class="social_msg__msg">리뷰 작성자 : [[${review.derNick}]]</p>
                                         <p class="social_msg__msg">리뷰 내용 : [[${review.revContent}]]</p>
                                         <hr>
-                                        <p class="social_msg__msg">신고자 : [[${review.prNick}]]</p>
                                         <p class="social_msg__msg">신고 내용 : [[${review.derContent}]] </p>
                                         <p class="social_msg__meta">신고일 : [[${review.regDate}]]</p>
                                         <div>
@@ -122,10 +122,9 @@
             }
 
             function sendadminmsg() {
-                const bisName = document.getElementById("dernick").innerText;
+                const prIdx = document.getElementById("prIdx").innerText;
                 const adminMsg = document.getElementById("dercontent");
-                console.log(bisName)
-                console.log(adminMsg)
+
 
                 if(adminMsg.value == '') {
                     alert("메세지를 입력하세요!");
@@ -133,7 +132,7 @@
                     return false;
                 }
                 let data1 = {
-                    taaNick : bisName,
+                    prIdx : prIdx,
                     taaContent : adminMsg.value,}
                 $.ajax({
                     url: "http://localhost:7070/api/talkAdmin/msg",

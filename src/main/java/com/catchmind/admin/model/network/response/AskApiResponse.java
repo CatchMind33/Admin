@@ -10,14 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class AskApiResponse {
-
     private Long askIdx;
     private String askTitle;
     private String askContent;
-    private String askNick;
+    private Long prIdx;
     private String askAnswer;
     private String askStatus;
-
-
 }
 

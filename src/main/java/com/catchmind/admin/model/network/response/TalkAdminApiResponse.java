@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class TalkAdminApiResponse {
     private Long taaIdx;
     private String taaNick;
-    private String taaResaBisName;
     private String taaContent;
+    private Long prIdx;
     private LocalDateTime regDate;
 }

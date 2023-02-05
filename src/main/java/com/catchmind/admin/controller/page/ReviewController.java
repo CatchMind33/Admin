@@ -62,6 +62,7 @@ public class ReviewController {
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), decReviews.getTotalPages());
         map.addAttribute("decReviews", decReviews);
         map.addAttribute("paginationBarNumbers",barNumbers);
+        System.out.println(decReviews);
         return "review/review_report";
     }
 

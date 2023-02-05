@@ -26,5 +26,6 @@ public class ReviewApiResponse {
     private String resaBisName;
     private LocalDateTime regDate;
     private LocalDateTime updateDate;
+    private Profile prIdx;
 
 }

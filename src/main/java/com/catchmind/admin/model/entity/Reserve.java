@@ -31,6 +31,9 @@ public class Reserve extends BaseEntity implements Auditable {
     private String resTime;
     private String resStatus;
     private String resReason;
+    private boolean revStatus;
+
+    private Long bdIdx;
 //    @ManyToOne
 //    @JoinColumn(name="resa_bis_name")
 //    private ResAdmin resAdmin;
