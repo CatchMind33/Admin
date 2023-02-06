@@ -89,7 +89,7 @@
                             <tr>
                                 <th class="ask_idx">번호</th>
                                 <th class="ask_title">제목</th>
-                                <th class="ask_nick">작성자</th>
+
                                 <th>내용</th>
                                 <th class="ask_regdate">등록일</th>
                                 <th>답변 상태</th>
@@ -100,7 +100,6 @@
                             <tr th:each="ask :${asks}">
                                 <td class="ask_idx" th:text="${ask.askIdx}">1</td>
                                 <td class="ask_title" th:text="${ask.askTitle}">회원가입</td>
-                                <td class="ask_nick" th:text="${ask.askNick}">김사과</td>
                                 <td class="ask_content" th:text="${ask.askContent}">회원가입은 따로...</td>
                                 <td class="ask_regdate" th:text="${ask.regDate}">2022.12.16 14:00</td>
                                 <td></td>

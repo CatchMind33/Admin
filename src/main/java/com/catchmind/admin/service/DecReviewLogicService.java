@@ -1,6 +1,7 @@
 package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.DeclareReview;
+import com.catchmind.admin.model.entity.Profile;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.DecReviewApiRequest;
 import com.catchmind.admin.model.network.response.DecReviewApiResponse;
@@ -21,11 +22,11 @@ public class DecReviewLogicService extends BaseService<DecReviewApiRequest, DecR
                 .derIdx(declareReview.getDerIdx())
                 .revIdx(declareReview.getReview().getRevIdx())
                 .derNick(declareReview.getDerNick())
-                .prNick(declareReview.getPrNick())
                 .derContent(declareReview.getDerContent())
                 .revContent(declareReview.getReview().getRevContent())
                 .regDate(declareReview.getRegDate())
                 .resaBisName(declareReview.getReview().getResAdmin().getResaBisName())
+                .prIdx(Profile.builder().prIdx(declareReview.getProfile().getPrIdx()).build())
                 .build();
         return reviewApiResponse;
     }

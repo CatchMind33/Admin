@@ -90,7 +90,6 @@
                             <tr>
                                 <th class="imp_idx">번호</th>
                                 <th class="imp_title">제목</th>
-                                <th class="imp_nick">작성자</th>
                                 <th>내용</th>
                                 <th class="imp_regdate">등록일</th>
                                 <th>답변 상태</th>
@@ -101,7 +100,6 @@
                             <tr th:each="improvement :${improvements}">
                                 <td class="imp_idx" th:text="${improvement.impIdx}">1</td>
                                 <td class="imp_title" th:text="${improvement.impTitle}">회원가입</td>
-                                <td class="imp_nick" th:text="${improvement.impNick}">김사과</td>
                                 <td class="imp_content" th:text="${improvement.impContent}">캐치테이블...</td>
                                 <td class="imp_regdate" th:text="${improvement.regDate}">2022.12.16 14:00</td>
                                 <td></td>

@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class TalkAdminApiRequest {
     private String taaNick;
-    private String taaResaBisName;
     private String taaContent;
 
 }

@@ -2,6 +2,7 @@ package com.catchmind.admin.service;
 
 
 import com.catchmind.admin.model.entity.Ask;
+import com.catchmind.admin.model.entity.Profile;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.AskApiRequest;
 import com.catchmind.admin.model.network.response.AskApiResponse;
@@ -26,8 +27,7 @@ public class AskApiLogicService extends BaseService<AskApiRequest, AskApiRespons
         .askIdx(ask.getAskIdx())
         .askTitle(ask.getAskTitle())
         .askContent(ask.getAskContent())
-        .askNick(ask.getAskNick())
-        .askAnswer(ask.getAskAnswer())
+        .askAnswer(ask.getAskAnswer()).prIdx(ask.getPrIdx())
         .build();
         return askApiResponse;
     }

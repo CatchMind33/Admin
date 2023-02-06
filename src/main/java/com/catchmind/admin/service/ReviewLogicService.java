@@ -1,5 +1,6 @@
 package com.catchmind.admin.service;
 
+import com.catchmind.admin.model.entity.Profile;
 import com.catchmind.admin.model.entity.Review;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.ReviewApiRequest;
@@ -23,11 +24,11 @@ public class ReviewLogicService extends BaseService<ReviewApiRequest, ReviewApiR
                 .revIdx(users.getRevIdx())
                 .revLike(users.getRevLike())
                 .revContent(users.getRevContent())
-                .revNick(users.getRevNick())
                 .revScore(users.getRevScore())
                 .resaBisName(users.getResAdmin().getResaBisName())
                 .regDate(users.getRegDate())
                 .updateDate(users.getUpdateDate())
+                .prIdx(Profile.builder().prIdx(users.getResIdx()).build())
                 .build();
         return reviewApiResponse;
     }

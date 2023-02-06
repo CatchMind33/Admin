@@ -24,10 +24,9 @@ public class TalkAdminApiLogicService extends BaseService<TalkAdminApiRequest, T
     private TalkAdminApiResponse response (TalkAdmin talkAdmin ) {
         TalkAdminApiResponse talkAdminApiResponse = TalkAdminApiResponse.builder()
                 .taaIdx(talkAdmin.getTaaIdx())
-                .taaNick(talkAdmin.getTaaNick())
-                .taaResaBisName(talkAdmin.getTaaResaBisName())
                 .taaContent(talkAdmin.getTaaContent())
                 .regDate(talkAdmin.getRegDate())
+                .prIdx(talkAdmin.getPrIdx())
                 .build();
         return talkAdminApiResponse;
     }
@@ -40,34 +39,32 @@ public class TalkAdminApiLogicService extends BaseService<TalkAdminApiRequest, T
     public Header<TalkAdminApiResponse> createProfile(Header<TalkAdminApiRequest> request) {
         TalkAdminApiRequest talkAdminApiRequest = request.getData();
         TalkAdmin talkAdmin = TalkAdmin.builder()
-                .taaNick(talkAdminApiRequest.getTaaNick())
                 .taaContent(talkAdminApiRequest.getTaaContent())
                 .build();
         TalkAdmin newMsg = baseRepository.save(talkAdmin);
         return Header.ok();
     }
 
-    public Header<TalkAdminApiResponse> createmsg(String taaNick,String taaContent){
+    public Header<TalkAdminApiResponse> createmsg(String taaContent,Long prIdx){
         TalkAdmin talkAdmin = TalkAdmin.builder()
-                .taaNick(taaNick)
+                .prIdx(prIdx)
                 .taaContent(taaContent)
                 .build();
         TalkAdmin newMsg = baseRepository.save(talkAdmin);
         return Header.ok();
     }
-    public Header<TalkAdminApiResponse> createadminmsg(String taaResaBisName,String taaContent){
-        TalkAdmin talkAdmin = TalkAdmin.builder()
-                .taaResaBisName(taaResaBisName)
-                .taaContent(taaContent)
-                .build();
-        TalkAdmin newMsg = baseRepository.save(talkAdmin);
-        return Header.ok();
-    }
+//    public Header<TalkAdminApiResponse> createadminmsg(String taaResaBisName,String taaContent){
+//        TalkAdmin talkAdmin = TalkAdmin.builder()
+//                .taaResaBisName(taaResaBisName)
+//                .taaContent(taaContent)
+//                .build();
+//        TalkAdmin newMsg = baseRepository.save(talkAdmin);
+//        return Header.ok();
+//    }
 
     public Header<TalkAdminApiResponse> createPending(Header<TalkAdminApiRequest> request) {
         TalkAdminApiRequest talkAdminApiRequest = request.getData();
         TalkAdmin talkAdmin = TalkAdmin.builder()
-                .taaResaBisName(talkAdminApiRequest.getTaaResaBisName())
                 .taaContent(talkAdminApiRequest.getTaaContent())
                 .build();
         TalkAdmin newMsg = baseRepository.save(talkAdmin);

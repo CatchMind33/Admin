@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 public class ReviewApiRequest {
     private Long revIdx;
+    private Long prIdx;
     private String revNick;
     private int revLike;
     private String revContent;

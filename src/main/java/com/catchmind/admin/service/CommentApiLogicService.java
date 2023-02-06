@@ -17,7 +17,7 @@ public class CommentApiLogicService extends BaseService<CommentApiRequest, Comme
 
     private CommentApiResponse response(Comment comment){
         CommentApiResponse commentApiResponse = CommentApiResponse.builder().comIdx(comment.getComIdx())
-                .revIdx(comment.getRevIdx()).comNick(comment.getComNick()).comContent(comment.getComContent()).build();
+                .revIdx(comment.getRevIdx()).comContent(comment.getComContent()).revIdx(comment.getRevIdx()).build();
         return commentApiResponse;
     }
 

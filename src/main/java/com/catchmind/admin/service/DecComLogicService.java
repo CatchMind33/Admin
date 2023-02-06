@@ -1,6 +1,7 @@
 package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.DeclareComment;
+import com.catchmind.admin.model.entity.Profile;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.DecComApiRequest;
 import com.catchmind.admin.model.network.response.DecComApiResponse;
@@ -22,11 +23,11 @@ public class DecComLogicService extends BaseService<DecComApiRequest, DecComApiR
                 .revIdx(declareComment.getReview().getRevIdx())
                 .comIdx(declareComment.getComment().getComIdx())
                 .decNick(declareComment.getDecNick())
-                .prNick(declareComment.getPrNick())
                 .resaBisName(declareComment.getReview().getResAdmin().getResaBisName())
                 .decContent(declareComment.getDecContent())
                 .comContent(declareComment.getComment().getComContent())
                 .regDate(declareComment.getRegDate())
+                .profile(Profile.builder().prIdx(declareComment.getProfile().getPrIdx()).build())
                 .build();
 
         return comApiResponse;

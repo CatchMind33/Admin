@@ -23,7 +23,10 @@ public class DeclareComment extends BaseEntity implements Auditable {
     @ManyToOne
     @JoinColumn(name="comIdx")
     private Comment comment;
+    @ManyToOne
+    @JoinColumn(name="prIdx")
+    private Profile profile;
     private String decNick;
-    private String prNick;
+    private String decTitle;
     private String decContent;
 }

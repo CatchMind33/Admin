@@ -50,9 +50,8 @@
                     <div class="widget__content">
                         <p>식당 : <input type="text" class="input-text value" th:field="${review.resaBisName}" readonly/></p>
                         <p>내용 : <input type="text" class="input-text value" th:field="${review.revContent}" readonly/></p>
-                        <p>닉네임 : <input type="text" class="input-text value" th:field ="${review.revNick}"readonly/></p>
                         <p>좋아요 : <input type="text" class="input-text value" th:field="${review.revLike}" readonly></p>
-                        <p>좋아요 : <input type="text" class="input-text value" th:field="${review.revScore}" readonly></p>
+                        <p>평점 : <input type="text" class="input-text value" th:field="${review.revScore}" readonly></p>
                         <p>등록일 : [[${review.regDate}]]</p>
 
                         <button class="btn btn-light pull-right" type="button" onclick="history.back()">뒤로가기</button>

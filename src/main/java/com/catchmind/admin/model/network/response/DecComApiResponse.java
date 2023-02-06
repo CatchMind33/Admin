@@ -1,5 +1,6 @@
 package com.catchmind.admin.model.network.response;
 
+import com.catchmind.admin.model.entity.Profile;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,5 +22,6 @@ public class DecComApiResponse {
     private String decContent;
     private String resaBisName;
     private LocalDateTime regDate;
+    private Profile profile;
 
 }

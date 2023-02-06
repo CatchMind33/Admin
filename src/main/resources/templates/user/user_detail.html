@@ -74,7 +74,7 @@
 						</table>
 						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
 						<button class="btn btn-light pull-right" type="button" onclick="sendMemo()">관리자 메모 등록</button>
-<!--						<button class="modal__open btn btn-light pull-right" type="button">포인트 지급</button>-->
+						<button class="modal__open btn btn-light pull-right" type="button">메세지전송</button>
                         <button class="other__modal btn btn-red pull-right" type="button">노쇼 블락</button>
 						<div class="clearfix"></div>
 					</div>
@@ -103,12 +103,8 @@
 <script src="/js/noShow.js"></script>
 <script>
 	function sendPoint() {
-		const prNick = document.getElementById("pointnick").innerText;
 		const prIdx = document.getElementById("pointidx").innerText;
 		const pointMsg = document.getElementById("pointmsg");
-		const sendpoint = document.getElementById("sendpoint").value;
-		const list = "+"+sendpoint
-		console.log(sendpoint);
 
 		if(pointMsg.value == '') {
 		alert("메세지를 입력하세요!");
@@ -116,15 +112,8 @@
 		return false;
 	}
 		let data1 = {
-		nick : prNick,
 		idx : prIdx,
-		msg : pointMsg.value,
-		point : sendpoint}
-
-		let data2 = {
-			idx : prIdx,
-			list : list
-		}
+		msg : pointMsg.value}
 
 		$.ajax({
 		url: "http://localhost:7070/api/talkAdmin/point",
@@ -148,36 +137,6 @@
 		alert("에러 발생");
 	}
 	});
-
-
-		$.ajax({
-			url: "http://localhost:7070/api/point/createlist",
-			type: "GET",
-			dataType: "json",
-			processData: true,
-			contentType: "application/json; charset=UTF-8",
-			data: data2,
-			success: function(result) {
-				if (result) {
-					console.log(result)
-					alert('업데이트 성공!');
-					location.href='/user';
-					// itemList1.itemList1 = result.data;
-					// if(!document.querySelector('#check1').innerText){
-					//     itemList1.boolean1 = true;}
-				} else {
-					alert("전송된 값 없음");
-				}
-			},
-			error: function() {
-				alert("에러 발생");
-			}
-		});
-
-
-
-
-
 	}
 </script>
 </body>

@@ -17,7 +17,9 @@ public class Comment extends BaseEntity implements Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long comIdx;
-    private String comNick;
+    @ManyToOne
+    @JoinColumn(name="prIdx")
+    private Profile profile;
     private String comContent;
     private Long revIdx;
     private Long comLike;

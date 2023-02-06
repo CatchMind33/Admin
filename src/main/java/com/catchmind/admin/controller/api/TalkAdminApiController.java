@@ -21,27 +21,25 @@ public class TalkAdminApiController extends CrudController<TalkAdminApiRequest, 
     private final ProfileLogicService profileLogicService;
 
     @GetMapping("/noShow")
-    public Header<ProfileResponse> noShow(@RequestParam("nick") String taaNick, @RequestParam("idx") Long prIdx, @RequestParam("msg") String taaContent, @RequestParam("status") boolean prBlock) {
-        talkAdminApiLogicService.createmsg(taaNick,taaContent);
+    public Header<ProfileResponse> noShow(@RequestParam("idx") Long prIdx, @RequestParam("msg") String taaContent, @RequestParam("status") boolean prBlock) {
+        talkAdminApiLogicService.createmsg(taaContent,prIdx);
 //        profileLogicService.updateBlock(prIdx,prBlock);
         return profileLogicService.updateBlock(prIdx,prBlock);
     }
 
-//    @GetMapping("/point")
-//    public Header<ProfileResponse> point(@RequestParam("nick") String taaNick, @RequestParam("idx") Long prIdx, @RequestParam("msg") String taaContent, @RequestParam("point") Integer point ) {
-//        talkAdminApiLogicService.createmsg(taaNick,taaContent);
-////        profileLogicService.updateBlock(prIdx,prBlock);
-//        return profileLogicService.updatePoint(prIdx,point);
-//    }
-
-    @GetMapping("/adminmsg")
-    public Header<TalkAdminApiResponse> admin(@RequestParam("name") String resaBisName, @RequestParam("msg") String taaContent) {
-        return talkAdminApiLogicService.createadminmsg(resaBisName,taaContent);
+    @GetMapping("/point")
+    public Header<TalkAdminApiResponse> point(@RequestParam("idx") Long prIdx, @RequestParam("msg") String taaContent) {
+        return talkAdminApiLogicService.createmsg(taaContent,prIdx);
     }
 
+//    @GetMapping("/adminmsg")
+//    public Header<TalkAdminApiResponse> admin(@RequestParam("name") String resaBisName, @RequestParam("msg") String taaContent) {
+//        return talkAdminApiLogicService.createadminmsg(resaBisName,taaContent);
+//    }
+
     @GetMapping("/msg")
-    public Header<TalkAdminApiResponse> user(@RequestParam("taaNick") String taaNick, @RequestParam("taaContent") String taaContent) {
-        return talkAdminApiLogicService.createmsg(taaNick,taaContent);
+    public Header<TalkAdminApiResponse> user(@RequestParam("taaContent") String taaContent,@RequestParam("prIdx") Long prIdx) {
+        return talkAdminApiLogicService.createmsg(taaContent,prIdx);
     }
 
     @PostMapping("/pending")
