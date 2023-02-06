@@ -36,7 +36,8 @@
                     </header>
                     <div class="widget__content">
                         <p style="display: none" id="penIdx" th:text="${pendings.penIdx}"></p>
-                        <p>문의자 : <span th:text="${pendings.penName}"></span></p>
+                        <p>문의자 : <span  th:text="${pendings.penName}"></span></p>
+                        <p>문의식당이름 : <span id="penBisName" th:text="${pendings.penBisName}"></span></p>
                         <p>문의자 번호 : <span th:text="${pendings.penHp}"></span></p>
                         <p>음식 타입 : <span th:text="${pendings.penFoodtype}"></span></p>
                         <p>식당 지역 : <span th:text="${pendings.penRegion}"></span></p>
@@ -45,7 +46,7 @@
                             <a th:href="'/owner/new/detail/'+${pendings.penIdx}">
                                 <button class="btn btn-light">승인</button>
                             </a>
-                            <button class="modal__open btn btn-red">미승인</button>
+                            <button onclick="deletepend()" class="btn btn-red">미승인</button>
                         </div>
                     </div>
                 </article><!-- /widget -->
@@ -69,7 +70,7 @@
     <!--footer 시작-->
     <div th:replace="fragment/footer :: footer"/>
     <!--footer 끝-->
-    <div th:replace="fragment/new_owner_modal :: owner_modal"/>
+<!--    <div th:replace="fragment/new_owner_modal :: owner_modal"/>-->
 </div> <!-- /wrapper -->
 
 <!-- Scripts -->
@@ -77,6 +78,36 @@
 <div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
 
+<script>
+    function deletepend(){
+        const penBisName = document.querySelector("#penBisName");
 
+        let data = {
+            penBisName : penBisName.innerText}
+        $.ajax({
+            url: "http://localhost:7070/api/pending/delete",
+            type: "GET",
+            dataType: "json",
+            processData: true,
+            contentType: "application/json; charset=UTF-8",
+            data: data,
+            success: function(result) {
+                if (result) {
+                    console.log(result)
+                    alert('삭제 성공!')
+                    location.href='/owner/new';
+                    // itemList1.itemList1 = result.data;
+                    // if(!document.querySelector('#check1').innerText){
+                    //     itemList1.boolean1 = true;}
+                } else {
+                    alert("전송된 값 없음");
+                }
+            },
+            error: function() {
+                alert("에러 발생");
+            }
+        });
+    }
+</script>
 </body>
 </html>
