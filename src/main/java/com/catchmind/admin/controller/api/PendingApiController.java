@@ -7,10 +7,7 @@ import com.catchmind.admin.model.network.response.PendingApiResponse;
 import com.catchmind.admin.service.BisInfoApiLogicService;
 import com.catchmind.admin.service.PendingApiLogicService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/pending")    // http://localhost:8888/api/restAdmin
@@ -22,5 +19,10 @@ public class PendingApiController {
     @PostMapping("/delete")
     public Header<PendingApiResponse> delete(@RequestBody Header<PendingApiRequest> request) {
         return pendingApiLogicService.deleteOk(request);
+    }
+
+    @GetMapping("/delete")
+    public Header<PendingApiResponse> deletepend(@RequestParam("penBisName") String penBisName){
+        return pendingApiLogicService.deletepend(penBisName);
     }
 }

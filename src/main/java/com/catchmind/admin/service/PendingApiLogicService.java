@@ -69,4 +69,11 @@ public class PendingApiLogicService extends BaseService<PendingApiRequest, Pendi
     public Page<Pending> ownerlist(Pageable pageable) {
         return pendingRepository.findAll(pageable);
     }
+    public Header deletepend(String penBisname){
+        Optional<Pending> pendingApiResponse = pendingRepository.findByPenBisName(penBisname);
+        return  pendingApiResponse.map(user->{
+            pendingRepository.delete(user);
+            return Header.ok();
+        }).orElseGet(() -> Header.ERROR("데이터 없음"));
+    }
 }

@@ -62,8 +62,7 @@
                             <p>초기 비밀번호 : <input id="resa_userpw" type="text" class="input-text value" value="1234" readonly></p>
                             <div style="display:flex;  justify-content: right;">
                                 <button id="registRestBtn" class="btn btn-skyblue" type="button">식당 등록</button>
-                                <button class="modal__open btn btn-light" type="button">메시지 보내기</button>
-                                <button class="btn btn-light" type="button" onclick="location.href='history.back()'">뒤로 가기</button>
+                                <a class="btn btn-light" type="button" href="javascript:history.back();">뒤로 가기</a>
                             </div>
 						</div>
 					</form>
@@ -76,14 +75,14 @@
 	<!--footer 시작-->
 	<div th:replace="fragment/footer :: footer"/>
 	<!--footer 끝-->
-	<div th:replace="fragment/new_pending :: new_pending"/>
+<!--	<div th:replace="fragment/new_pending :: new_pending"/>-->
  <!-- /wrapper -->
 
 
 	<!--js 연결 시작-->
 <script src="/js/registerRest.js"></script>
 <div th:replace="fragment/js :: js"/>
-<script src="/js/pending.js"></script>
+<!--<script src="/js/pending.js"></script>-->
 	<!--js 연결 끝-->
 
 

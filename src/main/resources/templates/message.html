@@ -113,8 +113,7 @@
                             <tr th:each="talk : ${talks}">
                                 <td th:text="${talk.taaIdx}">1</td>
                                 <td>캐치테이블</td>
-                                <td th:if="${talk.taaNick != null}" th:text="${talk.taaNick}">스시소요 관리자</td>
-                                <td th:if="${talk.taaResaBisName != null}" th:text="${talk.taaResaBisName}">스시소요 관리자</td>
+                                <td  th:text="${talk.prIdx}">스시소요 관리자</td>
                                 <td th:text="${talk.regDate}">2022.12.16</td>
                                 <td><a th:href="'/message/detail/'+${talk.taaIdx}"><button class="btn btn-light">상세 보기</button></a></td>
                             </tr>

@@ -138,6 +138,7 @@ public class PageController {
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), talks.getTotalPages());
         ModelAndView view = new ModelAndView("/message");
         view.addObject("talks", talks);
+        System.out.println(talks);
         view.addObject("paginationBarNumbers",barNumbers);
         return view;
     }
