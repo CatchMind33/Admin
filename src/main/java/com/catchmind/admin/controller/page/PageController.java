@@ -60,7 +60,7 @@ public class PageController {
         List<DeclareComment> declareComments = decComRepository.findTop3By();
         List<Profile> profiles = profileRepository.findTop4By();
         Integer rev1 = reserveRepository.countByResMonth("01");
-        Integer rev2 = reserveRepository.countByResMonth("03");
+        Integer rev2 = reserveRepository.countByResMonth("02");
         Integer rev3 = reserveRepository.countByResMonth("03");
         Integer rev4 = reserveRepository.countByResMonth("04");
         Integer rev5 = reserveRepository.countByResMonth("05");
