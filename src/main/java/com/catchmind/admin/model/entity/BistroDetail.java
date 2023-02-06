@@ -23,7 +23,7 @@ public class BistroDetail {
     private String bdCaution;
     private String bdHour;
     private String bdHoliday;
-    private String bdHome;
+    private String bdHomepage;
     @ManyToOne
     @JoinColumn(name="resaBisName")
     private ResAdmin resAdmin;

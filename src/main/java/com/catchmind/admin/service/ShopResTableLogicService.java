@@ -20,7 +20,8 @@ public class ShopResTableLogicService extends BaseService<ShopResTableApiRequest
         ShopResTableApiResponse shopResTableApiResponse = ShopResTableApiResponse.builder()
                 .shopResId(shopResTable.getShopResId())
                 .shopResStatus(shopResTable.getShopResStatus())
-                .shopResDate(shopResTable.getShopResDate())
+                .shopResDay(shopResTable.getShopResDay())
+                .shopResMonth(shopResTable.getShopResMonth())
                 .shopResTime(shopResTable.getShopResTime())
                 .resaBisName(shopResTable.getResAdmin().getResaBisName())
                 .build();
