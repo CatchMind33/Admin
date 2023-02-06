@@ -31,7 +31,7 @@ public class BisDetailLogicService extends BaseService<BisDetailApiRequest, BisD
                 .bdCaution(bistroDetail.getBdCaution())
                 .bdHour(bistroDetail.getBdHour())
                 .bdHoliday(bistroDetail.getBdHoliday())
-                .bdHome(bistroDetail.getBdHome())
+                .bdHomepage(bistroDetail.getBdHomepage())
                 .resaBisName(bistroDetail.getResAdmin().getResaBisName())
                 .bisIdx(bistroDetail.getBistroInfo().getBisIdx())
                 .build();

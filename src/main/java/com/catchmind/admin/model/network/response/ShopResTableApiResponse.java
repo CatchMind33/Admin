@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 public class ShopResTableApiResponse {
     private Long shopResId;
     private String shopResStatus;
-    private String shopResDate;
+    private String shopResMonth;
+    private String shopResDay;
     private String shopResTime;
     private String resaBisName;
 }

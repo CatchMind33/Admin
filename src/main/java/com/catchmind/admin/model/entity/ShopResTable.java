@@ -18,7 +18,8 @@ public class ShopResTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long shopResId;
     private String shopResStatus;
-    private String shopResDate;
+    private String shopResMonth;
+    private String shopResDay;
     private String shopResTime;
     @ManyToOne
     @JoinColumn(name="resaBisName")
