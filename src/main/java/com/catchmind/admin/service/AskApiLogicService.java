@@ -2,7 +2,6 @@ package com.catchmind.admin.service;
 
 
 import com.catchmind.admin.model.entity.Ask;
-import com.catchmind.admin.model.entity.Profile;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.AskApiRequest;
 import com.catchmind.admin.model.network.response.AskApiResponse;
@@ -13,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,7 +25,7 @@ public class AskApiLogicService extends BaseService<AskApiRequest, AskApiRespons
         .askIdx(ask.getAskIdx())
         .askTitle(ask.getAskTitle())
         .askContent(ask.getAskContent())
-        .askAnswer(ask.getAskAnswer()).prIdx(ask.getPrIdx())
+        .askAnswer(ask.getAskAnswer()).prIdx(ask.getPrIdx()).askStatus(ask.isAskStatus())
         .build();
         return askApiResponse;
     }
@@ -39,6 +37,7 @@ public class AskApiLogicService extends BaseService<AskApiRequest, AskApiRespons
 
         Ask ask = Ask.builder()
                 .askAnswer(askApiRequest.getAskAnswer())
+                .askStatus(true)
                 .build();
         Ask newAsk = baseRepository.save(ask);
         return Header.OK(response(newAsk));
@@ -55,11 +54,10 @@ public class AskApiLogicService extends BaseService<AskApiRequest, AskApiRespons
     public Header<AskApiResponse> update(Header<AskApiRequest> request) {
         AskApiRequest askApiRequest = request.getData();
             Optional<Ask> asks = askRepository.findByAskIdx(askApiRequest.getAskIdx());
-    //        System.out.println("idx는" + noticeApiRequest.getNoIdx());
-    //        System.out.println("notices는" + notices);
             return asks.map(
                             user -> {
                                 user.setAskAnswer(askApiRequest.getAskAnswer());
+                                user.setAskStatus(true);
                                 return user;
                             }).map(user -> baseRepository.save(user))
                     .map(user -> response(user))

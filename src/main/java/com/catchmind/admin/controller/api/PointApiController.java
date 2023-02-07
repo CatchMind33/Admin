@@ -7,7 +7,10 @@ import com.catchmind.admin.model.network.request.PointApiRequest;
 import com.catchmind.admin.model.network.response.PointApiResponse;
 import com.catchmind.admin.service.PointApiLogicService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/point")    // http://localhost:8888/api/restAdmin

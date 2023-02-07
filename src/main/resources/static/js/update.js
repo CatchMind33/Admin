@@ -1,12 +1,16 @@
-window.onload = function(){
-    const btn = document.getElementById('update_btn');
-    btn.addEventListener('click', sendit);
-}
+// window.onload = function(){
+//     const btn = document.getElementById('update_btn');
+//     btn.addEventListener('click', updateit);
+// }
 
-function sendit(){
+function updateit(){
     const noTitle = document.getElementById('noTitle');
      const noIdx = document.getElementById('notice_update');
     const noContent = document.getElementById('noContent');
+    console.log(noTitle)
+    console.log(noIdx)
+    console.log(noContent)
+
     if(noTitle.value == ''){
         alert('제목을 입력하세요');
         noTitle.focus()
@@ -21,8 +25,7 @@ function sendit(){
     }
 
 
-
-    fetch('http://localhost:7070/api', {
+    fetch('http://localhost:7070/api/update', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

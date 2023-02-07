@@ -1,11 +1,7 @@
 package com.catchmind.admin.service;
 
-import com.catchmind.admin.model.entity.BistroDetail;
-import com.catchmind.admin.model.entity.BistroInfo;
 import com.catchmind.admin.model.entity.Facility;
-import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.network.Header;
-import com.catchmind.admin.model.network.request.BisDetailApiRequest;
 import com.catchmind.admin.model.network.request.FacilityApiRequest;
 import com.catchmind.admin.model.network.response.FacilityApiResponse;
 import com.catchmind.admin.repository.BistroInfoRepository;

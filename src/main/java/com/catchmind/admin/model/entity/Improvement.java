@@ -4,7 +4,10 @@ import com.catchmind.admin.model.config.AuditableUpdate;
 import com.catchmind.admin.model.config.BaseEntityUpdate;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Data
@@ -21,6 +24,6 @@ public class Improvement extends BaseEntityUpdate implements AuditableUpdate {
     private String impContent;
     private Long prIdx;
     private String impAnswer;
-    private String impStatus;
+    private boolean impStatus;
 
 }

@@ -15,6 +15,6 @@ public class AskApiResponse {
     private String askContent;
     private Long prIdx;
     private String askAnswer;
-    private String askStatus;
+    private boolean askStatus;
 }
 

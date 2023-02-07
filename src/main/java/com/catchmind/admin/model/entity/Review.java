@@ -1,7 +1,6 @@
 package com.catchmind.admin.model.entity;
 
 import com.catchmind.admin.model.config.AuditableUpdate;
-import com.catchmind.admin.model.config.BaseEntity;
 import com.catchmind.admin.model.config.BaseEntityUpdate;
 import lombok.*;
 

@@ -16,7 +16,7 @@ public class ImpApiResponse {
     private String impContent;
     private Long prIdx;
     private String impAnswer;
-    private String impStatus;
+    private boolean impStatus;
 
 
 }

@@ -1,6 +1,5 @@
 package com.catchmind.admin.model.entity;
 
-import com.catchmind.admin.model.config.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

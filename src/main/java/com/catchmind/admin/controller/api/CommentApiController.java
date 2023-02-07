@@ -9,6 +9,7 @@ import com.catchmind.admin.service.CommentApiLogicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,8 +19,8 @@ public class CommentApiController extends CrudController<CommentApiRequest, Comm
     private final CommentApiLogicService commentApiLogicService;
 
     @GetMapping("/delete")
-    public Header<CommentApiResponse> deleteok(Long idx){
-        return commentApiLogicService.deleteok(idx);
+    public Header<CommentApiResponse> deleteok(@RequestParam("idx") Long idx, @RequestParam("revIdx") Long revIdx){
+        return commentApiLogicService.deleteok(idx, revIdx);
     }
 
 }

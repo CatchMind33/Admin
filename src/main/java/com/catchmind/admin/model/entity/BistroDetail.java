@@ -1,8 +1,9 @@
 package com.catchmind.admin.model.entity;
 
-import com.catchmind.admin.model.config.Auditable;
-import com.catchmind.admin.model.config.BaseEntity;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -27,7 +28,5 @@ public class BistroDetail {
     @ManyToOne
     @JoinColumn(name="resaBisName")
     private ResAdmin resAdmin;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="bis_idx")
-    private BistroInfo bistroInfo;
+    private Long bisIdx;
 }

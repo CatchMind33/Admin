@@ -2,7 +2,6 @@ package com.catchmind.admin.model.entity;
 
 import com.catchmind.admin.model.config.Auditable;
 import com.catchmind.admin.model.config.BaseEntity;
-import com.catchmind.admin.model.config.BaseEntityUpdate;
 import lombok.*;
 
 import javax.persistence.Entity;

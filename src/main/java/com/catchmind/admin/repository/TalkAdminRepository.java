@@ -1,6 +1,5 @@
 package com.catchmind.admin.repository;
 
-import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.entity.TalkAdmin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
