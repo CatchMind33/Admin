@@ -32,7 +32,7 @@ public class RestAdminApiController extends CrudController<ResAdminApiRequest, R
 
     @PostMapping("/bistro")
     public Header<BisInfoApiResponse> insert(@RequestBody Header<BisInfoApiRequest> request) {
-        return bisInfoApiLogicService.create(request);
+       return bisInfoApiLogicService.create(request);
     }
 
     @PostMapping("/detail")
@@ -44,6 +44,7 @@ public class RestAdminApiController extends CrudController<ResAdminApiRequest, R
     public Header<TotalTableApiResponse> total(@RequestBody Header<TotalTableApiRequest> request) {
         return totalTableLogicService.create(request);
     }
+
     @PostMapping("/fac")
     public Header<FacilityApiResponse> fac(@RequestBody Header<FacilityApiRequest> request) {
         return facilityApiLogicService.create(request);

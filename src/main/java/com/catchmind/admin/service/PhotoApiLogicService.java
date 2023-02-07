@@ -26,6 +26,8 @@ public class PhotoApiLogicService extends BaseService<PhotoApiRequest, PhotoApiR
         return photoApiResponse;
     }
 
+
+
     @Override
     public Header<PhotoApiResponse> create(Header<PhotoApiRequest> request) {
         PhotoApiRequest photoApiRequest = request.getData();

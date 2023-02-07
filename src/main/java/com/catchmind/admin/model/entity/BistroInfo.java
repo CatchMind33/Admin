@@ -4,7 +4,10 @@ import com.catchmind.admin.model.config.Auditable;
 import com.catchmind.admin.model.config.BaseEntity;
 import lombok.*;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 @Entity
@@ -19,9 +22,7 @@ public class BistroInfo extends BaseEntity implements Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bisIdx;
-    @ManyToOne
-    @JoinColumn(name="resaBisName")
-    private ResAdmin resAdmin;
+    private String resaBisName;
     private String bisDesc;
     private String bisCategory;
     private String bisRegion;

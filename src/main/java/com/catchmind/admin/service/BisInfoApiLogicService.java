@@ -1,7 +1,6 @@
 package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.BistroInfo;
-import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.BisInfoApiRequest;
 import com.catchmind.admin.model.network.response.BisInfoApiResponse;
@@ -17,7 +16,7 @@ public class BisInfoApiLogicService extends BaseService<BisInfoApiRequest, BisIn
     private BisInfoApiResponse response(BistroInfo bisInfo) {
         BisInfoApiResponse bisInfoApiResponse = BisInfoApiResponse.builder()
                 .bisIdx(bisInfo.getBisIdx())
-                .resaBisName(bisInfo.getResAdmin().getResaBisName())
+                .resaBisName(bisInfo.getResaBisName())
                 .bisDesc(bisInfo.getBisDesc())
                 .bisCategory(bisInfo.getBisCategory())
                 .bisRegion(bisInfo.getBisRegion())
@@ -27,11 +26,12 @@ public class BisInfoApiLogicService extends BaseService<BisInfoApiRequest, BisIn
                 .build();
         return bisInfoApiResponse;
     }
+
     @Override
     public Header<BisInfoApiResponse> create(Header<BisInfoApiRequest> request) {
         BisInfoApiRequest bisInfoApiRequest = request.getData();
         BistroInfo bistroInfo = BistroInfo.builder()
-                .resAdmin(ResAdmin.builder().resaBisName(bisInfoApiRequest.getResaBisName()).build())
+                .resaBisName(bisInfoApiRequest.getResaBisName())
                 .build();
         BistroInfo newBisInfo = bistroInfoRepository.save(bistroInfo);
         return Header.OK(response(newBisInfo));

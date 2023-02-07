@@ -1,6 +1,7 @@
 package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.BistroDetail;
+import com.catchmind.admin.model.entity.BistroInfo;
 import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.BisDetailApiRequest;
@@ -34,14 +35,15 @@ public class BisDetailLogicService extends BaseService<BisDetailApiRequest, BisD
         return bisDetailApiResponse;
     }
 
+
     @Override
     public Header<BisDetailApiResponse> create(Header<BisDetailApiRequest> request) {
         BisDetailApiRequest bisDetailApiRequest = request.getData();
         String resaBisName = bisDetailApiRequest.getResaBisName();
-        bistroInfoRepository.findByResAdmin_ResaBisName(resaBisName).ifPresent(
-                searchUser -> bisDetailApiRequest.setBisIdx(searchUser.getBisIdx())
-        );
         System.out.println("식당상세정보 입니다. : "+ bisDetailApiRequest.getBisIdx());
+        BistroInfo findBis = bistroInfoRepository.findByResaBisName(resaBisName);
+        bisDetailApiRequest.setBisIdx(findBis.getBisIdx());
+
         BistroDetail bistroDetail = BistroDetail.builder()
                 .resAdmin(ResAdmin.builder().resaBisName(bisDetailApiRequest.getResaBisName()).build())
                 .bisIdx(bisDetailApiRequest.getBisIdx())
