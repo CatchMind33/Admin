@@ -27,10 +27,10 @@ public class TalkAdminApiController extends CrudController<TalkAdminApiRequest, 
         return profileLogicService.updateBlock(prIdx,prBlock);
     }
 
-    @GetMapping("/point")
-    public Header<TalkAdminApiResponse> point(@RequestParam("idx") Long prIdx, @RequestParam("msg") String taaContent) {
-        return talkAdminApiLogicService.createmsg(taaContent,prIdx);
-    }
+//    @GetMapping("/point")
+//    public Header<TalkAdminApiResponse> point(@RequestParam("idx") Long prIdx, @RequestParam("msg") String taaContent) {
+//        return talkAdminApiLogicService.createmsg(taaContent,prIdx);
+//    }
 
 //    @GetMapping("/adminmsg")
 //    public Header<TalkAdminApiResponse> admin(@RequestParam("name") String resaBisName, @RequestParam("msg") String taaContent) {
@@ -38,8 +38,8 @@ public class TalkAdminApiController extends CrudController<TalkAdminApiRequest, 
 //    }
 
     @GetMapping("/msg")
-    public Header<TalkAdminApiResponse> user(@RequestParam("taaContent") String taaContent,@RequestParam("prIdx") Long prIdx) {
-        return talkAdminApiLogicService.createmsg(taaContent,prIdx);
+    public Header<TalkAdminApiResponse> user(@RequestParam("taaContent") String taaContent,@RequestParam("derNick") String derNick) {
+        return talkAdminApiLogicService.msg(taaContent,derNick);
     }
 
     @PostMapping("/pending")

@@ -6,7 +6,6 @@ import com.catchmind.admin.model.network.request.AdminApiRequest;
 import com.catchmind.admin.model.network.response.AdminApiResponse;
 import com.catchmind.admin.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

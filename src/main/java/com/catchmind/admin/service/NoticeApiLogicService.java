@@ -47,8 +47,6 @@ public class NoticeApiLogicService extends BaseService<NoticeApiRequest, NoticeA
     public Header<NoticeApiResponse> update(Header<NoticeApiRequest> request) {
         NoticeApiRequest noticeApiRequest = request.getData();
         Optional<Notice> notices = noticeRepository.findByNoIdx(noticeApiRequest.getNoIdx());
-//        System.out.println("idx는" + noticeApiRequest.getNoIdx());
-//        System.out.println("notices는" + notices);
         return notices.map(
                         user -> {
                             user.setNoTitle(noticeApiRequest.getNoTitle());

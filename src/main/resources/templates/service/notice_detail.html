@@ -64,7 +64,7 @@
 						<textarea class="textarea" rows="6" placeholder="" th:field="${detail.noContent}" >연말이벤트 공지입니다. 12월 24일부터 25일까지 ~~</textarea>
 
 						<input type="hidden" class="notice_update"  id="notice_update" th:value="${detail.noIdx}" >
-						<button class="btn btn-light pull-right" type="button" id="update_btn">수정</button>
+						<button class="btn btn-light pull-right" type="button" onclick="updateit()">수정</button>
 						<button class="btn btn-light pull-right"  type="button" onclick="history.back();">뒤로가기</button>
 						<div class="clearfix"></div>
 					</div>
@@ -83,6 +83,6 @@
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
-<script src="/js/update.js"/>
+<script src="/js/update.js"></script>
 </body>
 </html>

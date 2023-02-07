@@ -1,18 +1,14 @@
 package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.BistroDetail;
-import com.catchmind.admin.model.entity.BistroInfo;
 import com.catchmind.admin.model.entity.ResAdmin;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.BisDetailApiRequest;
 import com.catchmind.admin.model.network.response.BisDetailApiResponse;
-import com.catchmind.admin.model.network.response.BisInfoApiResponse;
 import com.catchmind.admin.repository.BisDetailRepository;
 import com.catchmind.admin.repository.BistroInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +29,7 @@ public class BisDetailLogicService extends BaseService<BisDetailApiRequest, BisD
                 .bdHoliday(bistroDetail.getBdHoliday())
                 .bdHomepage(bistroDetail.getBdHomepage())
                 .resaBisName(bistroDetail.getResAdmin().getResaBisName())
-                .bisIdx(bistroDetail.getBistroInfo().getBisIdx())
+                .bisIdx(bistroDetail.getBisIdx())
                 .build();
         return bisDetailApiResponse;
     }
@@ -45,11 +41,10 @@ public class BisDetailLogicService extends BaseService<BisDetailApiRequest, BisD
         bistroInfoRepository.findByResAdmin_ResaBisName(resaBisName).ifPresent(
                 searchUser -> bisDetailApiRequest.setBisIdx(searchUser.getBisIdx())
         );
-        System.out.println(bisDetailApiRequest.getBisIdx());
-        System.out.println(bisDetailApiRequest.getResaBisName());
+        System.out.println("식당상세정보 입니다. : "+ bisDetailApiRequest.getBisIdx());
         BistroDetail bistroDetail = BistroDetail.builder()
                 .resAdmin(ResAdmin.builder().resaBisName(bisDetailApiRequest.getResaBisName()).build())
-                .bistroInfo(BistroInfo.builder().bisIdx(bisDetailApiRequest.getBisIdx()).build())
+                .bisIdx(bisDetailApiRequest.getBisIdx())
                 .build();
         BistroDetail newBisDetail = bisDetailRepository.save(bistroDetail);
         return Header.OK(response(newBisDetail));

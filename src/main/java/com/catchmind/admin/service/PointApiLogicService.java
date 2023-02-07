@@ -1,10 +1,8 @@
 package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.Point;
-
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.PointApiRequest;
-
 import com.catchmind.admin.model.network.response.PointApiResponse;
 import com.catchmind.admin.repository.PointRepository;
 import lombok.RequiredArgsConstructor;

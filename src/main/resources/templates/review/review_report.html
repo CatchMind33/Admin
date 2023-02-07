@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>신고 리뷰 및 댓글</title>
+    <title>신고 리뷰</title>
     <!--css 및 라이브러리 링크 시작-->
     <div th:replace="fragment/link :: link"/>
     <!--css 및 라이브러리 링크 끝-->
@@ -44,7 +44,7 @@
                                             번호: [[${review.derIdx}]]</h4>
                                         <p style="display: none" id="prIdx">[[${review.prIdx.prIdx}]]</p>
                                         <p class="social_msg__msg">식당 : [[${review.resaBisName}]]</p>
-                                        <p class="social_msg__msg">리뷰 작성자 : [[${review.derNick}]]</p>
+                                        <p class="social_msg__msg">리뷰 작성자(신고당함) : [[${review.derNick}]]</p>
                                         <p class="social_msg__msg">리뷰 내용 : [[${review.revContent}]]</p>
                                         <hr>
                                         <p class="social_msg__msg">신고 내용 : [[${review.derContent}]] </p>
@@ -69,7 +69,7 @@
                                                     <p>보내는 관리자 : 캐치테이블</p>
                                                     <p><input type="text" id="dercontent" class="input-text message" name="message" placeholder="보낼 메세지를 입력하세요."></p>
                                                     <div>
-                                                        <button onclick="sendadminmsg()" class="btn btn-skyblue">보내기</button>
+                                                        <button th:onclick="sendadminmsg([[${review.derIdx}]],[[${review.derNick}]])" class="btn btn-skyblue">보내기</button>
                                                         <button onclick="cclicked(this)" class="btn btn-light" type="button">닫기</button>
                                                     </div>
                                                 </div>
@@ -121,19 +121,17 @@
                 dv.classList.add("hidden")
             }
 
-            function sendadminmsg() {
-                const prIdx = document.getElementById("prIdx").innerText;
-                const adminMsg = document.getElementById("dercontent");
+            function sendadminmsg(derIdx,derNick) {
+                let taaContent = document.getElementById('dercontent').value;
+                console.log(taaContent);
+                console.log(derNick);
 
-
-                if(adminMsg.value == '') {
+                if(taaContent == '') {
                     alert("메세지를 입력하세요!");
-                    adminMsg.focus();
+                    taaContent.focus();
                     return false;
                 }
-                let data1 = {
-                    prIdx : prIdx,
-                    taaContent : adminMsg.value,}
+                let data1 = {derNick : derNick, taaContent : taaContent}
                 $.ajax({
                     url: "http://localhost:7070/api/talkAdmin/msg",
                     type: "GET",

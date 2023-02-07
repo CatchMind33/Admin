@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class TalkAdminApiRequest {
-    private String taaNick;
+    private String derNick;
     private String taaContent;
 
 }

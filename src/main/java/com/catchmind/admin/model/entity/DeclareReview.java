@@ -22,8 +22,8 @@ public class DeclareReview extends BaseEntity implements Auditable {
     private Review review;
     @ManyToOne
     @JoinColumn(name="prIdx")
-    private Profile profile;
+    private Profile profile;        // 신고함
     private String derTitle;
-    private String derNick;
+    private String derNick;     // 신고당함
     private String derContent;
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>신고 리뷰 및 댓글</title>
+    <title>신고 댓글</title>
     <!--css 및 라이브러리 링크 시작-->
     <div th:replace="fragment/link :: link"/>
     <!--css 및 라이브러리 링크 끝-->
@@ -51,7 +51,8 @@
                                     <div class="media-body">
                                         <h4 class="media-heading social_msg__heading">댓글 번호 :<span id="comidx">[[${comments.comIdx}]]</span> / 신고
                                             번호 : [[${comments.decIdx}]]</h4>
-                                        <p class="social_msg__msg">댓글 작성자 회원번호 : <span id="prIdx">[[${comments.Profile.prIdx}]]</span></p>
+                                        <input type="hidden" id="revIdx" th:value="${comments.revIdx}">
+                                        <p class="social_msg__msg">댓글 작성자 닉네임 : <span id="prIdx">[[${comments.decNick}]]</span></p>
 
                                         <p class="social_msg__msg">댓글 내용 : [[${comments.comContent}]]</p>
                                         <hr>
@@ -77,7 +78,7 @@
                                                     <p>보내는 관리자 : 캐치테이블</p>
                                                     <p><input type="text" id="dercontent" class="input-text message" name="message" placeholder="보낼 메세지를 입력하세요."></p>
                                                     <div>
-                                                        <button onclick="sendadminmsg()" class="btn btn-skyblue">보내기</button>
+                                                        <button th:onclick="sendadminmsg([[${comments.comIdx}]],[[${comments.decNick}]])" class="btn btn-skyblue">보내기</button>
                                                         <button onclick="cclicked(this)" class="btn btn-light" type="button">닫기</button>
                                                     </div>
                                                 </div>
@@ -133,8 +134,7 @@
         }
 
 
-        function sendadminmsg() {
-            const prIdx = document.getElementById("prIdx").innerText;
+        function sendadminmsg(comIdx, derNick) {
             const adminMsg = document.getElementById("dercontent");
 
 
@@ -144,7 +144,7 @@
                 return false;
             }
             let data1 = {
-                prIdx : prIdx,
+                derNick : derNick,
                 taaContent : adminMsg.value,}
             $.ajax({
                 url: "http://localhost:7070/api/talkAdmin/msg",
@@ -172,8 +172,8 @@
 
         function deletething(){
             let idx = document.querySelector("#comidx").innerText;
-            let data1 = {
-                idx : idx}
+            let revIdx = document.querySelector("#revIdx").value
+            let data1 = {idx : idx, revIdx : revIdx}
             $.ajax({
                 url: "http://localhost:7070/api/comment/delete",
                 type: "GET",
