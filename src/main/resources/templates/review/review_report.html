@@ -67,10 +67,17 @@
                                                     <p>작성자 : <span id="dernick">[[${review.derNick}]]</span></p>
                                                     <p>식당 : [[${review.resaBisName}]]</p>
                                                     <p>보내는 관리자 : 캐치테이블</p>
-                                                    <p><input type="text" id="dercontent" class="input-text message" name="message" placeholder="보낼 메세지를 입력하세요."></p>
+                                                    <p><textarea type="text"
+                                                                 th:class="'input-text message dercontent'+${review.derIdx}"
+                                                                 name="message" placeholder="보낼 메세지를 입력하세요."></textarea>
+                                                    </p>
                                                     <div>
-                                                        <button th:onclick="sendadminmsg([[${review.derIdx}]],[[${review.derNick}]])" class="btn btn-skyblue">보내기</button>
-                                                        <button onclick="cclicked(this)" class="btn btn-light" type="button">닫기</button>
+                                                        <button th:onclick="sendadminmsg([[${review.derIdx}]],[[${review.derNick}]])"
+                                                                class="btn btn-skyblue">보내기
+                                                        </button>
+                                                        <button onclick="cclicked(this)" class="btn btn-light"
+                                                                type="button">닫기
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -89,101 +96,107 @@
         </div> <!--/row-->
         <!--페이징 처리-->
         <div class="page_wrap">
-                <div class="page_nation" aria-label="Page navigation example">
-                    <a th:href="@{/review/report(page=${decReviews.number - 1})}"
-                       th:class="'page-prev' + (${decReviews.number} <= 0 ? ' page-disabled':'')"></a>
-                    <span th:each="pageNumber : ${paginationBarNumbers}">
+            <div class="page_nation" aria-label="Page navigation example">
+                <a th:href="@{/review/report(page=${decReviews.number - 1})}"
+                   th:class="'page-prev' + (${decReviews.number} <= 0 ? ' page-disabled':'')"></a>
+                <span th:each="pageNumber : ${paginationBarNumbers}">
                         <a th:text="${pageNumber + 1}" th:href="@{/review/report(page=${pageNumber})}"
                            th:class="(${pageNumber} == ${decReviews.number} ? 'active' : '')">1</a></span>
-                    <a th:href="@{/review/report(page=${decReviews.number + 1})}" th:class="'page-next' +
+                <a th:href="@{/review/report(page=${decReviews.number + 1})}" th:class="'page-next' +
                     (${decReviews.number} >= ${decReviews.totalPages - 1} ? '':' page-disabled')"></a>
-                </div>
+            </div>
         </div>
         <!--페이징 끝-->
     </section>
     <!--    footer 시작-->
     <div th:replace="fragment/footer :: footer"/>
     <!--    footer 끝-->
-    </div> <!-- /wrapper -->
+</div> <!-- /wrapper -->
 
-    <!--js 연결 시작-->
-    <div th:replace="fragment/js :: js"/>
-    <!--js 연결 끝-->
-        <script>
-            function clicked(event){
-                let dv = event.parentNode.parentNode.parentNode.childNodes[3];
-                console.log(dv)
-                dv.classList.remove("hidden")
-            }
-            function cclicked(event){
-                let dv = event.parentNode.parentNode.parentNode.parentNode.parentNode;
-                console.log(dv)
-                dv.classList.add("hidden")
-            }
+<!--js 연결 시작-->
+<div th:replace="fragment/js :: js"/>
+<!--js 연결 끝-->
+<script>
+    function clicked(event) {
+        let dv = event.parentNode.parentNode.parentNode.childNodes[3];
+        console.log(dv)
+        dv.classList.remove("hidden")
+    }
 
-            function sendadminmsg(derIdx,derNick) {
-                let taaContent = document.getElementById('dercontent').value;
-                console.log(taaContent);
-                console.log(derNick);
+    function cclicked(event) {
+        let dv = event.parentNode.parentNode.parentNode.parentNode.parentNode;
+        console.log(dv)
+        dv.classList.add("hidden")
+    }
 
-                if(taaContent == '') {
-                    alert("메세지를 입력하세요!");
-                    taaContent.focus();
-                    return false;
+    function sendadminmsg(derIdx, derNick) {
+        let taaContent = document.querySelector('.dercontent' + derIdx);
+        console.log(taaContent.value);
+        console.log(derNick);
+
+        if (taaContent == '') {
+            alert("메세지를 입력하세요!");
+            taaContent.focus();
+            return false;
+        }
+        let data1 = {derNick: derNick, taaContent: taaContent.value}
+        $.ajax({
+            url: "http://localhost:7070/api/talkAdmin/msg",
+            type: "GET",
+            dataType: "json",
+            processData: true,
+            contentType: "application/json; charset=UTF-8",
+            data: data1,
+            success: function (result) {
+                if (result) {
+                    console.log(result)
+                    alert('메세지 보내기 완료!');
+                    location.href = '/review/report';
+                } else {
+                    alert("전송된 값 없음");
                 }
-                let data1 = {derNick : derNick, taaContent : taaContent}
-                $.ajax({
-                    url: "http://localhost:7070/api/talkAdmin/msg",
-                    type: "GET",
-                    dataType: "json",
-                    processData: true,
-                    contentType: "application/json; charset=UTF-8",
-                    data: data1,
-                    success: function(result) {
-                        if (result) {
-                            console.log(result)
-                            alert('업데이트 성공!');
-                            location.href='/review/report';
-                            // itemList1.itemList1 = result.data;
-                            // if(!document.querySelector('#check1').innerText){
-                            //     itemList1.boolean1 = true;}
-                        } else {
-                            alert("전송된 값 없음");
-                        }
-                    },
-                    error: function() {
-                        alert("에러 발생");
-                    }
-                });}
-
-            function deletething(){
-                let idx = document.querySelector("#revidx").innerText;
-                let data1 = {
-                    idx : idx}
-                $.ajax({
-                    url: "http://localhost:7070/api/review/delete",
-                    type: "GET",
-                    dataType: "json",
-                    processData: true,
-                    contentType: "application/json; charset=UTF-8",
-                    data: data1,
-                    success: function(result) {
-                        if (result) {
-                            console.log(result)
-                            alert('삭제!');
-                            location.href='/review/report';
-                            // itemList1.itemList1 = result.data;
-                            // if(!document.querySelector('#check1').innerText){
-                            //     itemList1.boolean1 = true;}
-                        } else {
-                            alert("전송된 값 없음");
-                        }
-                    },
-                    error: function() {
-                        alert("에러 발생");
-                    }
-                })
+            },
+            error: function () {
+                alert("에러 발생");
             }
-        </script>
-    </body>
+        });
+    }
+
+    function deletething() {
+        let idx = document.querySelector("#revidx").innerText;
+        let data1 = {
+            idx: idx
+        }
+        if (confirm("해당 유저의 리뷰를 삭제하시겠습니까?")) {
+            $.ajax({
+                url: "http://localhost:7070/api/review/delete",
+                type: "GET",
+                dataType: "json",
+                processData: true,
+                contentType: "application/json; charset=UTF-8",
+                data: data1,
+                success: function (result) {
+                    if (result) {
+                        console.log(result)
+                        alert('삭제!');
+                        location.href = '/review/report';
+                        // itemList1.itemList1 = result.data;
+                        // if(!document.querySelector('#check1').innerText){
+                        //     itemList1.boolean1 = true;}
+                    } else {
+                        alert("전송된 값 없음");
+                    }
+                },
+                error: function () {
+                    alert("에러 발생");
+                }
+            })
+
+        } else {
+            alert('다시 확인해주세요..')
+        }
+
+    }
+</script>
+</body>
 </html>

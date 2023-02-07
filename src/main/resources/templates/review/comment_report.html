@@ -13,6 +13,7 @@
     .display {
         display: block;
     }
+
     .none {
         display: none;
     }
@@ -49,10 +50,12 @@
                             <div class="tabs__content--2">
                                 <div class="media social_msg" th:each="comments : ${decComs}">
                                     <div class="media-body">
-                                        <h4 class="media-heading social_msg__heading">댓글 번호 :<span id="comidx">[[${comments.comIdx}]]</span> / 신고
+                                        <h4 class="media-heading social_msg__heading">댓글 번호 :<span id="comidx">[[${comments.comIdx}]]</span>
+                                            / 신고
                                             번호 : [[${comments.decIdx}]]</h4>
                                         <input type="hidden" id="revIdx" th:value="${comments.revIdx}">
-                                        <p class="social_msg__msg">댓글 작성자 닉네임 : <span id="prIdx">[[${comments.decNick}]]</span></p>
+                                        <p class="social_msg__msg">댓글 작성자 닉네임 : <span
+                                                id="prIdx">[[${comments.decNick}]]</span></p>
 
                                         <p class="social_msg__msg">댓글 내용 : [[${comments.comContent}]]</p>
                                         <hr>
@@ -76,10 +79,16 @@
                                                         번호 : [[${comments.decIdx}]]</h4>
                                                     <p>댓글 작성자 : <span id="dernick">[[${comments.decNick}]]</span></p>
                                                     <p>보내는 관리자 : 캐치테이블</p>
-                                                    <p><input type="text" id="dercontent" class="input-text message" name="message" placeholder="보낼 메세지를 입력하세요."></p>
+                                                    <p><textarea type="text" th:id="'dercontent'+${comments.comIdx}"
+                                                                 class="input-text message" name="message"
+                                                                 placeholder="보낼 메세지를 입력하세요."></textarea></p>
                                                     <div>
-                                                        <button th:onclick="sendadminmsg([[${comments.comIdx}]],[[${comments.decNick}]])" class="btn btn-skyblue">보내기</button>
-                                                        <button onclick="cclicked(this)" class="btn btn-light" type="button">닫기</button>
+                                                        <button th:onclick="sendadminmsg([[${comments.comIdx}]],[[${comments.decNick}]])"
+                                                                class="btn btn-skyblue">보내기
+                                                        </button>
+                                                        <button onclick="cclicked(this)" class="btn btn-light"
+                                                                type="button">닫기
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,81 +108,84 @@
         </div> <!--/row-->
         <!--페이징 처리-->
         <div class="page_wrap">
-                <div class="page_nation" aria-label="Page navigation example">
-                    <a th:href="@{/review/comment/report(page=${decComs.number - 1})}"
-                       th:class="'page-prev' + (${decComs.number} <= 0 ? ' page-disabled':'')"></a>
-                    <span th:each="pageNumber : ${paginationBarNumbers}">
+            <div class="page_nation" aria-label="Page navigation example">
+                <a th:href="@{/review/comment/report(page=${decComs.number - 1})}"
+                   th:class="'page-prev' + (${decComs.number} <= 0 ? ' page-disabled':'')"></a>
+                <span th:each="pageNumber : ${paginationBarNumbers}">
                         <a th:text="${pageNumber + 1}" th:href="@{/review/comment/report(page=${pageNumber})}"
                            th:class="(${pageNumber} == ${decComs.number} ? 'active' : '')">1</a></span>
-                    <a th:href="@{/review/comment/report(page=${decComs.number + 1})}" th:class="'page-next' +
+                <a th:href="@{/review/comment/report(page=${decComs.number + 1})}" th:class="'page-next' +
                     (${decComs.number} >= ${decComs.totalPages - 1} ? '':' page-disabled')"></a>
-                </div>
             </div>
+        </div>
         <!--페이징 끝-->
     </section>
     <!--    footer 시작-->
     <div th:replace="fragment/footer :: footer"/>
     <!--    footer 끝-->
-    <div th:replace="fragment/review_modal :: review_modal"></div>
 </div> <!-- /wrapper -->
 
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
 <!--js 연결 끝-->
 
-    <script>
-        function clicked(event){
-            let dv = event.parentNode.parentNode.parentNode.childNodes[3];
-            console.log(dv)
-            dv.classList.remove("hidden")
+<script>
+    function clicked(event) {
+        let dv = event.parentNode.parentNode.parentNode.childNodes[3];
+        console.log(dv)
+        dv.classList.remove("hidden")
+    }
+
+    function cclicked(event) {
+        let dv = event.parentNode.parentNode.parentNode.parentNode.parentNode;
+        console.log(dv)
+        dv.classList.add("hidden")
+    }
+
+
+    function sendadminmsg(comIdx, derNick) {
+        const adminMsg = document.getElementById("dercontent" + comIdx);
+
+
+        if (adminMsg.value == '') {
+            alert("메세지를 입력하세요!");
+            adminMsg.focus();
+            return false;
         }
-        function cclicked(event){
-            let dv = event.parentNode.parentNode.parentNode.parentNode.parentNode;
-            console.log(dv)
-            dv.classList.add("hidden")
+        let data1 = {
+            derNick: derNick,
+            taaContent: adminMsg.value,
         }
-
-
-        function sendadminmsg(comIdx, derNick) {
-            const adminMsg = document.getElementById("dercontent");
-
-
-            if(adminMsg.value == '') {
-                alert("메세지를 입력하세요!");
-                adminMsg.focus();
-                return false;
-            }
-            let data1 = {
-                derNick : derNick,
-                taaContent : adminMsg.value,}
-            $.ajax({
-                url: "http://localhost:7070/api/talkAdmin/msg",
-                type: "GET",
-                dataType: "json",
-                processData: true,
-                contentType: "application/json; charset=UTF-8",
-                data: data1,
-                success: function(result) {
-                    if (result) {
-                        console.log(result)
-                        alert('업데이트 성공!');
-                        location.href='/review/comment/report';
-                        // itemList1.itemList1 = result.data;
-                        // if(!document.querySelector('#check1').innerText){
-                        //     itemList1.boolean1 = true;}
-                    } else {
-                        alert("전송된 값 없음");
-                    }
-                },
-                error: function() {
-                    alert("에러 발생");
+        $.ajax({
+            url: "http://localhost:7070/api/talkAdmin/msg",
+            type: "GET",
+            dataType: "json",
+            processData: true,
+            contentType: "application/json; charset=UTF-8",
+            data: data1,
+            success: function (result) {
+                if (result) {
+                    console.log(result)
+                    alert('업데이트 성공!');
+                    location.href = '/review/comment/report';
+                    // itemList1.itemList1 = result.data;
+                    // if(!document.querySelector('#check1').innerText){
+                    //     itemList1.boolean1 = true;}
+                } else {
+                    alert("전송된 값 없음");
                 }
-            });}
+            },
+            error: function () {
+                alert("에러 발생");
+            }
+        });
+    }
 
-        function deletething(){
-            let idx = document.querySelector("#comidx").innerText;
-            let revIdx = document.querySelector("#revIdx").value
-            let data1 = {idx : idx, revIdx : revIdx}
+    function deletething() {
+        let idx = document.querySelector("#comidx").innerText;
+        let revIdx = document.querySelector("#revIdx").value
+        let data1 = {idx: idx, revIdx: revIdx}
+        if (confirm("해당 유저의 댓글을 삭제하시겠습니까?")) {
             $.ajax({
                 url: "http://localhost:7070/api/comment/delete",
                 type: "GET",
@@ -181,11 +193,11 @@
                 processData: true,
                 contentType: "application/json; charset=UTF-8",
                 data: data1,
-                success: function(result) {
+                success: function (result) {
                     if (result) {
                         console.log(result)
                         alert('삭제!');
-                        location.href='/review/comment/report';
+                        location.href = '/review/comment/report';
                         // itemList1.itemList1 = result.data;
                         // if(!document.querySelector('#check1').innerText){
                         //     itemList1.boolean1 = true;}
@@ -193,11 +205,16 @@
                         alert("전송된 값 없음");
                     }
                 },
-                error: function() {
+                error: function () {
                     alert("에러 발생");
                 }
             })
+        } else {
+            alert('다시확인해주세요...!')
+
         }
-    </script>
-    </body>
+
+    }
+</script>
+</body>
 </html>

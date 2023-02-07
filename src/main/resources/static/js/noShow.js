@@ -25,7 +25,7 @@ function sendNoshow() {
         success: function(result) {
             if (result) {
                 console.log(result)
-                alert('업데이트 성공!')
+                alert('메세지 전송 성공!')
                 location.href='/user';
                 // itemList1.itemList1 = result.data;
                 // if(!document.querySelector('#check1').innerText){
@@ -48,7 +48,7 @@ function sendNoshow() {
         success: function(result) {
             if (result) {
                 console.log(result)
-                alert('업데이트 성공!')
+                // alert('업데이트 성공!')
                 // itemList1.itemList1 = result.data;
                 // if(!document.querySelector('#check1').innerText){
                 //     itemList1.boolean1 = true;}
