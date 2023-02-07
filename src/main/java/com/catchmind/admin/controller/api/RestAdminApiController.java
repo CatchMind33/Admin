@@ -17,7 +17,8 @@ public class RestAdminApiController extends CrudController<ResAdminApiRequest, R
     private final BisInfoApiLogicService bisInfoApiLogicService;
     private final BisDetailLogicService bisDetailLogicService;
     private final TotalTableLogicService totalTableLogicService;
-    private final ShopResTableLogicService shopResTableLogicService;
+    private final PhotoApiLogicService photoApiLogicService;
+    private final FacilityApiLogicService facilityApiLogicService;
 
     @PostMapping("")
     public Header<ResAdminApiResponse> create(@RequestBody Header<ResAdminApiRequest> request) {
@@ -39,15 +40,18 @@ public class RestAdminApiController extends CrudController<ResAdminApiRequest, R
         return bisDetailLogicService.create(request);
     }
 
-    @PostMapping("/res")
-    public Header<ShopResTableApiResponse> res(@RequestBody Header<ShopResTableApiRequest> request) {
-        return shopResTableLogicService.create(request);
-
-    }
     @PostMapping("/total")
     public Header<TotalTableApiResponse> total(@RequestBody Header<TotalTableApiRequest> request) {
         return totalTableLogicService.create(request);
     }
+    @PostMapping("/fac")
+    public Header<FacilityApiResponse> fac(@RequestBody Header<FacilityApiRequest> request) {
+        return facilityApiLogicService.create(request);
+    }
 
+    @PostMapping("/photo")
+    public Header<PhotoApiResponse> photo(@RequestBody Header<PhotoApiRequest> request) {
+        return photoApiLogicService.create(request);
+    }
 
 }
