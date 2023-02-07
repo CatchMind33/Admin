@@ -27,7 +27,7 @@ public class BistroDetail {
     @ManyToOne
     @JoinColumn(name="resaBisName")
     private ResAdmin resAdmin;
-    @ManyToOne
-    @JoinColumn(name="bisIdx", referencedColumnName = "bisIdx")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="bis_idx")
     private BistroInfo bistroInfo;
 }
