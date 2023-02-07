@@ -54,7 +54,7 @@
                         <p> 닉네임 : [[${profile.prNick}]] </p>
                         <p> 핸드폰 번호 : [[${profile.prHp}]]</p>
                         <p> 선호 지역 : [[${profile.prRegion}]]</p>
-						<span>블락상태 :</span> <span th:if="${profile.prBlock}==true">블락</span> <span th:if="${profile.prBlock}==false">예약가능</span>
+						<p>블락상태 : <span th:if="${profile.prBlock}==true">블락</span> <span th:if="${profile.prBlock}==false">예약가능</span> </p>
 						<p> 가입 날짜 : [[${profile.regDate}]]</p>
                         	<p>관리자메모</p>
                         	<p><textarea id="prMemo" class="textarea" row="8" cols="12" th:text ="${profile.prMemo}" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
@@ -74,7 +74,7 @@
 						</table>
 						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
 						<button class="btn btn-light pull-right" type="button" onclick="sendMemo()">관리자 메모 등록</button>
-						<button class="modal__open btn btn-light pull-right" type="button">메세지전송</button>
+<!--						<button class="modal__open btn btn-light pull-right" type="button">메세지전송</button>-->
                         <button class="other__modal btn btn-red pull-right" type="button">노쇼 블락</button>
 						<div class="clearfix"></div>
 					</div>
@@ -98,7 +98,7 @@
 <div th:replace="fragment/js :: js"/>
 
 <!--js 연결 끝-->
-<!--<script src="/js/point.js"></script>-->
+
 <script src="/js/prMemo.js"></script>
 <script src="/js/noShow.js"></script>
 <script src="/js/other_modal.js"/>
