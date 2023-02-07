@@ -24,6 +24,7 @@ public class TotalTableLogicService extends BaseService<TotalTableApiRequest, To
                 .build();
         return totalTableApiResponse;
     }
+
     @Override
     public Header<TotalTableApiResponse> create(Header<TotalTableApiRequest> request) {
         TotalTableApiRequest totalTableApiRequest = request.getData();

@@ -5,68 +5,6 @@ window.onload = function () {
 
 let resaBisName = document.getElementById('resa_bis_name').innerText;
 
-// 등록과 동시에 삭제
-function deleteit() {
-    fetch(`http://localhost:7070/api/pending/delete`, {
-
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            "transaction_time": `${new Date()}`,
-            "resultCode": "ok",
-            "description": "정상",
-            "data": {
-                "penBisName": `${resaBisName}`
-            }
-        }),
-    })
-        .then((res) => {
-
-        })
-        .then((data) => {
-            console.log(data);
-
-        })
-        .catch((err) => {
-            alert('에러!!');
-            location.reload();
-
-        });
-
-}
-
-// 식당정보에 식당이름 등록 로직
-function Bistro() {
-    fetch(`http://localhost:7070/api/restAdmin/bistro`, {
-
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            "transaction_time": `${new Date()}`,
-            "resultCode": "ok",
-            "description": "정상",
-            "data": {
-                "resaBisName": `${resaBisName}`
-            }
-        }),
-    })
-        .then((res) => {
-
-        })
-        .then((data) => {
-            console.log(data);
-
-        })
-        .catch((err) => {
-            alert('에러!!');
-            location.reload();
-
-        });
-
-
-}
-
-// 식당 상세정보에 이름 및 식당 정보 등록 로직
 function BisDetail() {
     fetch(`http://localhost:7070/api/restAdmin/detail`, {
 
@@ -186,6 +124,70 @@ function photo() {
 }
 
 
+// 등록과 동시에 삭제
+function deleteit() {
+    fetch(`http://localhost:7070/api/pending/delete`, {
+
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "transaction_time": `${new Date()}`,
+            "resultCode": "ok",
+            "description": "정상",
+            "data": {
+                "penBisName": `${resaBisName}`
+            }
+        }),
+    })
+        .then((res) => {
+
+        })
+        .then((data) => {
+            console.log(data);
+
+        })
+        .catch((err) => {
+            alert('에러!!');
+            location.reload();
+
+        });
+
+}
+
+// 식당정보에 식당이름 등록 로직
+function Bistro() {
+    fetch(`http://localhost:7070/api/restAdmin/bistro`, {
+
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "transaction_time": `${new Date()}`,
+            "resultCode": "ok",
+            "description": "정상",
+            "data": {
+                "resaBisName": `${resaBisName}`
+            }
+        }),
+    })
+        .then((res) => {
+
+        })
+        .then((data) => {
+            console.log(data);
+
+        })
+        .catch((err) => {
+            alert('에러!!');
+            location.reload();
+
+        });
+
+
+}
+
+// 식당 상세정보에 이름 및 식당 정보 등록 로직
+
+
 function sendit() {
     const resaBisName = document.getElementById('resa_bis_name').innerText;
     const resaUserid = document.getElementById('resa_userid');
@@ -218,15 +220,7 @@ function sendit() {
         }),
     })
         .then((res) => {
-            Bistro();
-            photo();
-            total();
-        })
-        .then((res) => {
-            fac();
-        })
-        .then((res) => {
-            BisDetail();
+            resaBis();
         })
         .then((res) => {
             deleteit();
@@ -243,4 +237,13 @@ function sendit() {
 
         });
 }
+const resaBis = async () => {
+    await Bistro()
+    await total()
+    await photo()
+    await fac()
+    await BisDetail()
+}
+
+
 

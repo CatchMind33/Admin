@@ -1,5 +1,6 @@
 package com.catchmind.admin.service;
 
+import com.catchmind.admin.model.entity.BistroInfo;
 import com.catchmind.admin.model.entity.Facility;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.FacilityApiRequest;
@@ -29,13 +30,13 @@ public class FacilityApiLogicService extends BaseService<FacilityApiRequest, Fac
                 .build();
         return facilityApiResponse;
     }
+
     @Override
     public Header<FacilityApiResponse> create(Header<FacilityApiRequest> request) {
         FacilityApiRequest facilityApiRequest = request.getData();
         String resaBisName = facilityApiRequest.getResaBisName();
-        bistroInfoRepository.findByResAdmin_ResaBisName(resaBisName).ifPresent(
-                searchUser -> facilityApiRequest.setBisIdx(searchUser.getBisIdx())
-        );
+        BistroInfo findBis = bistroInfoRepository.findByResaBisName(resaBisName);
+        facilityApiRequest.setBisIdx(findBis.getBisIdx());
         System.out.println("편의시설입니다 : " + facilityApiRequest.getBisIdx());
         Facility facility = Facility.builder()
                 .resaBisName(facilityApiRequest.getResaBisName())
