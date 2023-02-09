@@ -25,7 +25,9 @@ public class AskApiLogicService extends BaseService<AskApiRequest, AskApiRespons
         .askIdx(ask.getAskIdx())
         .askTitle(ask.getAskTitle())
         .askContent(ask.getAskContent())
-        .askAnswer(ask.getAskAnswer()).prIdx(ask.getPrIdx()).askStatus(ask.isAskStatus())
+        .askAnswer(ask.getAskAnswer())
+        .prIdx(ask.getPrIdx()).askStatus(ask.isAskStatus())
+        .askStatus(ask.isAskStatus())
         .build();
         return askApiResponse;
     }
@@ -66,16 +68,6 @@ public class AskApiLogicService extends BaseService<AskApiRequest, AskApiRespons
                     );
 
     }
-//    @Override
-//    public Header<AskApiResponse> update(Header<AskApiRequest> request) {
-//        AskApiRequest askApiRequest = request.getData();
-//
-//        Ask ask = Ask.builder()
-//                .askAnswer(askApiRequest.getAskAnswer())
-//                .build();
-//        Ask newAsk = baseRepository.save(ask);
-//        return Header.OK(response(newAsk));
-//    }
 
     @Override
     public Header<AskApiResponse> delete(Long id) {

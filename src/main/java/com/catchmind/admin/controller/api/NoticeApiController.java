@@ -32,7 +32,7 @@ public class NoticeApiController extends CrudController<NoticeApiRequest,NoticeA
     }
 
     @Override
-    @PostMapping ("") // http://localhost:9999/api/  (put)
+    @PostMapping ("/update") // http://localhost:9999/api/  (put)
     public Header<NoticeApiResponse> update(@RequestBody Header<NoticeApiRequest> request) {
         return noticeApiLogicService.update(request);
     }

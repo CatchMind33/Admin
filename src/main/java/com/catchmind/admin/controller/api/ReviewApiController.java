@@ -19,8 +19,8 @@ public class ReviewApiController extends CrudController<ReviewApiRequest, Review
     private final ReviewLogicService reviewLogicService;
 
     @GetMapping("/delete")
-    public Header<ReviewApiResponse> deleteok(@RequestParam("idx") Long idx){
-        return reviewLogicService.deleteok(idx);
+    public Header<ReviewApiResponse> deleteok(@RequestParam("revIdx") Long revIdx, @RequestParam("resIdx") Long resIdx){
+        return reviewLogicService.deleteok(revIdx, resIdx);
     }
 
 }
