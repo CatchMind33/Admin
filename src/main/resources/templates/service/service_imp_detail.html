@@ -48,21 +48,24 @@
                         <h3 class="widget__title">개선 사항</h3>
                     </header>
 
-                    <div class="widget__content">
-                        제목 : <input type="text" disabled="true" class="input-text value" placeholder=""
-                                    th:field="${imp.impTitle}"/>
+                    <div class="widget__content" style="display: flex">
+                        <div style="width: 125px;line-height: 30px;">제목</div>
+                        <input type="text" disabled="true" class="input-text value" placeholder="" th:field="${imp.impTitle}"/>
                     </div>
-                    <div>
-                        작성자 회원번호 : <input type="text" disabled="true" class="input-text value" th:field="${imp.prIdx}">
+                    <div style="display: flex">
+                        <div style="width: 125px;line-height: 30px;">작성자 회원번호</div>
+                        <input type="text" disabled="true" class="input-text value" th:field="${imp.prIdx}">
                     </div>
-                    <textarea class="textarea" rows="6" disabled="true" placeholder=""
+                    <textarea style="height: 300px;resize: none; margin-left: 125px;width: 1000px;" class="textarea" rows="6" disabled="true" placeholder=""
                               th:field="${imp.impContent}"></textarea>
                     <hr>
-
-                    <span>캐치테이블 : </span> <input type="text" class="input-text value" id="input_imp">
-                    <button class="btn btn-skyblue" id="imp_btn">답글 등록</button>
-                    <input type="hidden" id="imp_idx" th:value="${imp.impIdx}">
-                    <div id="imp_answer" th:text="${imp.impAnswer}"></div>
+                    <div style="display:flex;">
+                        <span style="width: 125px;line-height: 30px;">캐치테이블</span>
+                        <input type="text" class="input-text value" id="input_imp">
+                        <button class="btn btn-skyblue" id="imp_btn" style="margin-top: 0;height: 33px;">답글 등록</button>
+                        <input type="hidden" id="imp_idx" th:value="${imp.impIdx}">
+                    </div>
+                    <div id="imp_answer" th:text="${imp.impAnswer}" style="margin-left: 125px;margin-top: 14px;"></div>
 
                     <div class="clearfix"></div>
                 </article>

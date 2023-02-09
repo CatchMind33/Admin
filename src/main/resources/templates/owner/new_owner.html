@@ -9,6 +9,22 @@
     <div th:replace="fragment/link :: link"/>
     <!--css 및 라이브러리 링크 끝-->
 </head>
+<style>
+    .widget__content > p {
+        margin-bottom: 5px;
+    }
+    tr, th, td {
+        border: 1px solid #cacacaa1;
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    th {
+        width: 35%;
+        background-color: #a2a2a247;
+        font-weight: 800;
+    }
+</style>
 <body>
 <!--header 시작-->
 <div th:replace="fragment/header :: header"/>
@@ -30,25 +46,69 @@
         <div class="row">
             <div class="col-md-4" th:each="pendings :${pendings}"> <!--식당 1개 시작-->
                 <article class="widget shadow">
-                    <header class="widget__header">
-                        <a href="/owner/new/detail"><h3 class="widget__title"><span
-                                th:text="${pendings.penBisName}"></span></h3></a>
-                    </header>
-                    <div class="widget__content">
-                        <p style="display: none" id="penIdx" th:text="${pendings.penIdx}"></p>
-                        <p>문의자 : <span  th:text="${pendings.penName}"></span></p>
-                        <p>문의식당이름 : <span id="penBisName" th:text="${pendings.penBisName}"></span></p>
-                        <p>문의자 번호 : <span th:text="${pendings.penHp}"></span></p>
-                        <p>음식 타입 : <span th:text="${pendings.penFoodtype}"></span></p>
-                        <p>식당 지역 : <span th:text="${pendings.penRegion}"></span></p>
-                        <p>월 평균 예약 수 : <span th:text="${pendings.penBook}"></span></p>
+                    <header class="widget__header" style="display: flex;justify-content: space-between;">
+                        <a href="/owner/new/detail">
+                            <h3 class="widget__title">
+                                <span th:text="${pendings.penBisName}" style="line-height: 45px;font-weight: 800;"></span>
+                            </h3>
+                        </a>
                         <div>
-                            <a th:href="'/owner/new/detail/'+${pendings.penIdx}">
-                                <button class="btn btn-light">승인</button>
+                            <a th:href="'/owner/new/detail/'+${pendings.penIdx}" style="line-height: 45px;">
+                                <button class="btn btn-light" style="padding: 6px 21px;margin: 0;">승인</button>
                             </a>
-                            <button onclick="deletepend()" class="btn btn-red">미승인</button>
+                            <button onclick="deletepend()" class="btn btn-red" style="margin: 0;">미승인</button>
                         </div>
-                    </div>
+                    </header>
+<!--                    <div class="widget__content">-->
+<!--                        <p style="display: none" id="penIdx" th:text="${pendings.penIdx}"></p>-->
+<!--                        <div>-->
+<!--                            <p>문의자 :-->
+<!--                                <span  th:text="${pendings.penName}"></span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                        <p>문의식당이름 : <span id="penBisName" th:text="${pendings.penBisName}"></span></p>-->
+<!--                        <p>문의자 번호 : <span th:text="${pendings.penHp}"></span></p>-->
+<!--                        <p>음식 타입 : <span th:text="${pendings.penFoodtype}"></span></p>-->
+<!--                        <p>식당 지역 : <span th:text="${pendings.penRegion}"></span></p>-->
+<!--                        <p>월 평균 예약 수 : <span th:text="${pendings.penBook}"></span></p>-->
+<!--                        <div>-->
+<!--                            <a th:href="'/owner/new/detail/'+${pendings.penIdx}">-->
+<!--                                <button class="btn btn-light">승인</button>-->
+<!--                            </a>-->
+<!--                            <button onclick="deletepend()" class="btn btn-red">미승인</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <table style="border: 1px solid #cacacaa1;min-width: 100%;">
+                        <p style="display: none" id="penIdx" th:text="${pendings.penIdx}"></p>
+                        <tbody>
+                        <tr>
+                            <th scope="row">문의자</th>
+                            <td th:text="${pendings.penName}"></td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">문의식당이름</th>
+                            <td id="penBisName" th:text="${pendings.penBisName}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">문의자 번호</th>
+                            <td th:text="${pendings.penHp}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">음식 타입</th>
+                            <td th:text="${pendings.penFoodtype}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">식당 지역</th>
+                            <td th:text="${pendings.penRegion}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">월 평균 예약 수</th>
+                            <td th:text="${pendings.penBook}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
                 </article><!-- /widget -->
             </div> <!-- /식당 1개 끝 -->
         </div>

@@ -93,27 +93,27 @@
                                 <th class="no_title">공지 제목</th>
                                 <th class="no_content">공지 내용</th>
                                 <th class="regdate">등록일</th>
-                                <th class="btn">관리</th>
+                                <th class="btn" style="margin: 0;">관리</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="notice :${notices}">
-                                <td class="no_idx" th:text="${notice.noIdx}">1</td>
+                                <td class="no_idx" th:text="${notice.noIdx}" style="padding-left: 34px;">1</td>
                                 <td class="no_title" th:text="${notice.noTitle}">이벤트 공지</td>     <!-- 들어가면 상세페이지로 -->
                                 <td class="no_content" th:text="${notice.noContent}">연말이벤트~</td>
-                                <td class="regdate" th:text="${notice.regDate}">2022.12.15</td>
+                                <td class="regdate" th:text="${#temporals.format(notice.regDate, 'yyyy-MM-dd')}">2022.12.15</td>
                                 <td>
                                     <a th:href="'/service/notice/detail/'+${notice.noIdx}">
                                         <button class="btn btn-light">수정</button>
                                     </a>
-                                    <button th:onclick="'deleteit('+${notice.noIdx}+')'" class="btn btn-red">
+                                    <button th:onclick="'deleteit('+${notice.noIdx}+')'" class="btn btn-red" style="margin: 0;">
                                         삭제
                                     </button>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                        <div class="notice_write">
+                        <div class="notice_write" style="text-align: right;">
                             <a href="/service/notice/write">
                                 <button class="btn btn-light">작성하기</button>
                             </a>

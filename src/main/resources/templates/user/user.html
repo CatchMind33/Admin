@@ -79,28 +79,37 @@
         <div class="row"> <!--회원 시작-->
             <div class="col-md-4" id="" th:each="profile : ${profiles}">
                 <article class="widget shadow">
-                    <header class="widget__header">
-                        <a href="/user/detail"><h3 class="widget__title">회원번호 : [[${profile.prIdx}]]</h3></a>
-                    </header>
-                    <div class="widget__content">
-                        <p>[[${profile.prName}]] / [[${profile.prNick}]]</p>
-                        <p>핸드폰 번호 : [[${profile.prHp}]]</p>
-                        <p>활동 지역 : [[${profile.prRegion}]]</p>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>노쇼</th>
-                            </tr>
-                            </thead>
-                            <tr>
-                                <td>[[${profile.prNoshow}]]</td>
-                            </tr>
-                        </table>
-                        <div>
+                    <header class="widget__header" style="display:flex;justify-content: space-between;">
+                        <a href="/user/detail" style="line-height: 40px;">
+                            <h3 class="widget__title">회원번호 : [[${profile.prIdx}]]</h3>
+                        </a>
+                        <div style="text-align: -webkit-right;">
                             <a th:href="'/user/detail/'+${profile.prIdx}">
                                 <button class="btn btn-light">상세보기</button>
                             </a>
                         </div>
+                    </header>
+                    <div class="widget__content">
+                        <div style="display: flex;justify-content: space-between;">
+                            <div>
+                                <p>[[${profile.prName}]] / [[${profile.prNick}]]</p>
+                                <p>핸드폰 번호 : [[${profile.prHp}]]</p>
+                                <p>활동 지역 : [[${profile.prRegion}]]</p>
+                            </div>
+                            <div style="width: 180px;">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th style="padding: 0;text-align: center;">노쇼</th>
+                                    </tr>
+                                    </thead>
+                                    <tr>
+                                        <td style="padding: 6px;text-align: center;">[[${profile.prNoshow}]]</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                 </article><!-- /widget -->
             </div> <!-- /회원 한명 끝 -->

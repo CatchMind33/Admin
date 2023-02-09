@@ -8,6 +8,19 @@
     <!--css 및 라이브러리 링크 시작-->
     <div th:replace="fragment/link :: link"/>
     <!--css 및 라이브러리 링크 끝-->
+    <style>
+        tr, th, td {
+            border: 1px solid #cacacaa1;
+            padding: 14px;
+            font-size: 15px;
+        }
+
+        th {
+            width: 8%;
+            background-color: #a2a2a247;
+            font-weight: 800;
+        }
+    </style>
 </head>
 <body>
 <!--header 시작-->
@@ -30,28 +43,50 @@
             <div class="col-md-12">
                 <article class="widget widget--tabbed shadow">
                     <div class="tabs">
-                        <div class="number-entries">
-                            <input class="spinner" name="value" value="5"/>
-                        </div>
                         <input type="radio" name="t" id="tab1" checked>
                         <label for="tab1" class="tabs__tab">신고 들어온 리뷰</label>
                         <div class="tabs__content">
                             <!-- 신고들어온 리뷰 -->
                             <div class="tabs__content--1">
-                                <div class="media social_msg" th:each="review: ${decReviews}">
+                                <div class="media social_msg" style="border: 0;" th:each="review: ${decReviews}">
                                     <div class="media-body">
-                                        <h4 class="media-heading social_msg__heading">리뷰 번호 : [[${review.revIdx}]] / 신고
-                                            번호: [[${review.derIdx}]]</h4>
-                                        <p style="display: none" id="prIdx">[[${review.prIdx.prIdx}]]</p>
-                                        <p class="social_msg__msg">식당 : [[${review.resaBisName}]]</p>
-                                        <p class="social_msg__msg">리뷰 작성자(신고당함) : [[${review.derNick}]]</p>
-                                        <p class="social_msg__msg">리뷰 내용 : [[${review.revContent}]]</p>
-                                        <hr>
-                                        <p class="social_msg__msg">신고 내용 : [[${review.derContent}]] </p>
-                                        <p class="social_msg__meta">신고일 : [[${review.regDate}]]</p>
-                                        <div>
-                                            <button onclick="clicked(this)" class="btn btn-skyblue">메세지 보내기</button>
-                                            <button onclick="deletething()" class="btn btn-red">삭제</button>
+                                        <table style="border: 1px solid #cacacaa1;min-width: 100%;">
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">리뷰번호</th>
+                                                <td th:text="${review.revIdx}" style="width:42%"></td>
+                                                <th style="width: 8%;">신고번호</th>
+                                                <td th:text="${review.derIdx}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">식당</th>
+                                                <td th:text="${review.resaBisName}" colspan="3"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">리뷰 작성자</th>
+                                                <td th:text="${review.derNick}" colspan="3"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">보내는 관리자</th>
+                                                <td colspan="3">캐치테이블</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">리뷰 내용</th>
+                                                <td th:text="${review.revContent}" colspan="3"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">신고 내용</th>
+                                                <td th:text="${review.derContent}" colspan="3"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">신고일</th>
+                                                <td th:text="${#temporals.format(review.regDate, 'yyyy-MM-dd')}" colspan="3"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div style="margin: 15px 0;text-align: right;">
+                                            <button onclick="clicked(this)" class="btn btn-skyblue" style="margin: 0">메세지 보내기</button>
+                                            <button onclick="deletething()" class="btn btn-red" style="margin: 0;width: 111px;">삭제</button>
                                         </div>
                                     </div>
                                     <div class="modal hidden">
@@ -61,21 +96,33 @@
                                                 <div class="modal__header">
                                                     신고 받은 회원에게 메세지 보내기
                                                 </div>
-                                                <div class="modal__main">
-                                                    <h4>리뷰 번호 : <span id="revidx">[[${review.revIdx}]]</span> / 신고
-                                                        번호: [[${review.derIdx}]]</h4>
-                                                    <p>작성자 : <span id="dernick">[[${review.derNick}]]</span></p>
-                                                    <p>식당 : [[${review.resaBisName}]]</p>
-                                                    <p>보내는 관리자 : 캐치테이블</p>
-                                                    <p><textarea type="text"
-                                                                 th:class="'input-text message dercontent'+${review.derIdx}"
-                                                                 name="message" placeholder="보낼 메세지를 입력하세요."></textarea>
-                                                    </p>
+                                                <div class="modal__main" style="padding-left: 83px;padding-right: 84px;">
+                                                    <table style="border: 1px solid #cacacaa1;min-width: 100%;">
+                                                        <tbody>
+                                                        <tr>
+                                                            <th scope="row" style="width: 35%;">작성자</th>
+                                                            <td id="dernick" th:text="${review.derNick}"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" style="width: 35%;">식당</th>
+                                                            <td th:text="${review.resaBisName}"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" style="width: 35%;">보내는 관리자</th>
+                                                            <td>캐치테이블</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                     <div>
-                                                        <button th:onclick="sendadminmsg([[${review.derIdx}]],[[${review.derNick}]])"
+                                                        <p>
+                                                            <textarea style="width: 363px;resize: none; margin-top: 11px;" type="text" th:class="'input-text message dercontent'+${review.derIdx}" name="message" placeholder="보낼 메세지를 입력하세요."></textarea>
+                                                        </p>
+                                                    </div>
+                                                    <div style="margin: 15px 0;">
+                                                        <button style="margin: 0;" th:onclick="sendadminmsg([[${review.derIdx}]],[[${review.derNick}]])"
                                                                 class="btn btn-skyblue">보내기
                                                         </button>
-                                                        <button onclick="cclicked(this)" class="btn btn-light"
+                                                        <button style="margin: 0;width: 67px;" onclick="cclicked(this)" class="btn btn-light"
                                                                 type="button">닫기
                                                         </button>
                                                     </div>

@@ -17,6 +17,12 @@
     p {
         padding: 6px;
     }
+    .widget__content > div {
+        display: flex;
+    }
+    .widget__content > div > p {
+        width: 75px;
+    }
 </style>
 <body>
 <!--header 시작-->
@@ -46,14 +52,28 @@
         <div class="row">
 
             <div class="col-md-12">
-                <article class="widget shadow">
+                <article class="widget shadow" style="padding-bottom: 60px;">
                     <div class="widget__content">
-                        <p>식당 : <input type="text" class="input-text value" th:field="${review.resaBisName}" readonly/></p>
-                        <p>내용 : <input type="text" class="input-text value" th:field="${review.revContent}" readonly/></p>
-                        <p>좋아요 : <input type="text" class="input-text value" th:field="${review.revLike}" readonly></p>
-                        <p>평점 : <input type="text" class="input-text value" th:field="${review.revScore}" readonly></p>
-                        <p>등록일 : [[${review.regDate}]]</p>
-
+                        <div>
+                            <p>식당</p>
+                            <input type="text" class="input-text value" th:field="${review.resaBisName}" readonly/>
+                        </div>
+                        <div>
+                            <p>내용</p>
+                            <input type="text" class="input-text value" th:field="${review.revContent}" readonly/>
+                        </div>
+                        <div>
+                            <p>좋아요</p>
+                            <input type="text" class="input-text value" th:field="${review.revLike}" readonly>
+                        </div>
+                        <div>
+                            <p>평점</p>
+                            <input type="text" class="input-text value" th:field="${review.revScore}" readonly>
+                        </div>
+                        <div>
+                            <p>등록일</p>
+                            <span style="line-height: 33px;">[[${#temporals.format(review.regDate, 'yyyy-MM-dd')}]]</span>
+                        </div>
                         <button class="btn btn-light pull-right" type="button" onclick="history.back()">뒤로가기</button>
                         <div class="clearfix"></div>
                     </div>

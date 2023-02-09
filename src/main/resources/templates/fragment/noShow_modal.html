@@ -5,33 +5,42 @@
       <div class="other__modal__header">
         회원에게 노쇼 메세지 보내기
       </div>
-      <div class="modal__main">
+      <div class="modal__main" style="    padding-left: 83px;padding-right: 84px;">
+        <table style="border: 1px solid #cacacaa1;min-width: 100%;">
+          <tbody>
+          <tr>
+            <th scope="row" style="width: 35%;">회원이름</th>
+            <td th:text="${profile.prName}"></td>
+          </tr>
+          <tr>
+            <th scope="row" style="width: 35%;">닉네임</th>
+            <td th:text="${profile.prNick}"></td>
+          </tr>
+          <tr>
+            <th scope="row" style="width: 35%;">핸드폰 번호</th>
+            <td th:text="${profile.prHp}"></td>
+          </tr>
+          <tr>
+            <th scope="row" style="width: 35%;">보내는 관리자</th>
+            <td>캐치테이블</td>
+          </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+      <div>
         <p>
-          회원 번호 : <span id="prIdx">[[${profile.prIdx}]]</span>
+          <textarea type="text" style="width: 365px;resize: none" class="input-text message" id="noShow-msg" placeholder="회원에게 보낼 메세지를 입력하세요."></textarea>
         </p>
-        <p>
-          회원 이름 :  [[${profile.prName}]]
-        </p>
-        <p>
-          닉네임 : <span id="prNick">[[${profile.prNick}]]</span>
-        </p>
-        <p>
-          회원 핸드폰 번호 : [[${profile.prHp}]]
-        </p>
-        <p>
-          보내는 관리자 : 캐치테이블
-        </p>
-        <p>
-          <textarea type="text" class="input-text message" id="noShow-msg" placeholder="회원에게 보낼 메세지를 입력하세요."></textarea>
-        </p>
-        <select id="blockstatus">
-          <option value="1">block</option>
-          <option value="0">nonblock</option>
-        </select>
-        <div>
-          <button class="btn btn-skyblue close_btn" onclick="sendNoshow()">보내기</button>
-          <button class="btn btn-light close_btn1" type="button">닫기</button>
-        </div>
+      </div>
+      <select id="blockstatus" style="width: 364px;margin-bottom: 13px;">
+        <option value="1">block</option>
+        <option value="0">nonblock</option>
+      </select>
+      <div style="margin-bottom: 13px;">
+        <button class="btn btn-skyblue close_btn" onclick="sendNoshow()">보내기</button>
+        <button class="btn btn-light close_btn1" type="button">닫기</button>
       </div>
     </div>
 
