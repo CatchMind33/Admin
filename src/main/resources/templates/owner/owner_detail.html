@@ -19,6 +19,17 @@
     .contents {
 		padding: 15px;
 	}
+	tr, th, td {
+		border: 1px solid #cacacaa1;
+		padding: 14px;
+		font-size: 15px;
+	}
+
+	th {
+		width: 8%;
+		background-color: #a2a2a247;
+		font-weight: 800;
+	}
 </style>
 <body>
 <!--header 시작-->
@@ -50,37 +61,41 @@
 			<div class="col-md-12">
 				<article class="widget shadow">
 					<header class="widget__header">
-						<h3 class="widget__title">스시도온</h3>
+						<h3 class="widget__title" th:text="${resadmin.resaBisName}">스시도온</h3>
 					</header>
+					<table style="border: 1px solid #cacacaa1;min-width: 100%;margin-bottom: 20px;">
+						<tbody>
+						<tr>
+							<th scope="row" id="prIdx">대표</th>
+							<td th:text="${resadmin.resaName}" colspan='3'></td>
+
+						</tr>
+						<tr>
+							<th scope="row">ID</th>
+							<td id="penBisName" th:text="${resadmin.resaUserid}" colspan='3'></td>
+						</tr>
+						<tr>
+							<th scope="row">PW</th>
+							<td th:text="${resadmin.resaUserpw}" colspan='3'></td>
+						</tr>
+						<tr>
+							<th scope="row">핸드폰 번호</th>
+							<td th:text="${resadmin.resaHp}" colspan='3'></td>
+						</tr>
+						<tr>
+							<th scope="row">위치</th>
+							<td th:text="${resadmin.resaRegion}" colspan='3'></td>
+						</tr>
+						<tr>
+							<th scope="row">총 예약 현황</th>
+							<td th:text="${reserve}" style="width: 42%"></td>
+							<td style="width: 8%;background-color: #a2a2a247;font-weight: 800">예약 취소 현황</td>
+							<td th:text="${cancel}"></td>
+						</tr>
+						</tbody>
+					</table>
 
 					<div class="widget__content">
-                        <p>
-						대표 : <input type="text" class="input-text value" placeholder="" th:value="${resadmin.resaName}"/>
-                        </p>
-                        <p>
-						ID : <input type="text" class="input-text value" placeholder="" th:value="${resadmin.resaUserid}"/>
-                        </p>
-                        <p>
-						PW : <input type="text" class="input-text value" placeholder="" th:value="${resadmin.resaUserpw}"/>
-                        </p>
-                        <p>
-                        번호 : <input type="text" class="input-text value" placeholder="" th:value="${resadmin.resaHp}"/>
-                         </p>
-                        <p>
-                        위치 : <span th:text="${resadmin.resaRegion}"></span>
-                         </p>
-                        <table class="table">
-							<thead>
-							<tr>
-								<th>총 예약 현황</th>
-								<th>예약 취소</th>
-							</tr>
-							</thead>
-							<tr>
-								<td th:text="${reserve}"></td>
-								<td th:text="${cancel}"></td>
-							</tr>
-						</table>
                         <button class="btn btn-red pull-right"
 								th:id="${resadmin.resaUserid}"
 								onclick="deleteRes(this.getAttribute('id'))">식당 삭제</button>

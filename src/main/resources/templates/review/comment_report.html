@@ -17,6 +17,17 @@
     .none {
         display: none;
     }
+     tr, th, td {
+         border: 1px solid #cacacaa1;
+         padding: 14px;
+         font-size: 15px;
+     }
+
+    th {
+        width: 10%;
+        background-color: #a2a2a247;
+        font-weight: 800;
+    }
 </style>
 <body>
 <!--header 시작-->
@@ -48,22 +59,38 @@
 
                             <!-- 신고들어온 댓글-->
                             <div class="tabs__content--2">
-                                <div class="media social_msg" th:each="comments : ${decComs}">
+                                <div class="media social_msg" style="border: 0;" th:each="comments : ${decComs}">
                                     <div class="media-body">
-                                        <h4 class="media-heading social_msg__heading">댓글 번호 :<span id="comidx">[[${comments.comIdx}]]</span>
-                                            / 신고
-                                            번호 : [[${comments.decIdx}]]</h4>
-                                        <input type="hidden" id="revIdx" th:value="${comments.revIdx}">
-                                        <p class="social_msg__msg">댓글 작성자 닉네임 : <span
-                                                id="prIdx">[[${comments.decNick}]]</span></p>
-
-                                        <p class="social_msg__msg">댓글 내용 : [[${comments.comContent}]]</p>
-                                        <hr>
-                                        <p class="social_msg__msg">신고 내용 : [[${comments.decContent}]]</p>
-                                        <p class="social_msg__meta">신고일 : [[${comments.regDate}]]</p>
-                                        <div>
-                                            <button onclick="clicked(this)" class="btn btn-skyblue">메세지 보내기</button>
-                                            <button onclick="deletething()" class="btn btn-red">삭제</button>
+                                        <table style="border: 1px solid #cacacaa1;min-width: 100%;">
+                                            <input type="hidden" id="revIdx" th:value="${comments.revIdx}">
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">댓글번호</th>
+                                                <td id="comidx" th:text="${comments.comIdx}" style="width:42%"></td>
+                                                <th style="width: 8%;">신고번호</th>
+                                                <td th:text="${comments.decIdx}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">댓글 작성자 닉네임</th>
+                                                <td  id="prIdx" th:text="${comments.decNick}" colspan="3"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">댓글 내용</th>
+                                                <td th:text="${comments.comContent}" colspan="3"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">신고 내용</th>
+                                                <td th:text="${comments.decContent}" colspan="3"></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">신고일</th>
+                                                <td th:text="${#temporals.format(comments.regDate, 'yyyy-MM-dd')}" colspan="3"></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div style="margin: 15px 0;text-align: right;">
+                                            <button onclick="clicked(this)" class="btn btn-skyblue" style="margin: 0">메세지 보내기</button>
+                                            <button onclick="deletething()" class="btn btn-red" style="margin: 0;width: 111px;">삭제</button>
                                         </div>
                                     </div>
                                     <div class="modal hidden">
@@ -73,20 +100,29 @@
                                                 <div class="modal__header">
                                                     신고 받은 회원에게 메세지 보내기
                                                 </div>
-                                                <div class="modal__main">
-                                                    <h4>댓글이 작성된 리뷰번호 : [[${comments.revIdx}]]</h4>
-                                                    <h4>댓글 번호 :[[${comments.comIdx}]] / 신고
-                                                        번호 : [[${comments.decIdx}]]</h4>
-                                                    <p>댓글 작성자 : <span id="dernick">[[${comments.decNick}]]</span></p>
-                                                    <p>보내는 관리자 : 캐치테이블</p>
-                                                    <p><textarea type="text" th:id="'dercontent'+${comments.comIdx}"
-                                                                 class="input-text message" name="message"
-                                                                 placeholder="보낼 메세지를 입력하세요."></textarea></p>
+                                                <div class="modal__main" style="padding-left: 83px;padding-right: 84px;">
+                                                    <table style="border: 1px solid #cacacaa1;min-width: 100%;">
+                                                        <tbody>
+                                                        <tr>
+                                                            <th scope="row" style="width: 35%;">댓글 작성자</th>
+                                                            <td id="dernick" th:text="${comments.decNick}"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row" style="width: 35%;">보내는 관리자</th>
+                                                            <td>캐치테이블</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
                                                     <div>
-                                                        <button th:onclick="sendadminmsg([[${comments.comIdx}]],[[${comments.decNick}]])"
+                                                        <p>
+                                                            <textarea style="width: 363px;height: 121px;resize: none; margin-top: 11px;border: 1px solid #e9e9e9;" type="text" th:id="'dercontent'+${comments.comIdx}" name="message" placeholder="보낼 메세지를 입력하세요."></textarea>
+                                                        </p>
+                                                    </div>
+                                                    <div style="margin: 15px 0;">
+                                                        <button style="margin: 0;" th:onclick="sendadminmsg([[${comments.comIdx}]],[[${comments.decNick}]])"
                                                                 class="btn btn-skyblue">보내기
                                                         </button>
-                                                        <button onclick="cclicked(this)" class="btn btn-light"
+                                                        <button style="margin: 0;width: 67px;" onclick="cclicked(this)" class="btn btn-light"
                                                                 type="button">닫기
                                                         </button>
                                                     </div>

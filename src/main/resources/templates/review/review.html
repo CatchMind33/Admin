@@ -112,10 +112,11 @@
                                 <td class="rev_content" th:text="${review.revContent}">생선찜이 맛잇...</td>
                                 <td class="rev_score" th:text="${review.revScore}">4.5</td>
                                 <td class="rev_like" th:text="${review.revLike}">2</td>
-                                <td class="regdate" th:text="${review.regDate}">2022.12.27</td>
-                                <td><a th:href="'/review/detail/'+${review.revIdx}">
+                                <td class="regdate" th:text="${#temporals.format(review.regDate, 'yyyy-MM-dd')}">2022.12.27</td>
+                                <td>
+                                    <a th:href="'/review/detail/'+${review.revIdx}">
                                     <button class="btn btn-light btn-small">상세 보기</button>
-                                </a>
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>

@@ -16,7 +16,33 @@
 		font-size: 17px;
     }
 
+	.widget__content > div {
+		display: flex;
+		margin-bottom: 15px;
+	}
 
+	.widget__content > div > p {
+		width: 100px;
+
+	}
+	.modal__main > div{
+		display: flex;
+		margin-bottom: 15px;
+	}
+	.modal__main > div > p{
+		margin-right: 60px;
+	}
+	tr, th, td {
+		border: 1px solid #cacacaa1;
+		padding: 14px;
+		font-size: 15px;
+	}
+
+	th {
+		width: 7%;
+		background-color: #a2a2a247;
+		font-weight: 800;
+	}
 </style>
 <body>
 <!--header 시작-->
@@ -47,34 +73,61 @@
         <div class="row">
 
 			<div class="col-md-12">
-				<article class="widget shadow">
+				<article class="widget shadow" style="padding-bottom: 56px;">
 					<div class="widget__content">
-						<p> 회원 번호 :  <span id="prIdx">[[${profile.prIdx}]]</span></p>
-                        <p> 이름 : [[${profile.prName}]]</p>
-                        <p> 닉네임 : [[${profile.prNick}]] </p>
-                        <p> 핸드폰 번호 : [[${profile.prHp}]]</p>
-                        <p> 선호 지역 : [[${profile.prRegion}]]</p>
-						<p>블락상태 : <span th:if="${profile.prBlock}==true">블락</span> <span th:if="${profile.prBlock}==false">예약가능</span> </p>
-						<p> 가입 날짜 : [[${profile.regDate}]]</p>
-                        	<p>관리자메모</p>
-                        	<p><textarea id="prMemo" class="textarea" row="8" cols="12" th:text ="${profile.prMemo}" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea></p>
-						<table class="table">
-							<thead>
+						<table style="border: 1px solid #cacacaa1;min-width: 100%;">
+							<tbody>
 							<tr>
-<!--								<th>총 예약</th>-->
-<!--								<th>예약 취소</th>-->
-								<th>노쇼</th>
+								<th scope="row" id="prIdx">회원 번호</th>
+								<td th:text="${profile.prIdx}"></td>
+
 							</tr>
-							</thead>
 							<tr>
-<!--								<td>0</td>-->
-<!--								<td>0</td>-->
-								<td th:text="${profile.prNoshow}"></td>
+								<th scope="row">이름</th>
+								<td id="penBisName" th:text="${profile.prName}"></td>
 							</tr>
+							<tr>
+								<th scope="row">닉네임</th>
+								<td th:text="${profile.prNick}"></td>
+							</tr>
+							<tr>
+								<th scope="row">핸드폰 번호</th>
+								<td th:text="${profile.prHp}"></td>
+							</tr>
+							<tr>
+								<th scope="row">선호 지역</th>
+								<td th:text="${profile.prRegion}"></td>
+							</tr>
+							<tr>
+								<th scope="row">블락상태</th>
+								<td th:if="${profile.prBlock}==true">블락</td>
+								<td th:if="${profile.prBlock}==false">예약가능</td>
+							</tr>
+							<tr style="margin-bottom: 25px;">
+								<th scope="row">가입 날짜</th>
+								<td th:text="${#temporals.format(profile.regDate, 'yyyy-MM-dd')}"></td>
+							</tr>
+							</tbody>
 						</table>
+
+						<div style="flex-direction: column;border-top: 1px solid #bdbdbdb0;padding-top: 25px;">
+                        	<p style="font-size: 17px;margin-bottom: 10px;">관리자메모</p>
+                        	<p style="width: 100%">
+								<textarea style="height: 300px;resize: none;" id="prMemo" class="textarea" row="8" cols="12" th:text ="${profile.prMemo}" placeholder="고객 유의 사항 혹은 관리자메모를 입력하세요."></textarea>
+							</p>
+						</div>
+<!--						<table class="table">-->
+<!--							<thead>-->
+<!--							<tr>-->
+<!--								<th>노쇼</th>-->
+<!--							</tr>-->
+<!--							</thead>-->
+<!--							<tr>-->
+<!--								<td th:text="${profile.prNoshow}"></td>-->
+<!--							</tr>-->
+<!--						</table>-->
 						<button class="btn btn-light pull-right" type="button" onclick="history.back();">뒤로가기</button>
 						<button class="btn btn-light pull-right" type="button" onclick="sendMemo()">관리자 메모 등록</button>
-<!--						<button class="modal__open btn btn-light pull-right" type="button">메세지전송</button>-->
                         <button class="other__modal btn btn-red pull-right" type="button">노쇼 블락</button>
 						<div class="clearfix"></div>
 					</div>

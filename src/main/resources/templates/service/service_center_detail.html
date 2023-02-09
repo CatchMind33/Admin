@@ -13,6 +13,9 @@
     .value {
         width: 400px;
     }
+    /*.ask_detail{*/
+    /*    display: flex;*/
+    /*}*/
 </style>
 <body>
 <!--header 시작-->
@@ -47,22 +50,26 @@
                         <h3 class="widget__title">문의 사항</h3>
                     </header>
 
-                    <div th:object="${ask}">
-                        <div class="widget__content">
-                            제목 : <input type="text" disabled="true" class="input-text value" placeholder=""
-                                        th:field="${ask.askTitle}"/>
+                    <div th:object="${ask}" class="ask_detail">
+                        <div class="widget__content" style="display: flex">
+                            <div style="width: 125px;line-height: 30px;">제목</div>
+                            <input type="text" disabled="true" class="input-text value" placeholder="" th:field="${ask.askTitle}"/>
                         </div>
-                        <div>
-                            작성자 회원번호 : <input type="text" disabled="true" class="input-text value" th:field="${ask.prIdx}">
+                        <div style="display: flex">
+                            <div style="width: 125px;line-height: 30px;">작성자 회원번호</div>
+                            <input type="text" disabled="true" class="input-text value" th:field="${ask.prIdx}">
                         </div>
-                        <textarea class="textarea" rows="6" disabled="true" placeholder="" th:field="${ask.askContent}">회원가입 문의는 어떻게 하나요..?</textarea>
+                        <textarea style="height: 300px;resize: none; margin-left: 125px;width: 1000px;" class="textarea" rows="6" disabled="true" placeholder="" th:field="${ask.askContent}"></textarea>
                     </div>
                     <hr>
+                    <div style="display: flex">
+                        <span style="width: 125px;line-height: 30px;">캐치테이블</span>
+                        <input type="text" class="input-text value" id="input_imp">
+                        <button style="margin-top: 0;height: 33px;" class="btn btn-skyblue" id="comment_btn">답글 등록</button>
+                    </div>
 
-                    <span>캐치테이블 : </span> <input type="text" class="input-text value" id="input_imp">
-                    <button class="btn btn-skyblue" id="comment_btn">답글 등록</button>
                     <input type="hidden" id="ask_idx" th:value="${ask.askIdx}">
-                    <div id="ask_answer" th:text="${ask.askAnswer}"></div>
+                    <div id="ask_answer" th:text="${ask.askAnswer}" style="margin-left: 125px;margin-top: 14px;"></div>
 
                     <div class="clearfix"></div>
                 </article>

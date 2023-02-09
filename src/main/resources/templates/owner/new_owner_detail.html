@@ -12,6 +12,7 @@
 <style>
     .value {
         width: 400px;
+		height: 42px;
     }
     .memo {
         height: 200px;
@@ -19,6 +20,17 @@
     .contents {
 		padding: 15px;
 	}
+	.widget__content > div {
+		display: flex;
+	}
+
+	.widget__content > div > p {
+		width: 127px;
+		line-height: 41px;
+	}
+
+
+
 </style>
 <body>
 <!--header 시작-->
@@ -54,16 +66,35 @@
 					</header>
 
 					<div class="widget__content">
-                            <p>문의자 : <input type="text" id="resa_name" class="input-text value" th:field="${owner.penName}" readonly/></p>
-                            <p>문의자 번호 : <input id="resa_hp" type="text" class="input-text value" th:field="${owner.penHp}" readonly/></p>
-                            <p>식당 지역 : <input id="resa_region" type="text" class="input-text value" th:field="${owner.penRegion}" readonly/></p>
-                            <p>매장 분야 : <input type="text" class="input-text value" th:field="${owner.penFoodtype}" readonly/></p>
-                            <p>발급 해줄 ID : <input id="resa_userid" type="text" class="input-text value" placeholder="아이디를 입력하세요"></p>
-                            <p>초기 비밀번호 : <input id="resa_userpw" type="text" class="input-text value" value="1234" readonly></p>
-                            <div style="display:flex;  justify-content: right;">
-                                <button id="registRestBtn" class="btn btn-skyblue" type="button">식당 등록</button>
-                                <a class="btn btn-light" type="button" href="javascript:history.back();">뒤로 가기</a>
-                            </div>
+						<div style="display: flex">
+							<p>문의자</p>
+							<input type="text" id="resa_name" class="input-text value" th:field="${owner.penName}" readonly/>
+						</div>
+						<div>
+							<p>문의자 번호</p>
+							<input id="resa_hp" type="text" class="input-text value" th:field="${owner.penHp}" readonly/>
+						</div>
+						<div>
+							<p>식당 지역</p>
+							<input id="resa_region" type="text" class="input-text value" th:field="${owner.penRegion}" readonly/>
+
+						</div>
+						<div>
+							<p>매장 분야</p>
+							<input type="text" class="input-text value" th:field="${owner.penFoodtype}" readonly/>
+						</div>
+						<div>
+							<p>발급 해줄 ID</p>
+							<input id="resa_userid" type="text" class="input-text value" placeholder="아이디를 입력하세요">
+						</div>
+						<div>
+							<p>초기 비밀번호</p>
+							<input id="resa_userpw" type="text" class="input-text value" value="1234" readonly>
+						</div>
+						<div style="display:flex;  justify-content: right;">
+							<button id="registRestBtn" class="btn btn-skyblue" type="button">식당 등록</button>
+							<a class="btn btn-light" type="button" href="javascript:history.back();">뒤로 가기</a>
+						</div>
 						</div>
 					</form>
 				</article>

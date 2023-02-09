@@ -57,11 +57,14 @@
 					</header>
 
 					<div class="widget__content" th:object="${detail}">
-						공지사항 제목 : <input type="text" class="input-text value" placeholder=""  th:field="${detail.noTitle}" >
+						<div>
+<!--							<div>공지사항 제목</div>-->
+							<input style="width: 100%" type="text" class="input-text value" placeholder=""  th:field="${detail.noTitle}" >
+						</div>
 
 
 
-						<textarea class="textarea" rows="6" placeholder="" th:field="${detail.noContent}" >연말이벤트 공지입니다. 12월 24일부터 25일까지 ~~</textarea>
+						<textarea style="height: 300px;resize: none" class="textarea" rows="6" placeholder="" th:field="${detail.noContent}" >연말이벤트 공지입니다. 12월 24일부터 25일까지 ~~</textarea>
 
 						<input type="hidden" class="notice_update"  id="notice_update" th:value="${detail.noIdx}" >
 						<button class="btn btn-light pull-right" type="button" onclick="updateit()">수정</button>
