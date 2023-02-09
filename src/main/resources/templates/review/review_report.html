@@ -86,7 +86,7 @@
                                         </table>
                                         <div style="margin: 15px 0;text-align: right;">
                                             <button onclick="clicked(this)" class="btn btn-skyblue" style="margin: 0">메세지 보내기</button>
-                                            <button onclick="deletething()" class="btn btn-red" style="margin: 0;width: 111px;">삭제</button>
+                                            <button th:onclick="deletething([[${review.revIdx}]],[[${review.resIdx}]])" class="btn btn-red" style="margin: 0;width: 111px;">삭제</button>
                                         </div>
                                     </div>
                                     <div class="modal hidden">
@@ -209,10 +209,10 @@
         });
     }
 
-    function deletething() {
-        let idx = document.querySelector("#revidx").innerText;
+    function deletething(revIdx, resIdx) {
         let data1 = {
-            idx: idx
+            revIdx : revIdx,
+            resIdx : resIdx
         }
         if (confirm("해당 유저의 리뷰를 삭제하시겠습니까?")) {
             $.ajax({

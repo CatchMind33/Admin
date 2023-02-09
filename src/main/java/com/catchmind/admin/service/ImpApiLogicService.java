@@ -27,6 +27,7 @@ public class ImpApiLogicService extends BaseService<ImpApiRequest, ImpApiRespons
                 .impContent(imp.getImpContent())
                 .prIdx(imp.getPrIdx())
                 .impAnswer(imp.getImpAnswer())
+                .impStatus(imp.isImpStatus())
                 .build();
         return impApiResponse;
     }

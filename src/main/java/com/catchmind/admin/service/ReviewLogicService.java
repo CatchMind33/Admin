@@ -1,10 +1,12 @@
 package com.catchmind.admin.service;
 
 import com.catchmind.admin.model.entity.Profile;
+import com.catchmind.admin.model.entity.Reserve;
 import com.catchmind.admin.model.entity.Review;
 import com.catchmind.admin.model.network.Header;
 import com.catchmind.admin.model.network.request.ReviewApiRequest;
 import com.catchmind.admin.model.network.response.ReviewApiResponse;
+import com.catchmind.admin.repository.ReserveRepository;
 import com.catchmind.admin.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,7 @@ import java.util.Optional;
 public class ReviewLogicService extends BaseService<ReviewApiRequest, ReviewApiResponse, Review> {
 
     private final ReviewRepository reviewRepository;
+    private final ReserveRepository reserveRepository;
 
     private ReviewApiResponse response(Review users){
         ReviewApiResponse reviewApiResponse = ReviewApiResponse.builder()
@@ -57,8 +60,15 @@ public class ReviewLogicService extends BaseService<ReviewApiRequest, ReviewApiR
     public Page<ReviewApiResponse> reviewList(Pageable pageable) {
         return reviewRepository.findAll(pageable).map(review -> response(review));
     }
-    public Header deleteok(Long idx){
-        Optional<Review> review = reviewRepository.findByRevIdx(idx);
+    public Header deleteok(Long revIdx, Long resIdx){
+        Optional<Reserve> findReserve = reserveRepository.findById(resIdx);
+        findReserve.ifPresent(
+                reserve -> {
+                    reserve.setRevStatus(false);
+                    reserveRepository.save(reserve);
+                }
+        );
+        Optional<Review> review = reviewRepository.findByRevIdx(revIdx);
         return review.map(user->{
             reviewRepository.delete(user);
             return Header.ok();

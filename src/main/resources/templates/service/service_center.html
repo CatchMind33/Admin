@@ -102,7 +102,7 @@
                                 <td class="ask_title" th:text="${ask.askTitle}">회원가입</td>
                                 <td class="ask_content" th:text="${ask.askContent}">회원가입은 따로...</td>
                                 <td class="ask_regdate" th:text="${#temporals.format(ask.regDate, 'yyyy-MM-dd')}">2022.12.16 14:00</td>
-                                <td></td>
+                                <td class="ask_status" th:text="${ask.askStatus ? '답변 완료' : '답변 대기'}"></td>
                                 <td><a th:href="'/service/ask/detail/'+${ask.askIdx}">
                                     <button class="btn btn-light">댓글 달기</button>
                                 </a></td>
