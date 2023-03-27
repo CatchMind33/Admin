@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 작성</title>
-	<script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
-	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>
+<!--	<script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>-->
+<!--	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/translations/ko.js"></script>-->
+<!--	<link rel="stylesheet" href="path/to/assets/content-styles.css" type="text/css">-->
 
 	<!--css 및 라이브러리 링크 시작-->
 	<div th:replace="fragment/link :: link"/>
@@ -66,23 +67,8 @@
 
 						<textarea class="textarea" id="no_content" rows="6" placeholder="내용을 입력해주세요" style="height: 500px; resize: none"></textarea>
 <!--					<div class="display">-->
-<!--&lt;!&ndash;						<div class="title">자기소개</div>&ndash;&gt;-->
 <!--						<textarea name="text" id="no_content" class="textarea"></textarea>-->
-<!--						&lt;!&ndash; <p><input type="submit" value="전송"></p> &ndash;&gt;-->
-<!--						<script>-->
-<!--							ClassicEditor.create( document.querySelector( '#no_content' ), {-->
-<!--								language: "ko"-->
-<!--							} );-->
-<!--						</script>-->
-<!--					</div>-->
-<!--					<div class="display">-->
-<!--						<textarea name="text" id="editor" class="noresize"></textarea>-->
-<!--						&lt;!&ndash; <p><input type="submit" value="전송"></p> &ndash;&gt;-->
-<!--						<script>-->
-<!--							ClassicEditor.create( document.querySelector( '#editor' ), {-->
-<!--								language: "ko"-->
-<!--							} );-->
-<!--						</script>-->
+
 <!--					</div>-->
 
 						<button class="btn btn-light pull-right" id="notice_btn" type="button" >등록</button>
@@ -101,6 +87,12 @@
 <!--js 연결 시작-->
 <div th:replace="fragment/js :: js"/>
 <script src="/js/write.js"></script>
+<script src="/js/ckeditor.js"></script>
+<!--<script>-->
+<!--	ClassicEditor.create( document.querySelector( '#no_content' ), {-->
+<!--		language: "ko"-->
+<!--	} );-->
+<!--</script>-->
 <!--js 연결 끝-->
 </body>
 </html>

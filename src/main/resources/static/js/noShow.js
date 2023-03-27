@@ -1,9 +1,12 @@
 function sendNoshow() {
     const prNick = document.getElementById("prNick").innerText;
-    const prIdx = document.getElementById("prIdx").innerText;
+    const prIdx = document.getElementById("prIdxx").innerText;
     const noShowMsg = document.getElementById("noShow-msg");
     const statusblock = document.getElementById("blockstatus").value;
     console.log(statusblock);
+    console.log(prIdx)
+    console.log(prNick)
+    console.log(noShowMsg)
 
     if(noShowMsg.value == '') {
         alert("메세지를 입력하세요!");

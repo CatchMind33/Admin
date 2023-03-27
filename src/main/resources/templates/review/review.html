@@ -107,12 +107,12 @@
                             </thead>
                             <tbody>
                             <tr th:each="review :${reviews}">
-                                <td class="rev_idx" th:text="${review.revIdx}">1</td>
-                                <td class="resa_bis_name" th:text="${review.resaBisName}">스시소요</td>
-                                <td class="rev_content" th:text="${review.revContent}">생선찜이 맛잇...</td>
-                                <td class="rev_score" th:text="${review.revScore}">4.5</td>
-                                <td class="rev_like" th:text="${review.revLike}">2</td>
-                                <td class="regdate" th:text="${#temporals.format(review.regDate, 'yyyy-MM-dd')}">2022.12.27</td>
+                                <td style="width: 67px;" class="rev_idx" th:text="${review.revIdx}">1</td>
+                                <td style="width: 200px;" class="resa_bis_name" th:text="${review.resaBisName}">스시소요</td>
+                                <td style="white-space: pre-line;" class="rev_content" th:text="${review.revContent}">생선찜이 맛잇...</td>
+                                <td style="width: 67px;" class="rev_score" th:text="${review.revScore}">4.5</td>
+                                <td style="width: 67px;" class="rev_like" th:text="${review.revLike}">2</td>
+                                <td style="width: 125px;" class="regdate" th:text="${#temporals.format(review.regDate, 'yyyy-MM-dd')}">2022.12.27</td>
                                 <td>
                                     <a th:href="'/review/detail/'+${review.revIdx}">
                                     <button class="btn btn-light btn-small">상세 보기</button>

@@ -21,12 +21,12 @@ public class DecReviewLogicService extends BaseService<DecReviewApiRequest, DecR
         DecReviewApiResponse reviewApiResponse = DecReviewApiResponse.builder()
                 .derIdx(declareReview.getDerIdx())
                 .revIdx(declareReview.getReview().getRevIdx())
-                .resIdx(declareReview.getReview().getResIdx())
                 .derNick(declareReview.getDerNick())
                 .derContent(declareReview.getDerContent())
                 .revContent(declareReview.getReview().getRevContent())
                 .regDate(declareReview.getRegDate())
                 .resaBisName(declareReview.getReview().getResAdmin().getResaBisName())
+                .resIdx(declareReview.getReview().getResIdx())
                 .prIdx(Profile.builder().prIdx(declareReview.getProfile().getPrIdx()).build())
                 .build();
         return reviewApiResponse;

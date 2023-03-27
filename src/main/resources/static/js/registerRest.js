@@ -26,11 +26,7 @@ function BisDetail() {
             console.log(data);
 
         })
-        .catch((err) => {
-            alert('에러!!');
-            location.reload();
 
-        });
 
 }
 
@@ -56,11 +52,7 @@ function total() {
             console.log(data);
 
         })
-        .catch((err) => {
-            alert('에러!!');
-            location.reload();
 
-        });
 }
 
 // 편의시설 테이블에 식당이름 등록
@@ -85,11 +77,7 @@ function fac() {
             console.log(data);
 
         })
-        .catch((err) => {
-            alert('에러!!');
-            location.reload();
 
-        });
 
 }
 
@@ -115,11 +103,7 @@ function photo() {
             console.log(data);
 
         })
-        .catch((err) => {
-            alert('에러!!');
-            location.reload();
 
-        });
 
 }
 
@@ -146,11 +130,7 @@ function deleteit() {
             console.log(data);
 
         })
-        .catch((err) => {
-            alert('에러!!');
-            location.reload();
 
-        });
 
 }
 
@@ -176,11 +156,7 @@ function Bistro() {
             console.log(data);
 
         })
-        .catch((err) => {
-            alert('에러!!');
-            location.reload();
 
-        });
 
 
 }
@@ -231,11 +207,7 @@ function sendit() {
             console.log(data);
 
         })
-        .catch((err) => {
-            alert('에러!!');
-            location.reload();
 
-        });
 }
 const resaBis = async () => {
     await Bistro()

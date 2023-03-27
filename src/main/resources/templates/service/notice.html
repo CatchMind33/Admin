@@ -91,7 +91,7 @@
                             <tr>
                                 <th class="no_idx">공지 번호</th>
                                 <th class="no_title">공지 제목</th>
-                                <th class="no_content">공지 내용</th>
+<!--                                <th class="no_content">공지 내용</th>-->
                                 <th class="regdate">등록일</th>
                                 <th class="btn" style="margin: 0;">관리</th>
                             </tr>
@@ -100,7 +100,7 @@
                             <tr th:each="notice :${notices}">
                                 <td class="no_idx" th:text="${notice.noIdx}" style="padding-left: 34px;">1</td>
                                 <td class="no_title" th:text="${notice.noTitle}">이벤트 공지</td>     <!-- 들어가면 상세페이지로 -->
-                                <td class="no_content" th:text="${notice.noContent}">연말이벤트~</td>
+<!--                                <td class="no_content" th:text="${notice.noContent}">연말이벤트~</td>-->
                                 <td class="regdate" th:text="${#temporals.format(notice.regDate, 'yyyy-MM-dd')}">2022.12.15</td>
                                 <td>
                                     <a th:href="'/service/notice/detail/'+${notice.noIdx}">

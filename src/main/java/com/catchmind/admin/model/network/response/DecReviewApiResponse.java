@@ -22,4 +22,5 @@ public class DecReviewApiResponse {
     private String resaBisName;
     private LocalDateTime regDate;
     private Profile prIdx;
+    private Long resIdx;
 }
