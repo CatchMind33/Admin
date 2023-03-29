@@ -68,3 +68,8 @@
   <br>
   
 ## 프로젝트 화면
+<div align="center">
+
+![admin](https://user-images.githubusercontent.com/104509621/228546832-4e3641c8-6d66-4833-94ac-91e453aecc5d.gif)
+
+</div>
