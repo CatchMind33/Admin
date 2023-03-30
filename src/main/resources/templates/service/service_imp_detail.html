@@ -50,13 +50,15 @@
 
                     <div class="widget__content" style="display: flex">
                         <div style="width: 125px;line-height: 30px;">제목</div>
-                        <input type="text" disabled="true" class="input-text value" placeholder="" th:field="${imp.impTitle}"/>
+                        <input type="text" disabled="true" class="input-text value" placeholder=""
+                               th:field="${imp.impTitle}"/>
                     </div>
                     <div style="display: flex">
                         <div style="width: 125px;line-height: 30px;">작성자 회원번호</div>
                         <input type="text" disabled="true" class="input-text value" th:field="${imp.prIdx}">
                     </div>
-                    <textarea style="height: 300px;resize: none; margin-left: 125px;width: 1000px;" class="textarea" rows="6" disabled="true" placeholder=""
+                    <textarea style="height: 300px;resize: none; margin-left: 125px;width: 1000px;" class="textarea"
+                              rows="6" disabled="true" placeholder=""
                               th:field="${imp.impContent}"></textarea>
                     <hr>
                     <div style="display:flex;">
@@ -65,6 +67,9 @@
                         <button class="btn btn-skyblue" id="imp_btn" style="margin-top: 0;height: 33px;">답글 등록</button>
                         <input type="hidden" id="imp_idx" th:value="${imp.impIdx}">
                     </div>
+                    <button style="display:flex; justify-content: flex-end;" class="btn btn-light pull-right"
+                            onclick="history.back();">뒤로가기
+                    </button>
                     <div id="imp_answer" th:text="${imp.impAnswer}" style="margin-left: 125px;margin-top: 14px;"></div>
 
                     <div class="clearfix"></div>

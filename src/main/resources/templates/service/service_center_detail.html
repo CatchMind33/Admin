@@ -13,6 +13,7 @@
     .value {
         width: 400px;
     }
+
     /*.ask_detail{*/
     /*    display: flex;*/
     /*}*/
@@ -53,20 +54,24 @@
                     <div th:object="${ask}" class="ask_detail">
                         <div class="widget__content" style="display: flex">
                             <div style="width: 125px;line-height: 30px;">제목</div>
-                            <input type="text" disabled="true" class="input-text value" placeholder="" th:field="${ask.askTitle}"/>
+                            <input type="text" disabled="true" class="input-text value" placeholder=""
+                                   th:field="${ask.askTitle}"/>
                         </div>
                         <div style="display: flex">
                             <div style="width: 125px;line-height: 30px;">작성자 회원번호</div>
                             <input type="text" disabled="true" class="input-text value" th:field="${ask.prIdx}">
                         </div>
-                        <textarea style="height: 300px;resize: none; margin-left: 125px;width: 1000px;" class="textarea" rows="6" disabled="true" placeholder="" th:field="${ask.askContent}"></textarea>
+                        <textarea style="height: 300px;resize: none; margin-left: 125px;width: 1000px;" class="textarea"
+                                  rows="6" disabled="true" placeholder="" th:field="${ask.askContent}"></textarea>
                     </div>
                     <hr>
                     <div style="display: flex">
                         <span style="width: 125px;line-height: 30px;">캐치테이블</span>
                         <input type="text" class="input-text value" id="input_imp">
-                        <button style="margin-top: 0;height: 33px;" class="btn btn-skyblue" id="comment_btn">답글 등록</button>
+                        <button style="margin-top: 0;height: 33px;" class="btn btn-skyblue" id="comment_btn">답글 등록
+                        </button>
                     </div>
+                    <button style="display:flex; justify-content: flex-end;"class="btn btn-light pull-right" onclick="history.back();">뒤로가기</button>
 
                     <input type="hidden" id="ask_idx" th:value="${ask.askIdx}">
                     <div id="ask_answer" th:text="${ask.askAnswer}" style="margin-left: 125px;margin-top: 14px;"></div>

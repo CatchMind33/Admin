@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile,Long> {
 
-    Optional<Profile> findByPrNick(String prNick);
+    Profile findByPrNick(String prNick);
 
     List<Profile> findTop4By();
 

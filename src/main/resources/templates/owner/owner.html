@@ -83,14 +83,14 @@
 					전체 식당 관리자 <small> 조회 및 관리</small>
 				</h1>
 				<div class="main-content">
-					<div class="search-box">
-						<form action="/owner/search" method="GET">
-							<input name="keyword" id="searchShop" class="input-text search" type="text" placeholder="식당 검색">
-							<button class="search-btn">
-								<i class="pe-7s-search"></i>
-							</button>
-						</form>
-					</div>
+<!--					<div class="search-box">-->
+<!--						<form action="/owner/search" method="GET">-->
+<!--							<input name="keyword" id="searchShop" class="input-text search" type="text" placeholder="식당 검색">-->
+<!--							<button class="search-btn">-->
+<!--								<i class="pe-7s-search"></i>-->
+<!--							</button>-->
+<!--						</form>-->
+<!--					</div>-->
 				</div>
 			</header> <!--헤더 끝-->
 
@@ -119,8 +119,8 @@
                                             <td th:text="${resAdmin.resaHp}"></td>
                                             <td th:text="${resAdmin.resaRegion}"></td>
                                             <td>
-                                                <a th:href="'/owner/detail/'+${resAdmin.resaBisName}"><button class="btn btn-light btn-xs">상세 보기</button></a>
-                                                <a th:id="${resAdmin.resaUserid}" onclick="deleteRes(this.getAttribute('id'))"><button class="btn btn-red btn-xs">삭제</button></a>
+                                                <a th:href="'/owner/detail/'+${resAdmin.resaBisName}"><button class="btn btn-light">상세 보기</button></a>
+<!--                                                <a th:id="${resAdmin.resaUserid}" onclick="deleteRes(this.getAttribute('id'))"><button class="btn btn-red btn-xs">삭제</button></a>-->
                                             </td>
                                         </tr>
                                     </tbody>

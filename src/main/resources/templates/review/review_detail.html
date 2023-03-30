@@ -10,18 +10,29 @@
     <!--css 및 라이브러리 링크 끝-->
 </head>
 <style>
-    .value {
-        width: 400px;
-    }
 
     p {
         padding: 6px;
     }
+
     .widget__content > div {
         display: flex;
     }
+
     .widget__content > div > p {
         width: 75px;
+    }
+
+    tr, th, td {
+        border: 1px solid #cacacaa1;
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    th {
+        width: 8%;
+        background-color: #a2a2a247;
+        font-weight: 800;
     }
 </style>
 <body>
@@ -42,7 +53,7 @@
         <header class="main-header clearfix">
             <h1 class="main-header__title">
                 <i class="icon pe-7s-home"></i>
-                리뷰 상세 <small>조회 및 관리</small>
+                리뷰 상세 조회
             </h1>
             <div class="main-header__date">
                 <i class="icon pe-7s-date"></i>
@@ -54,26 +65,38 @@
             <div class="col-md-12">
                 <article class="widget shadow" style="padding-bottom: 60px;">
                     <div class="widget__content">
-                        <div>
-                            <p>식당</p>
-                            <input type="text" class="input-text value" th:field="${review.resaBisName}" readonly/>
-                        </div>
-                        <div>
-                            <p>내용</p>
-                            <input type="text" class="input-text value" th:field="${review.revContent}" readonly/>
-                        </div>
-                        <div>
-                            <p>좋아요</p>
-                            <input type="text" class="input-text value" th:field="${review.revLike}" readonly>
-                        </div>
-                        <div>
-                            <p>평점</p>
-                            <input type="text" class="input-text value" th:field="${review.revScore}" readonly>
-                        </div>
-                        <div>
-                            <p>등록일</p>
-                            <span style="line-height: 33px;">[[${#temporals.format(review.regDate, 'yyyy-MM-dd')}]]</span>
-                        </div>
+                        <table style="border: 1px solid #cacacaa1;min-width: 100%;margin-bottom: 20px;">
+                            <tbody>
+                            <tr>
+                                <th scope="row">리뷰 번호</th>
+                                <td th:text="${review.revIdx}" colspan='3'></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">방문한 식당</th>
+                                <td th:text="${review.resaBisName}" colspan='3'></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">리뷰 내용</th>
+                                <td th:text="${review.revContent}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">작성자</th>
+                                <td colspan='3'>[[${review.prIdx.prName}]] ([[${review.prIdx.prNick}]])</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">좋아요 개수</th>
+                                <td th:text="${review.revLike}" colspan='3'></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">평점</th>
+                                <td th:text="${review.revScore}" colspan='3'></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">등록일</th>
+                                <td colspan='3'>[[${#temporals.format(review.regDate, 'yyyy-MM-dd')}]]</td>
+                            </tr>
+                            </tbody>
+                        </table>
                         <button class="btn btn-light pull-right" type="button" onclick="history.back()">뒤로가기</button>
                         <div class="clearfix"></div>
                     </div>

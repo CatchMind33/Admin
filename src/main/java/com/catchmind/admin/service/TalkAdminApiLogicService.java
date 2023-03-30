@@ -34,19 +34,9 @@ public class TalkAdminApiLogicService extends BaseService<TalkAdminApiRequest, T
         return null;
     }
 
-    public Header<TalkAdminApiResponse> createProfile(Header<TalkAdminApiRequest> request) {
-        TalkAdminApiRequest talkAdminApiRequest = request.getData();
-        TalkAdmin talkAdmin = TalkAdmin.builder()
-                .taaContent(talkAdminApiRequest.getTaaContent())
-                .build();
-        TalkAdmin newMsg = baseRepository.save(talkAdmin);
-        return Header.ok();
-    }
 
     public Header<TalkAdminApiResponse> msg(String taaContent,String derNick){
-//        String derNick= request.getDerNick();
-//        String content = request.getTaaContent();
-        Profile profile = profileRepository.findByPrNick(derNick).orElseThrow();
+        Profile profile = profileRepository.findByPrNick(derNick);
         Long prIdx = profile.getPrIdx();
 
         TalkAdmin talkAdmin = TalkAdmin.builder()
