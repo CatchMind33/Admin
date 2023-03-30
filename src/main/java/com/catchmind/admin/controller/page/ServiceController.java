@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -37,7 +39,16 @@ public class ServiceController {
 
     // 전체 공지사항 리스트
     @GetMapping("/notice")
-    public String notice(@PageableDefault(size = 10, sort = "noIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map) {
+    public String notice(@PageableDefault(size = 10, sort = "noIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return "login";
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
         Page<Notice> notices = noticeApiLogicService.noticeList(pageable);
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), notices.getTotalPages());
         map.addAttribute("notices", notices);
@@ -48,8 +59,17 @@ public class ServiceController {
 
     // 공지사항 상세
     @GetMapping("/notice/detail/{noIdx}")
-    public ModelAndView noticeDetail(@PathVariable Long noIdx) {
-        ModelAndView view = new ModelAndView("/service/notice_detail");
+    public ModelAndView noticeDetail(@PathVariable Long noIdx, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return new ModelAndView("login");
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
+        ModelAndView view = new ModelAndView("service/notice_detail");
         Header<NoticeApiResponse> api = noticeApiLogicService.read(noIdx);
         view.addObject("detail", api.getData());
         return view;
@@ -58,25 +78,52 @@ public class ServiceController {
 
     // 공지사항 작성
     @GetMapping("notice/write")
-    public ModelAndView noticeWrite() {
-        return new ModelAndView("/service/notice_write");
+    public ModelAndView noticeWrite(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return new ModelAndView("login");
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
+        return new ModelAndView("service/notice_write");
     }
 
 
     // 문의사항 리스트
     @GetMapping("/ask")
-    public String service(@PageableDefault(size = 10, sort = "askIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map) {
+    public String service(@PageableDefault(size = 10, sort = "askIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return "login";
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
         Page<Ask> asks = askApiLogicService.askList(pageable);
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), asks.getTotalPages());
         map.addAttribute("asks", asks);
         map.addAttribute("paginationBarNumbers", barNumbers);
-        return "/service/service_center";
+        return "service/service_center";
     }
 
     // 문의 사항 상세
     @GetMapping("/ask/detail/{askIdx}")
-    public ModelAndView askDetail(@PathVariable Long askIdx) {
-        ModelAndView view = new ModelAndView("/service/service_center_detail");
+    public ModelAndView askDetail(@PathVariable Long askIdx, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return new ModelAndView("login");
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
+        ModelAndView view = new ModelAndView("service/service_center_detail");
         Header<AskApiResponse> api = askApiLogicService.read(askIdx);
         view.addObject("ask", api.getData());
         return view;
@@ -84,18 +131,36 @@ public class ServiceController {
 
     // 개선사항 리스트
     @GetMapping("/imp")
-    public String improvement(@PageableDefault(size = 10, sort = "impIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map) {
+    public String improvement(@PageableDefault(size = 10, sort = "impIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return "login";
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
         Page<Improvement> improvements = impApiLogicService.impList(pageable);
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), improvements.getTotalPages());
         map.addAttribute("improvements", improvements);
         map.addAttribute("paginationBarNumbers", barNumbers);
-        return "/service/service_imp";
+        return "service/service_imp";
     }
 
     // 개선사항 상세
     @GetMapping("/imp/detail/{impIdx}")
-    public ModelAndView improvementDetail(@PathVariable Long impIdx) {
-        ModelAndView view = new ModelAndView("/service/service_imp_detail");
+    public ModelAndView improvementDetail(@PathVariable Long impIdx, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return new ModelAndView("login");
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
+        ModelAndView view = new ModelAndView("service/service_imp_detail");
         Header<ImpApiResponse> api = impApiLogicService.read(impIdx);
         view.addObject("imp", api.getData());
         return view;

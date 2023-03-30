@@ -35,7 +35,6 @@ public class Header<T>{
                 .resultCode("ERROR").description(description).build();
     }
 
-    // 페이징 처리 정상응답
 
 
 }

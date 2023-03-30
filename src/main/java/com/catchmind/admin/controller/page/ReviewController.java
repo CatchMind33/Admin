@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -33,7 +35,16 @@ public class ReviewController {
     private final DecComLogicService decComLogicService;
 
     @GetMapping("")
-    public String reviewMain(@PageableDefault(size=10, sort="revIdx", direction = Sort.Direction.DESC)Pageable pageable, ModelMap map) {
+    public String reviewMain(@PageableDefault(size=10, sort="revIdx", direction = Sort.Direction.DESC)Pageable pageable, ModelMap map, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return "login";
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
         Page<ReviewApiResponse> reviews = reviewLogicService.reviewList(pageable);
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), reviews.getTotalPages());
         map.addAttribute("reviews",reviews);
@@ -43,17 +54,34 @@ public class ReviewController {
     }
 
     @GetMapping("/detail/{revIdx}")
-    public ModelAndView reviewDetail(@PathVariable Long revIdx) {
+    public ModelAndView reviewDetail(@PathVariable Long revIdx, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return new ModelAndView("login");
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
         Header<ReviewApiResponse> review = reviewLogicService.read(revIdx);
         ModelAndView view = new ModelAndView("review/review_detail");
         view.addObject("review", review.getData());
-        System.out.println(review);
         System.out.println(review.getData());
         return view;
     }
 
     @GetMapping("/report")
-    public String reviewReport(@PageableDefault(size=5, sort="derIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map) {
+    public String reviewReport(@PageableDefault(size=5, sort="derIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return "login";
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
         Page<DecReviewApiResponse> decReviews = decReviewLogicService.list(pageable);
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), decReviews.getTotalPages());
         map.addAttribute("decReviews", decReviews);
@@ -63,7 +91,16 @@ public class ReviewController {
     }
 
     @GetMapping("/comment/report")
-    public String commentReport(@PageableDefault(size=5, sort="decIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map) {
+    public String commentReport(@PageableDefault(size=5, sort="decIdx", direction = Sort.Direction.DESC) Pageable pageable, ModelMap map, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String userid = null;
+        String name = null;
+        if(session == null) {
+            return "login";
+        } else {
+            userid= (String)session.getAttribute("userid");
+            name= (String)session.getAttribute("name");
+        }
         Page<DecComApiResponse> decComs = decComLogicService.list(pageable);
         List<Integer> barNumbers = paginationService.getPaginationBarNumber(pageable.getPageNumber(), decComs.getTotalPages());
         map.addAttribute("decComs", decComs);

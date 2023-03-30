@@ -109,7 +109,7 @@
 		</div>
 
 		<div class="row">	<!--리뷰 간략히-->
-			<div class="col-md-7">
+			<div class="col-md-12">
 				<article class="widget widget--tabbed shadow">
 					<div class="tabs">
 						<input type="radio" name="t" id="tab1" checked>
@@ -179,37 +179,37 @@
 			</div>
 
 
-			<div class="col-md-5">  <!--유저 간략히-->
-				<article class="widget no-padding--lr shadow">
-					<header class="widget__header">
-						<h3 class="widget__title">Total users / <span th:text="${totuser}"></span></h3>
-						<div class="widget__config">
-						</div>
-					</header>
-					<div class="widget__content" th:each="profile : ${profile}">
-						<div class="media user user--added">
-							<div class="media-body">
-								<h4 class="media-heading user__name"><span th:text="${profile.prNick}"></span>(<span th:text="${profile.prName}"></span>)</h4>
-								<small class="user__location"><i class="pe-7f-map-marker"></i><span th:text="${profile.prRegion}"></span></small>
-<!--								<input type="checkbox" class="btn-more-check" id="more1">-->
-<!--								<label class="c-btn&#45;&#45;more" for="more1"></label>-->
-								<button onclick="clicked(this)" class="btn-more-check"
-								style="border: none; float: right;">+</button>
+<!--			<div class="col-md-5">  &lt;!&ndash;유저 간략히&ndash;&gt;-->
+<!--				<article class="widget no-padding&#45;&#45;lr shadow">-->
+<!--					<header class="widget__header">-->
+<!--						<h3 class="widget__title">Total users / <span th:text="${totuser}"></span></h3>-->
+<!--						<div class="widget__config">-->
+<!--						</div>-->
+<!--					</header>-->
+<!--					<div class="widget__content" th:each="profile : ${profile}">-->
+<!--						<div class="media user user&#45;&#45;added">-->
+<!--							<div class="media-body">-->
+<!--								<h4 class="media-heading user__name"><span th:text="${profile.prNick}"></span>(<span th:text="${profile.prName}"></span>)</h4>-->
+<!--								<small class="user__location"><i class="pe-7f-map-marker"></i><span th:text="${profile.prRegion}"></span></small>-->
+<!--&lt;!&ndash;								<input type="checkbox" class="btn-more-check" id="more1">&ndash;&gt;-->
+<!--&lt;!&ndash;								<label class="c-btn&#45;&#45;more" for="more1"></label>&ndash;&gt;-->
+<!--								<button onclick="clicked(this)" class="btn-more-check"-->
+<!--								style="border: none; float: right;">+</button>-->
 
-								<div class="accordion__details">
-									<p>핸드폰 번호 <span><a th:text="${profile.prHp}"></a></span></p>
+<!--								<div class="accordion__details">-->
+<!--									<p>핸드폰 번호 <span><a th:text="${profile.prHp}"></a></span></p>-->
 
-									<p>관리자 메모<span class="btn-badge bg--orange" th:text="${profile.prMemo}"></span></p>
-									<button onclick="cclicked(this)" style="border: none; width: 100%">-</button>
-								</div>
-							</div>
-						</div> <!-- /user -->
-					</div> <!-- /user 끝 -->
-					<div class="user__more">
-						<a href="/user" id="loadmore"><i class="pe-7s-plus"></i>회원 상세히 보기</a>
-					</div>
-				</article>
-			</div>
+<!--									<p>관리자 메모<span class="btn-badge bg&#45;&#45;orange" th:text="${profile.prMemo}"></span></p>-->
+<!--									<button onclick="cclicked(this)" style="border: none; width: 100%">-</button>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div> &lt;!&ndash; /user &ndash;&gt;-->
+<!--					</div> &lt;!&ndash; /user 끝 &ndash;&gt;-->
+<!--					<div class="user__more">-->
+<!--						<a href="/user" id="loadmore"><i class="pe-7s-plus"></i>회원 상세히 보기</a>-->
+<!--					</div>-->
+<!--				</article>-->
+<!--			</div>-->
 
 		</div> <!-- /row -->
 	</section>
